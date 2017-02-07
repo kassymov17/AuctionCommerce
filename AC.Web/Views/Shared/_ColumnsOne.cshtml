@@ -1,4 +1,7 @@
-﻿@if (IsSectionDefined("Breadcrumb"))
+﻿@{ 
+    Layout = "~/Views/Shared/_Root.cshtml";
+}
+@if (IsSectionDefined("Breadcrumb"))
 {
     @section Breadcrumb {
         @RenderSection("Breadcrumb")
