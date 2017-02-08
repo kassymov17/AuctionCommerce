@@ -3,7 +3,6 @@ using System.Web.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 using AC.Core.Configuration;
-using AC.Core.Infrastructure;
 using AC.Core.Infrastructure.DependencyManagement;
 using Autofac;
 using Autofac.Integration.Mvc;
@@ -48,11 +47,25 @@ namespace AC.Core.Infrastructure
             this._containerManager = new ContainerManager(container);
 
             //dependecies
+            var typeFinder = new WebAppTypeFinder();
             builder = new ContainerBuilder();
             builder.RegisterInstance(config).As<ACConfig>().SingleInstance();
             builder.RegisterInstance(this).As<IEngine>().SingleInstance();
+            builder.RegisterInstance(typeFinder).As<ITypeFinder>().SingleInstance();
             builder.Update(container);
-            
+
+            //register dependencies provided by other assemblies
+            builder = new ContainerBuilder();
+            var drTypes = typeFinder.FindClassesOfType<IDependencyRegistrar>();
+            var drInstances = new List<IDependencyRegistrar>();
+            foreach (var drType in drTypes)
+                drInstances.Add((IDependencyRegistrar)Activator.CreateInstance(drType));
+            //sort
+            drInstances = drInstances.AsQueryable().OrderBy(t => t.Order).ToList();
+            foreach (var dependencyRegistrar in drInstances)
+                dependencyRegistrar.Register(builder, typeFinder, config);
+            builder.Update(container);
+
             // set dependency resolver
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }
@@ -64,7 +77,7 @@ namespace AC.Core.Infrastructure
         public void Initialize(ACConfig config)
         {
             // зарегистрировать зависимости
-            //RegisterDependencies(config);
+            RegisterDependencies(config);
 
             // стартовые задачи
             if (!config.IgnoreStartupTasks)

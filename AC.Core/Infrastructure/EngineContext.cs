@@ -1,10 +1,5 @@
-﻿using System;
-using System.Configuration;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Configuration;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using AC.Core.Configuration;
 
 namespace AC.Core.Infrastructure
@@ -24,17 +19,30 @@ namespace AC.Core.Infrastructure
                 Singleton<IEngine>.Instance = new ACEngine();
 
                 var config = ConfigurationManager.GetSection("ACConfig") as ACConfig;
+                
                 Singleton<IEngine>.Instance.Initialize(config);
             }
             return Singleton<IEngine>.Instance;
         }
 
+
+        /// <summary>
+        /// Sets the static engine instance to the supplied engine. Use this method to supply your own engine implementation.
+        /// </summary>
+        /// <param name="engine">The engine to use.</param>
+        /// <remarks>Only use this method if you know what you're doing.</remarks>
+        public static void Replace(IEngine engine)
+        {
+            Singleton<IEngine>.Instance = engine;
+        }
+
+
         #endregion
 
         #region Properties
-        
+
         /// <summary>
-        /// Паттерн синглтон-одиночка
+        /// Gets the singleton Nop engine used to access Nop services.
         /// </summary>
         public static IEngine Current
         {
@@ -47,6 +55,7 @@ namespace AC.Core.Infrastructure
                 return Singleton<IEngine>.Instance;
             }
         }
+
         #endregion
     }
 }
