@@ -34,3 +34,39 @@ C:\Users\kassy\Documents\Visual Studio 2015\Projects\AuctionCommerce\AC.Web.Fram
 C:\Users\kassy\Documents\Visual Studio 2015\Projects\AuctionCommerce\AC.Web.Framework\bin\Debug\Autofac.xml
 C:\Users\kassy\Documents\Visual Studio 2015\Projects\AuctionCommerce\AC.Web.Framework\bin\Debug\Autofac.Integration.Mvc.xml
 C:\Users\kassy\Documents\Visual Studio 2015\Projects\AuctionCommerce\AC.Web.Framework\obj\Debug\AC.Web.Framework.csprojResolveAssemblyReference.cache
+C:\Диплом\AuctionCommerce\AC.Web.Framework\bin\Debug\AC.Web.Framework.dll.config
+C:\Диплом\AuctionCommerce\AC.Web.Framework\bin\Debug\AC.Web.Framework.dll
+C:\Диплом\AuctionCommerce\AC.Web.Framework\bin\Debug\AC.Web.Framework.pdb
+C:\Диплом\AuctionCommerce\AC.Web.Framework\bin\Debug\AC.Core.dll
+C:\Диплом\AuctionCommerce\AC.Web.Framework\bin\Debug\Microsoft.Web.Infrastructure.dll
+C:\Диплом\AuctionCommerce\AC.Web.Framework\bin\Debug\System.Net.Http.Extensions.dll
+C:\Диплом\AuctionCommerce\AC.Web.Framework\bin\Debug\System.Net.Http.Primitives.dll
+C:\Диплом\AuctionCommerce\AC.Web.Framework\bin\Debug\System.Web.Helpers.dll
+C:\Диплом\AuctionCommerce\AC.Web.Framework\bin\Debug\System.Web.Mvc.dll
+C:\Диплом\AuctionCommerce\AC.Web.Framework\bin\Debug\System.Web.Razor.dll
+C:\Диплом\AuctionCommerce\AC.Web.Framework\bin\Debug\System.Web.WebPages.Deployment.dll
+C:\Диплом\AuctionCommerce\AC.Web.Framework\bin\Debug\System.Web.WebPages.dll
+C:\Диплом\AuctionCommerce\AC.Web.Framework\bin\Debug\System.Web.WebPages.Razor.dll
+C:\Диплом\AuctionCommerce\AC.Web.Framework\bin\Debug\Autofac.dll
+C:\Диплом\AuctionCommerce\AC.Web.Framework\bin\Debug\Autofac.Integration.Mvc.dll
+C:\Диплом\AuctionCommerce\AC.Web.Framework\bin\Debug\AC.Core.pdb
+C:\Диплом\AuctionCommerce\AC.Web.Framework\bin\Debug\System.Net.Http.Extensions.xml
+C:\Диплом\AuctionCommerce\AC.Web.Framework\bin\Debug\System.Net.Http.Primitives.xml
+C:\Диплом\AuctionCommerce\AC.Web.Framework\bin\Debug\System.Web.Helpers.xml
+C:\Диплом\AuctionCommerce\AC.Web.Framework\bin\Debug\System.Web.Mvc.xml
+C:\Диплом\AuctionCommerce\AC.Web.Framework\bin\Debug\System.Web.Razor.xml
+C:\Диплом\AuctionCommerce\AC.Web.Framework\bin\Debug\System.Web.WebPages.xml
+C:\Диплом\AuctionCommerce\AC.Web.Framework\bin\Debug\System.Web.WebPages.Deployment.xml
+C:\Диплом\AuctionCommerce\AC.Web.Framework\bin\Debug\System.Web.WebPages.Razor.xml
+C:\Диплом\AuctionCommerce\AC.Web.Framework\bin\Debug\Autofac.xml
+C:\Диплом\AuctionCommerce\AC.Web.Framework\bin\Debug\Autofac.Integration.Mvc.xml
+C:\Диплом\AuctionCommerce\AC.Web.Framework\bin\Debug\ru\System.Web.Helpers.resources.dll
+C:\Диплом\AuctionCommerce\AC.Web.Framework\bin\Debug\ru\System.Web.Mvc.resources.dll
+C:\Диплом\AuctionCommerce\AC.Web.Framework\bin\Debug\ru\System.Web.Razor.resources.dll
+C:\Диплом\AuctionCommerce\AC.Web.Framework\bin\Debug\ru\System.Web.WebPages.resources.dll
+C:\Диплом\AuctionCommerce\AC.Web.Framework\bin\Debug\ru\System.Web.WebPages.Deployment.resources.dll
+C:\Диплом\AuctionCommerce\AC.Web.Framework\bin\Debug\ru\System.Web.WebPages.Razor.resources.dll
+C:\Диплом\AuctionCommerce\AC.Web.Framework\obj\Debug\AC.Web.Framework.csproj.App.config
+C:\Диплом\AuctionCommerce\AC.Web.Framework\obj\Debug\AC.Web.Framework.csprojResolveAssemblyReference.cache
+C:\Диплом\AuctionCommerce\AC.Web.Framework\obj\Debug\AC.Web.Framework.dll
+C:\Диплом\AuctionCommerce\AC.Web.Framework\obj\Debug\AC.Web.Framework.pdb

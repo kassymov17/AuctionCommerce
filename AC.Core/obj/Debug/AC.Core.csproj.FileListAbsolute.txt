@@ -23,3 +23,28 @@ C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Core\bin
 C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Core\obj\Debug\AC.Core.dll
 C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Core\obj\Debug\AC.Core.pdb
 C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Core\obj\Debug\AC.Core.csprojResolveAssemblyReference.cache
+C:\Диплом\AuctionCommerce\AC.Core\bin\Debug\AC.Core.dll.config
+C:\Диплом\AuctionCommerce\AC.Core\bin\Debug\AC.Core.dll
+C:\Диплом\AuctionCommerce\AC.Core\bin\Debug\AC.Core.pdb
+C:\Диплом\AuctionCommerce\AC.Core\bin\Debug\Autofac.dll
+C:\Диплом\AuctionCommerce\AC.Core\bin\Debug\Autofac.Integration.Mvc.dll
+C:\Диплом\AuctionCommerce\AC.Core\bin\Debug\Microsoft.Web.Infrastructure.dll
+C:\Диплом\AuctionCommerce\AC.Core\bin\Debug\System.Configuration.Abstractions.dll
+C:\Диплом\AuctionCommerce\AC.Core\bin\Debug\System.Web.Helpers.dll
+C:\Диплом\AuctionCommerce\AC.Core\bin\Debug\System.Web.Mvc.dll
+C:\Диплом\AuctionCommerce\AC.Core\bin\Debug\System.Web.Razor.dll
+C:\Диплом\AuctionCommerce\AC.Core\bin\Debug\System.Web.WebPages.Deployment.dll
+C:\Диплом\AuctionCommerce\AC.Core\bin\Debug\System.Web.WebPages.dll
+C:\Диплом\AuctionCommerce\AC.Core\bin\Debug\System.Web.WebPages.Razor.dll
+C:\Диплом\AuctionCommerce\AC.Core\bin\Debug\Autofac.xml
+C:\Диплом\AuctionCommerce\AC.Core\bin\Debug\Autofac.Integration.Mvc.xml
+C:\Диплом\AuctionCommerce\AC.Core\bin\Debug\System.Configuration.Abstractions.pdb
+C:\Диплом\AuctionCommerce\AC.Core\bin\Debug\System.Web.Helpers.xml
+C:\Диплом\AuctionCommerce\AC.Core\bin\Debug\System.Web.Mvc.xml
+C:\Диплом\AuctionCommerce\AC.Core\bin\Debug\System.Web.Razor.xml
+C:\Диплом\AuctionCommerce\AC.Core\bin\Debug\System.Web.WebPages.xml
+C:\Диплом\AuctionCommerce\AC.Core\bin\Debug\System.Web.WebPages.Deployment.xml
+C:\Диплом\AuctionCommerce\AC.Core\bin\Debug\System.Web.WebPages.Razor.xml
+C:\Диплом\AuctionCommerce\AC.Core\obj\Debug\AC.Core.csprojResolveAssemblyReference.cache
+C:\Диплом\AuctionCommerce\AC.Core\obj\Debug\AC.Core.dll
+C:\Диплом\AuctionCommerce\AC.Core\obj\Debug\AC.Core.pdb
