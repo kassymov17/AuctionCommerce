@@ -1,0 +1,61 @@
+﻿@model HeaderLinksModel
+@using AC.Web.Models.Common
+<div class="header-links">
+    <ul>
+        @if(Model.IsAuthenticated)
+        {
+            <li><a href="@Url.RouteUrl("CustomerInfo")" class="ico-account">@Model.CustomerEmailUsername</a></li>
+            // Добавить локализацию 
+            <li><a href="@Url.RouteUrl("Logout")" class="ico-logout">Выход</a></li>
+        }
+        else
+        {
+            <li><a href="" class="ico-register">Регистрация</a></li>
+            <li><a href="" class="ico-login">Войти</a></li>
+        }
+        @if (Model.AllowPrivateMessages)
+        {
+            <li>
+                <a href="" class="ico-inbox">
+                    <span class="inbox-label">Сообщения</span>
+                    <span class="inbox-unread">@Model.UnreadPrivateMessages</span>
+                </a>
+            </li>
+        }
+        @if (Model.WishlistEnabled)
+        {
+            <li>
+                <a href="" class="ico-wishlist">
+                    <span class="wishlist-label">Избранное</span>
+                    <span class="wishlist-qty">@Model.WishlistItems</span>
+                </a>
+            </li>
+        }
+        @if (Model.ShoppingCartEnabled)
+        {
+            <li id="topcartlink">
+                <a href="" class="ico-cart">
+                    <span class="cart-label">Корзина</span>
+                    <span class="cart-qty">@Model.ShoppingCartItems</span>
+                </a>
+            </li>
+        }
+    </ul>
+    @if(Model.AllowPrivateMessages && !string.IsNullOrEmpty(Model.AlertMessage))
+    {
+        // уведомление о сообщении
+        <script type="text/javascript">
+            $(document).ready(function () {
+                displayPopupNotification('@Html.Raw(HttpUtility.JavaScriptStringEncode(Model.AlertMessage))', 'success', false);
+            });
+        </script>
+    }
+    @if (Model.ShoppingCartEnabled)
+    {
+        <script type="text/javascript">
+            $(document).ready(function () {
+
+            });
+        </script>
+    }
+</div>

@@ -15,8 +15,10 @@
     <meta name="keywords" content="" />
     <meta name="generator" content="AuctionCommerce" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    @Html.ACCssFiles(this.Url, ResourceLocation.Head)
 </head>
 <body>
     @RenderBody()
+    @Html.ACCssFiles(this.Url, ResourceLocation.Foot)
 </body>
 </html>

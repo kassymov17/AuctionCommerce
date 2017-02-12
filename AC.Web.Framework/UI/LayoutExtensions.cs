@@ -32,5 +32,19 @@ namespace AC.Web.Framework.UI
             var pageHeadBuilder = EngineContext.Current.Resolve<IPageHeadBuilder>();
             pageHeadBuilder.AppendScriptParts(location, part, excludeFromBundle, isAsync);
         }
+
+        /// <summary>
+        /// Generate all css parts
+        /// </summary>
+        /// <param name="html">Html helper</param>
+        /// <param name="urlHelper">url helper</param>
+        /// <param name="location">location of script element</param>
+        /// <param name="bundleFiles">A value indicating whether to bundle script elements</param>
+        /// <returns>Generated string</returns>
+        public static MvcHtmlString ACCssFiles(this HtmlHelper html, UrlHelper urlHelper, ResourceLocation location, bool? bundleFiles = null)
+        {
+            var pageHeadBuilder = EngineContext.Current.Resolve<IPageHeadBuilder>();
+            return MvcHtmlString.Create(pageHeadBuilder.GenerateCssFiles(urlHelper, location, bundleFiles));
+        }
     }
 }

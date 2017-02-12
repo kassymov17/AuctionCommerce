@@ -70,3 +70,11 @@ C:\Диплом\AuctionCommerce\AC.Web.Framework\obj\Debug\AC.Web.Framework.cspr
 C:\Диплом\AuctionCommerce\AC.Web.Framework\obj\Debug\AC.Web.Framework.csprojResolveAssemblyReference.cache
 C:\Диплом\AuctionCommerce\AC.Web.Framework\obj\Debug\AC.Web.Framework.dll
 C:\Диплом\AuctionCommerce\AC.Web.Framework\obj\Debug\AC.Web.Framework.pdb
+C:\Users\kassy\Documents\Visual Studio 2015\Projects\AuctionCommerce\AC.Web.Framework\bin\Debug\Antlr3.Runtime.dll
+C:\Users\kassy\Documents\Visual Studio 2015\Projects\AuctionCommerce\AC.Web.Framework\bin\Debug\Newtonsoft.Json.dll
+C:\Users\kassy\Documents\Visual Studio 2015\Projects\AuctionCommerce\AC.Web.Framework\bin\Debug\System.Web.Optimization.dll
+C:\Users\kassy\Documents\Visual Studio 2015\Projects\AuctionCommerce\AC.Web.Framework\bin\Debug\WebGrease.dll
+C:\Users\kassy\Documents\Visual Studio 2015\Projects\AuctionCommerce\AC.Web.Framework\bin\Debug\Antlr3.Runtime.pdb
+C:\Users\kassy\Documents\Visual Studio 2015\Projects\AuctionCommerce\AC.Web.Framework\bin\Debug\Newtonsoft.Json.xml
+C:\Users\kassy\Documents\Visual Studio 2015\Projects\AuctionCommerce\AC.Web.Framework\bin\Debug\System.Web.Optimization.xml
+C:\Users\kassy\Documents\Visual Studio 2015\Projects\AuctionCommerce\AC.Web.Framework\bin\Debug\ru\System.Web.Optimization.resources.dll
