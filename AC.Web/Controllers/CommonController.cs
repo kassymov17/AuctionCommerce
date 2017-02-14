@@ -11,9 +11,18 @@ namespace AC.Web.Controllers
     public partial class CommonController : BasePublicController
     {
         #region Fields
-        
+        private readonly IPageHeadBuilder _pageHeadBuilder;
         #endregion
 
+        public CommonController(IPageHeadBuilder pageHeadBuilder)
+        {
+            _pageHeadBuilder = pageHeadBuilder;
+        }
+
+        public CommonController()
+        {
+
+        }
         
         [ChildActionOnly]
         public ActionResult Footer()
