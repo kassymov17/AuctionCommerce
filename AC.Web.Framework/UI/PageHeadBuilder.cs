@@ -112,7 +112,66 @@ namespace AC.Web.Framework.UI
 
             if (!_scriptParts.Any())
                 return "";
-            return "";
+
+            if (!bundleFiles.HasValue)
+            {
+                bundleFiles = BundleTable.EnableOptimizations;
+            }
+            if (bundleFiles.Value)
+            {
+                var partsToBundle = _scriptParts[location]
+                    .Where(x => !x.ExcludeFromBundle)
+                    .Select(x => x.Part)
+                    .Distinct()
+                    .ToArray();
+                var partsToDontBundle = _scriptParts[location]
+                    .Where(x => x.ExcludeFromBundle)
+                    .Select(x => new { x.Part, x.IsAsync })
+                    .Distinct()
+                    .ToArray();
+
+                var result = new StringBuilder();
+
+                if(partsToBundle.Length > 0)
+                {
+                    string bundleVirtualPath = GetBundleVirtualPath("~/bundles/scripts",".js", partsToBundle);
+
+                    // create bundle
+                    lock (s_lock)
+                    {
+                        var bundleFor = BundleTable.Bundles.GetBundleFor(bundleVirtualPath);
+                        if(bundleFor == null)
+                        {
+                            var bundle = new ScriptBundle(bundleVirtualPath);
+
+                            bundle.Orderer = new AsIsBundleOrderer();
+
+                            bundle.EnableFileExtensionReplacements = false;
+                            bundle.Include(partsToBundle);
+                            BundleTable.Bundles.Add(bundle);
+                        }
+                    }
+                    // parts to bundle
+                    result.AppendLine(Scripts.Render(bundleVirtualPath).ToString());
+                }
+                // parts to bundle
+                foreach(var item in partsToDontBundle)
+                {
+                    result.AppendFormat("<script {2}src=\"{0}\" type=\"{1}\"></script>", urlHerlper.Content(item.Part),MimeTypes.TextJavascript, item.IsAsync ? "async" : "");
+                }
+                return result.ToString();
+            }
+            else
+            {
+                // bundling is disabled
+                var result = new StringBuilder();
+                foreach(var item in _scriptParts[location].Select(x=>new { x.Part, x.IsAsync }).Distinct())
+                {
+                    result.AppendFormat("<script {2}src=\"{0}\" type=\"{1}\"></script>", urlHerlper.Content(item.Part), MimeTypes.TextJavascript, item.IsAsync ? "async": "");
+                    result.Append(Environment.NewLine);
+                }
+                return result.ToString();
+            }
         }
 
         public virtual void AddCssFileParts(ResourceLocation location, string part, bool excludeFromBundle = false)
