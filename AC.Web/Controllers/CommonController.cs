@@ -1,9 +1,6 @@
-﻿using AC.Web.Framework.UI;
+﻿using AC.Services.Topics;
+using AC.Web.Framework.UI;
 using AC.Web.Models.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace AC.Web.Controllers
@@ -12,11 +9,13 @@ namespace AC.Web.Controllers
     {
         #region Fields
         private readonly IPageHeadBuilder _pageHeadBuilder;
+        private readonly ITopicService _topicService;
         #endregion
 
-        public CommonController(IPageHeadBuilder pageHeadBuilder)
+        public CommonController(IPageHeadBuilder pageHeadBuilder, ITopicService topicService)
         {
             _pageHeadBuilder = pageHeadBuilder;
+            _topicService = topicService;
         }
 
         public CommonController()
@@ -24,11 +23,6 @@ namespace AC.Web.Controllers
 
         }
         
-        [ChildActionOnly]
-        public ActionResult Footer()
-        {
-            return PartialView();
-        }
 
         [ChildActionOnly]
         public ActionResult HeaderLinks()
@@ -46,6 +40,14 @@ namespace AC.Web.Controllers
             };
 
             return PartialView(model);
+        }
+
+        [ChildActionOnly]
+        public ActionResult Footer()
+        {
+            // footer topics
+            var example = _topicService.GetAllTopics();
+            return PartialView();
         }
     }
 }

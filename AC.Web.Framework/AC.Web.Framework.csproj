@@ -125,6 +125,14 @@
       <Project>{cb65ff3a-9078-4afd-8596-a145058fa712}</Project>
       <Name>AC.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\AC.Data\AC.Data.csproj">
+      <Project>{8e40297c-e9c3-4447-8d8c-bd6dc0528efb}</Project>
+      <Name>AC.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AC.Services\AC.Services.csproj">
+      <Project>{ae32adf6-6c37-4d61-8dfe-82c908faa0dd}</Project>
+      <Name>AC.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />

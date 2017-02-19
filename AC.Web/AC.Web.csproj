@@ -214,6 +214,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\jquery-ui-themes\smoothness\jquery-ui-1.10.3.custom.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -271,6 +272,10 @@
     <ProjectReference Include="..\AC.Core\AC.Core.csproj">
       <Project>{cb65ff3a-9078-4afd-8596-a145058fa712}</Project>
       <Name>AC.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AC.Services\AC.Services.csproj">
+      <Project>{AE32ADF6-6C37-4D61-8DFE-82C908FAA0DD}</Project>
+      <Name>AC.Services</Name>
     </ProjectReference>
     <ProjectReference Include="..\AC.Web.Framework\AC.Web.Framework.csproj">
       <Project>{3da4be0c-2aac-418d-aaa0-6279e779a7f2}</Project>

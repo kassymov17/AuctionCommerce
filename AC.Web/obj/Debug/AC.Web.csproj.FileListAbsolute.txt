@@ -216,3 +216,7 @@ C:\Диплом\AuctionCommerce\AC.Web\bin\ru\Microsoft.Owin.Security.MicrosoftA
 C:\Диплом\AuctionCommerce\AC.Web\obj\Debug\AC.Web.csprojResolveAssemblyReference.cache
 C:\Диплом\AuctionCommerce\AC.Web\obj\Debug\AC.Web.dll
 C:\Диплом\AuctionCommerce\AC.Web\obj\Debug\AC.Web.pdb
+C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Web\bin\AC.Services.dll
+C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Web\bin\AC.Data.dll
+C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Web\bin\AC.Services.pdb
+C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Web\bin\AC.Data.pdb

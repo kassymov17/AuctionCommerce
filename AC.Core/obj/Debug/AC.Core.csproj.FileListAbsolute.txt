@@ -22,7 +22,6 @@ C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Core\bin
 C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Core\bin\Debug\System.Web.WebPages.Razor.xml
 C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Core\obj\Debug\AC.Core.dll
 C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Core\obj\Debug\AC.Core.pdb
-C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Core\obj\Debug\AC.Core.csprojResolveAssemblyReference.cache
 C:\Диплом\AuctionCommerce\AC.Core\bin\Debug\AC.Core.dll.config
 C:\Диплом\AuctionCommerce\AC.Core\bin\Debug\AC.Core.dll
 C:\Диплом\AuctionCommerce\AC.Core\bin\Debug\AC.Core.pdb

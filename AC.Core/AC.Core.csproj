@@ -82,7 +82,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseEntity.cs" />
     <Compile Include="Configuration\ACConfig.cs" />
+    <Compile Include="Data\IRepository.cs" />
+    <Compile Include="Domain\Topics\Topic.cs" />
     <Compile Include="Infrastructure\ACEngine.cs" />
     <Compile Include="Infrastructure\AppDomainTypeFinder.cs" />
     <Compile Include="Infrastructure\DependencyManagement\ContainerManager.cs" />

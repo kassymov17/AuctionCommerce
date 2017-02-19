@@ -78,3 +78,10 @@ C:\Users\kassy\Documents\Visual Studio 2015\Projects\AuctionCommerce\AC.Web.Fram
 C:\Users\kassy\Documents\Visual Studio 2015\Projects\AuctionCommerce\AC.Web.Framework\bin\Debug\Newtonsoft.Json.xml
 C:\Users\kassy\Documents\Visual Studio 2015\Projects\AuctionCommerce\AC.Web.Framework\bin\Debug\System.Web.Optimization.xml
 C:\Users\kassy\Documents\Visual Studio 2015\Projects\AuctionCommerce\AC.Web.Framework\bin\Debug\ru\System.Web.Optimization.resources.dll
+C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Web.Framework\bin\Debug\AC.Data.dll
+C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Web.Framework\bin\Debug\AC.Services.dll
+C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Web.Framework\bin\Debug\EntityFramework.dll
+C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Web.Framework\bin\Debug\AC.Data.pdb
+C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Web.Framework\bin\Debug\AC.Services.pdb
+C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Web.Framework\bin\Debug\EntityFramework.xml
+C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Web.Framework\bin\Debug\ru\EntityFramework.resources.dll

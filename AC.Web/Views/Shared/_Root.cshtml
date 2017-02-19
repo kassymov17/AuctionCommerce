@@ -8,8 +8,13 @@
 
     </div>
     <div class="master-wrapper-content">
+        @if (IsSectionDefined("Breadcrumb"))
+        {
+            @RenderSection("Breadcrumb")
+        }
         <div class="master-column-wrapper">
             @RenderBody()
         </div>
     </div>
+    @Html.Action("Footer", "Common")
 </div>

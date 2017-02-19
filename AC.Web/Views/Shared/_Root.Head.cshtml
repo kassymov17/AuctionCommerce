@@ -16,10 +16,14 @@
     <meta name="generator" content="AuctionCommerce" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     @Html.ACCssFiles(this.Url, ResourceLocation.Head)
+    @*Решить проблему с загрузкой css файлов чере htmlhelper,а пока напрямую*@
+    <link href="~/Content/jquery-ui-themes/smoothness/jquery-ui-1.10.3.custom.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     @Html.ACScripts(this.Url, ResourceLocation.Head)
 </head>
 <body>
     @RenderBody()
     @Html.ACCssFiles(this.Url, ResourceLocation.Foot)
+    @Html.ACScripts(this.Url, ResourceLocation.Foot)
 </body>
 </html>
