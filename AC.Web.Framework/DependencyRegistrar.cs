@@ -24,6 +24,11 @@ namespace AC.Web.Framework
             // controllers
             builder.RegisterControllers(typeFinder.GetAssemblies().ToArray());
 
+            // data layer
+            var dataSettingsManager = new DataSettingsManager();
+            var dataProviderSettings = dataSettingsManager.LoadSettings();
+            builder.Register(c => dataSettingsManager.LoadSettings()).As<DataSettings>();
+            
             builder.RegisterGeneric(typeof(EfRepository<>)).As(typeof(IRepository<>)).InstancePerMatchingLifetimeScope();
 
             // services
