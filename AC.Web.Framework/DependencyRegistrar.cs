@@ -11,9 +11,9 @@ using AC.Core.Infrastructure.DependencyManagement;
 using AC.Core.Infrastructure;
 using AC.Core.Configuration;
 using AC.Web.Framework.UI;
-using AC.Data;
 using AC.Core.Data;
-using AC.Services.Topics;
+using AC.Data.Abstract;
+using AC.Data.Concrete;
 
 namespace AC.Web.Framework
 {
@@ -25,15 +25,12 @@ namespace AC.Web.Framework
             builder.RegisterControllers(typeFinder.GetAssemblies().ToArray());
 
             // data layer
-            var dataSettingsManager = new DataSettingsManager();
-            var dataProviderSettings = dataSettingsManager.LoadSettings();
-            builder.Register(c => dataSettingsManager.LoadSettings()).As<DataSettings>();
-            
-            builder.RegisterGeneric(typeof(EfRepository<>)).As(typeof(IRepository<>)).InstancePerMatchingLifetimeScope();
 
+            builder.Register<IUnitOfWork>(c => new UnitOfWork()).InstancePerLifetimeScope();
+
+            builder.RegisterGeneric(typeof(GenericRepository<>)).As(typeof(IRepository<>)).InstancePerLifetimeScope();
             // services
             builder.RegisterType<PageHeadBuilder>().As<IPageHeadBuilder>().InstancePerLifetimeScope();
-            builder.RegisterType<TopicService>().As<ITopicService>().InstancePerLifetimeScope();
         }
 
         public int Order

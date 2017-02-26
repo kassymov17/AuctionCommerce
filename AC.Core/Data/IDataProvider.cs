@@ -8,12 +8,7 @@ namespace AC.Core.Data
         /// Initialize connection factory
         /// </summary>
         void InitConnectionFactory();
-
-        /// <summary>
-        /// Set database initializer
-        /// </summary>
-        void SetDatabaseInitializer();
-
+        
         /// <summary>
         /// Initialize database
         /// </summary>

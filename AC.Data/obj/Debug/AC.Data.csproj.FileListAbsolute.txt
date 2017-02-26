@@ -30,3 +30,10 @@ C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Data\bin
 C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Data\bin\Debug\ru\EntityFramework.SqlServer.resources.dll
 C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Data\obj\Debug\AC.Data.dll
 C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Data\obj\Debug\AC.Data.pdb
+C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Data\bin\Debug\FluentNHibernate.dll
+C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Data\bin\Debug\Iesi.Collections.dll
+C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Data\bin\Debug\NHibernate.dll
+C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Data\bin\Debug\FluentNHibernate.pdb
+C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Data\bin\Debug\FluentNHibernate.xml
+C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Data\bin\Debug\Iesi.Collections.xml
+C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Data\bin\Debug\NHibernate.xml

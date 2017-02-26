@@ -6,6 +6,6 @@ namespace AC.Web.Framework.Controllers
 {
     public abstract class BaseController : Controller
     {
-
+        
     }
 }

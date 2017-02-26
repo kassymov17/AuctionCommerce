@@ -52,6 +52,10 @@
       <HintPath>..\packages\Autofac.Mvc5.4.0.1\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Iesi.Collections, Version=4.0.0.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Iesi.Collections.4.0.0.4000\lib\net40\Iesi.Collections.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.0.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.6\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -85,6 +89,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="NHibernate, Version=4.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <HintPath>..\packages\NHibernate.4.1.1.4000\lib\net40\NHibernate.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -255,10 +263,10 @@
     <Content Include="Views\Shared\_Root.Head.cshtml" />
     <Content Include="Views\Shared\Header.cshtml" />
     <Content Include="Views\Common\HeaderLinks.cshtml" />
+    <Content Include="Views\Common\Footer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\BasePublic\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
@@ -272,6 +280,10 @@
     <ProjectReference Include="..\AC.Core\AC.Core.csproj">
       <Project>{cb65ff3a-9078-4afd-8596-a145058fa712}</Project>
       <Name>AC.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AC.Data\AC.Data.csproj">
+      <Project>{8e40297c-e9c3-4447-8d8c-bd6dc0528efb}</Project>
+      <Name>AC.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\AC.Services\AC.Services.csproj">
       <Project>{AE32ADF6-6C37-4D61-8DFE-82C908FAA0DD}</Project>
