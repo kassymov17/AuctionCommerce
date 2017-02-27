@@ -1,5 +1,6 @@
 ﻿using AC.Data.Abstract;
 using AC.Data.Entities.Common;
+using AC.Services.Topics;
 using AC.Web.Framework.UI;
 using AC.Web.Models.Common;
 using System.Web.Mvc;
@@ -10,13 +11,13 @@ namespace AC.Web.Controllers
     {
         #region Fields
         private readonly IPageHeadBuilder _pageHeadBuilder;
-        private readonly IRepository<Student> _studentRepo; 
+        private readonly ITopicService _topicService;
         #endregion
 
-        public CommonController(IPageHeadBuilder pageHeadBuilder, IRepository<Student> studentRepo)
+        public CommonController(IPageHeadBuilder pageHeadBuilder, ITopicService topicService)
         {
             _pageHeadBuilder = pageHeadBuilder;
-            _studentRepo = studentRepo;
+            _topicService = topicService;
         }
         
         [ChildActionOnly]
@@ -40,7 +41,7 @@ namespace AC.Web.Controllers
         [ChildActionOnly]
         public ActionResult Footer()
         {
-
+            var topicModel = _topicService.GetAllTopics();
             return PartialView();
         }
     }

@@ -41,11 +41,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Topics\ITopicService.cs" />
+    <Compile Include="Topics\TopicService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AC.Core\AC.Core.csproj">
       <Project>{cb65ff3a-9078-4afd-8596-a145058fa712}</Project>
       <Name>AC.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AC.Data\AC.Data.csproj">
+      <Project>{8E40297C-E9C3-4447-8D8C-BD6DC0528EFB}</Project>
+      <Name>AC.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

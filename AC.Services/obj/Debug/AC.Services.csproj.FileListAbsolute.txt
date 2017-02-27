@@ -42,3 +42,12 @@ C:\Диплом\AuctionCommerce\AC.Services\bin\Debug\System.Web.WebPages.Deploy
 C:\Диплом\AuctionCommerce\AC.Services\obj\Debug\AC.Services.csprojResolveAssemblyReference.cache
 C:\Диплом\AuctionCommerce\AC.Services\obj\Debug\AC.Services.dll
 C:\Диплом\AuctionCommerce\AC.Services\obj\Debug\AC.Services.pdb
+C:\Диплом\AuctionCommerce\AC.Services\bin\Debug\AC.Data.dll
+C:\Диплом\AuctionCommerce\AC.Services\bin\Debug\FluentNHibernate.dll
+C:\Диплом\AuctionCommerce\AC.Services\bin\Debug\NHibernate.dll
+C:\Диплом\AuctionCommerce\AC.Services\bin\Debug\Iesi.Collections.dll
+C:\Диплом\AuctionCommerce\AC.Services\bin\Debug\AC.Data.pdb
+C:\Диплом\AuctionCommerce\AC.Services\bin\Debug\FluentNHibernate.pdb
+C:\Диплом\AuctionCommerce\AC.Services\bin\Debug\FluentNHibernate.xml
+C:\Диплом\AuctionCommerce\AC.Services\bin\Debug\NHibernate.xml
+C:\Диплом\AuctionCommerce\AC.Services\bin\Debug\Iesi.Collections.xml

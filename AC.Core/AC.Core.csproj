@@ -89,6 +89,7 @@
     <Compile Include="Data\DataSettings.cs" />
     <Compile Include="Data\DataSettingsManager.cs" />
     <Compile Include="Data\IDataProvider.cs" />
+    <Compile Include="Domain\Topics\Topic.cs" />
     <Compile Include="Infrastructure\ACEngine.cs" />
     <Compile Include="Infrastructure\AppDomainTypeFinder.cs" />
     <Compile Include="Infrastructure\DependencyManagement\ContainerManager.cs" />

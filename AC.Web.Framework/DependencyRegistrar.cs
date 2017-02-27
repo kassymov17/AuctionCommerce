@@ -14,6 +14,7 @@ using AC.Web.Framework.UI;
 using AC.Core.Data;
 using AC.Data.Abstract;
 using AC.Data.Concrete;
+using AC.Services.Topics;
 
 namespace AC.Web.Framework
 {
@@ -31,6 +32,7 @@ namespace AC.Web.Framework
             builder.RegisterGeneric(typeof(GenericRepository<>)).As(typeof(IRepository<>)).InstancePerLifetimeScope();
             // services
             builder.RegisterType<PageHeadBuilder>().As<IPageHeadBuilder>().InstancePerLifetimeScope();
+            builder.RegisterType<TopicService>().As<ITopicService>().InstancePerLifetimeScope();
         }
 
         public int Order
