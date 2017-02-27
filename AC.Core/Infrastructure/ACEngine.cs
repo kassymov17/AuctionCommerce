@@ -46,7 +46,10 @@ namespace AC.Core.Infrastructure
             var container = builder.Build();
             this._containerManager = new ContainerManager(container);
 
-            //dependecies
+            //we create new instance of ContainerBuilder
+            //because Build() or Update() method can only be called once on a ContainerBuilder.
+
+            //dependencies
             var typeFinder = new WebAppTypeFinder();
             builder = new ContainerBuilder();
             builder.RegisterInstance(config).As<ACConfig>().SingleInstance();
@@ -66,7 +69,7 @@ namespace AC.Core.Infrastructure
                 dependencyRegistrar.Register(builder, typeFinder, config);
             builder.Update(container);
 
-            // set dependency resolver
+            //set dependency resolver
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }
 

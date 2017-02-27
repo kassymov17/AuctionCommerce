@@ -37,3 +37,42 @@ C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Data\bin
 C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Data\bin\Debug\FluentNHibernate.xml
 C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Data\bin\Debug\Iesi.Collections.xml
 C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Data\bin\Debug\NHibernate.xml
+C:\Диплом\AuctionCommerce\AC.Data\bin\Debug\AC.Data.dll.config
+C:\Диплом\AuctionCommerce\AC.Data\bin\Debug\AC.Data.dll
+C:\Диплом\AuctionCommerce\AC.Data\bin\Debug\AC.Data.pdb
+C:\Диплом\AuctionCommerce\AC.Data\bin\Debug\AC.Core.dll
+C:\Диплом\AuctionCommerce\AC.Data\bin\Debug\EntityFramework.dll
+C:\Диплом\AuctionCommerce\AC.Data\bin\Debug\EntityFramework.SqlServer.dll
+C:\Диплом\AuctionCommerce\AC.Data\bin\Debug\EntityFramework.SqlServerCompact.dll
+C:\Диплом\AuctionCommerce\AC.Data\bin\Debug\FluentNHibernate.dll
+C:\Диплом\AuctionCommerce\AC.Data\bin\Debug\Iesi.Collections.dll
+C:\Диплом\AuctionCommerce\AC.Data\bin\Debug\NHibernate.dll
+C:\Диплом\AuctionCommerce\AC.Data\bin\Debug\System.Data.SqlServerCe.dll
+C:\Диплом\AuctionCommerce\AC.Data\bin\Debug\Autofac.dll
+C:\Диплом\AuctionCommerce\AC.Data\bin\Debug\Autofac.Integration.Mvc.dll
+C:\Диплом\AuctionCommerce\AC.Data\bin\Debug\System.Web.Mvc.dll
+C:\Диплом\AuctionCommerce\AC.Data\bin\Debug\Microsoft.Web.Infrastructure.dll
+C:\Диплом\AuctionCommerce\AC.Data\bin\Debug\System.Web.Razor.dll
+C:\Диплом\AuctionCommerce\AC.Data\bin\Debug\System.Web.WebPages.Razor.dll
+C:\Диплом\AuctionCommerce\AC.Data\bin\Debug\System.Web.WebPages.dll
+C:\Диплом\AuctionCommerce\AC.Data\bin\Debug\System.Web.WebPages.Deployment.dll
+C:\Диплом\AuctionCommerce\AC.Data\bin\Debug\AC.Core.pdb
+C:\Диплом\AuctionCommerce\AC.Data\bin\Debug\EntityFramework.xml
+C:\Диплом\AuctionCommerce\AC.Data\bin\Debug\EntityFramework.SqlServer.xml
+C:\Диплом\AuctionCommerce\AC.Data\bin\Debug\EntityFramework.SqlServerCompact.xml
+C:\Диплом\AuctionCommerce\AC.Data\bin\Debug\FluentNHibernate.pdb
+C:\Диплом\AuctionCommerce\AC.Data\bin\Debug\FluentNHibernate.xml
+C:\Диплом\AuctionCommerce\AC.Data\bin\Debug\Iesi.Collections.xml
+C:\Диплом\AuctionCommerce\AC.Data\bin\Debug\NHibernate.xml
+C:\Диплом\AuctionCommerce\AC.Data\bin\Debug\Autofac.xml
+C:\Диплом\AuctionCommerce\AC.Data\bin\Debug\Autofac.Integration.Mvc.xml
+C:\Диплом\AuctionCommerce\AC.Data\bin\Debug\System.Web.Mvc.xml
+C:\Диплом\AuctionCommerce\AC.Data\bin\Debug\System.Web.Razor.xml
+C:\Диплом\AuctionCommerce\AC.Data\bin\Debug\System.Web.WebPages.Razor.xml
+C:\Диплом\AuctionCommerce\AC.Data\bin\Debug\System.Web.WebPages.xml
+C:\Диплом\AuctionCommerce\AC.Data\bin\Debug\System.Web.WebPages.Deployment.xml
+C:\Диплом\AuctionCommerce\AC.Data\bin\Debug\ru\EntityFramework.resources.dll
+C:\Диплом\AuctionCommerce\AC.Data\bin\Debug\ru\EntityFramework.SqlServer.resources.dll
+C:\Диплом\AuctionCommerce\AC.Data\obj\Debug\AC.Data.csprojResolveAssemblyReference.cache
+C:\Диплом\AuctionCommerce\AC.Data\obj\Debug\AC.Data.dll
+C:\Диплом\AuctionCommerce\AC.Data\obj\Debug\AC.Data.pdb

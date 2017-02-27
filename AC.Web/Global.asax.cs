@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AC.Core.Infrastructure;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,6 +13,9 @@ namespace AC.Web
     {
         protected void Application_Start()
         {
+            // initialize engine context
+            EngineContext.Initialize(false);
+
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
