@@ -1,1 +1,50 @@
-﻿<h1>Footer</h1>
+﻿@model List<FooterTopicModel>
+@using AC.Core
+@using AC.Core.Infrastructure
+@using AC.Web.Models.Common
+
+<div class="footer">
+    <div class="footer-upper">
+        <div class="footer-block information">
+            <div class="title">
+                <strong>Информация</strong>
+            </div>
+            <ul class="list">
+                <li><a href="">Карта сайта</a></li>
+                @foreach(var topic in Model.Where(x => x.IncludeInFooterColumn1).ToList())
+                {
+                    <li><a href="">@topic.Name</a></li>
+                }
+                <li><a href="">Написать нам</a></li>
+            </ul>
+        </div>
+        <div class="footer-block customer-service">
+            <div class="title">
+                <strong>Маркетинг</strong>
+            </div>
+            <ul class="list">
+                <li><a href="">Поиск</a></li>
+                <li><a href="">Блог-Новости</a></li>
+                <li><a href="">Просмотренные товары</a></li>
+                <li><a href="">Новинки</a></li>
+            </ul>
+        </div>
+        <div class="footer-block my-account">
+            <div class="title">
+                <strong>Мой аккаунт</strong>
+            </div>
+            <ul class="list">
+                <li><a href="">Личный кабинет</a></li>
+                <li><a href="">Заказы</a></li>
+                <li><a href="">Адреса</a></li>
+                <li><a href="">Корзина</a></li>
+                <li><a href="">Избранное</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-lower">
+        <div class="footer-info">
+            <span class="footer-disclaimer">Copyright @DateTime.Now.Year</span>
+        </div>
+    </div>
+</div>

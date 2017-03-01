@@ -18,7 +18,7 @@ namespace AC.Data.Concrete
         static UnitOfWork()
         {
             _sessionFactory = Fluently.Configure()
-                .Database(MsSqlConfiguration.MsSql2008.ConnectionString(@"Server=KASSYMOV; database=AuctionCommerce; Integrated Security=SSPI;").ShowSql())
+                .Database(MsSqlConfiguration.MsSql2008.ConnectionString(@"Server=(local)\SQLEXPRESS; database=AuctionCommerce; Integrated Security=SSPI;").ShowSql())
                 .Mappings(m => m.FluentMappings.AddFromAssemblyOf<User>().Conventions.Add(DefaultCascade.All(), DefaultLazy.Never()))
                 .ExposeConfiguration(cfg => new SchemaUpdate(cfg).Execute(false, true))
                 .BuildSessionFactory();

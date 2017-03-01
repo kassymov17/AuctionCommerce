@@ -51,3 +51,12 @@ C:\Диплом\AuctionCommerce\AC.Services\bin\Debug\FluentNHibernate.pdb
 C:\Диплом\AuctionCommerce\AC.Services\bin\Debug\FluentNHibernate.xml
 C:\Диплом\AuctionCommerce\AC.Services\bin\Debug\NHibernate.xml
 C:\Диплом\AuctionCommerce\AC.Services\bin\Debug\Iesi.Collections.xml
+C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Services\bin\Debug\AC.Data.dll
+C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Services\bin\Debug\FluentNHibernate.dll
+C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Services\bin\Debug\NHibernate.dll
+C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Services\bin\Debug\Iesi.Collections.dll
+C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Services\bin\Debug\AC.Data.pdb
+C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Services\bin\Debug\FluentNHibernate.pdb
+C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Services\bin\Debug\FluentNHibernate.xml
+C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Services\bin\Debug\NHibernate.xml
+C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Services\bin\Debug\Iesi.Collections.xml

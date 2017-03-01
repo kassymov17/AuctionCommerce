@@ -4,6 +4,7 @@ using AC.Services.Topics;
 using AC.Web.Framework.UI;
 using AC.Web.Models.Common;
 using System.Web.Mvc;
+using System.Linq;
 
 namespace AC.Web.Controllers
 {
@@ -41,8 +42,22 @@ namespace AC.Web.Controllers
         [ChildActionOnly]
         public ActionResult Footer()
         {
-            var topicModel = _topicService.GetAllTopics();
-            return PartialView();
+            // [todo] кэшировать данные для ускорения
+            var topicModel = _topicService.GetAllTopics()
+                .Where(t=>t.IncludeInFooterColumn1 || t.IncludeInFooterColumn2 || t.IncludeInFooterColumn3)
+                .Select(t=> new FooterTopicModel
+                {
+                    Id = t.Id,
+                    Name = t.Title,
+                    // for seo name
+                    SeName = "",
+                    IncludeInFooterColumn1 = t.IncludeInFooterColumn1,
+                    IncludeInFooterColumn2 = t.IncludeInFooterColumn2,
+                    IncludeInFooterColumn3 = t.IncludeInFooterColumn3
+                }).ToList();
+
+            // model
+            return PartialView(topicModel);
         }
     }
 }
