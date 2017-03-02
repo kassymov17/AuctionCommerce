@@ -59,5 +59,10 @@ namespace AC.Web.Controllers
             // model
             return PartialView(topicModel);
         }
+
+        public ActionResult ContactUs()
+        {
+            return View();
+        }
     }
 }

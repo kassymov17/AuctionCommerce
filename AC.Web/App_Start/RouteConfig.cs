@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AC.Core.Infrastructure;
+using AC.Web.Framework.Mvc.Routes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,12 +13,18 @@ namespace AC.Web
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
+            routes.IgnoreRoute("favicon.ico");
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            // зарегистрировать маршруты
+            var routePublisher = EngineContext.Current.Resolve<IRoutePublisher>();
+            routePublisher.RegisterRoutes(routes);
+
             routes.MapRoute(
-                name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                "Default",
+                "{controller}/{action}/{id}",
+                new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+                new[] { "AC.Web.Controllers" }
             );
         }
     }

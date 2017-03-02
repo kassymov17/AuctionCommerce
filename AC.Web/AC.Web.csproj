@@ -216,6 +216,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\DependencyRegistrar.cs" />
+    <Compile Include="Infrastructure\RouteProvider.cs" />
     <Compile Include="Models\Common\FooterTopicModel.cs" />
     <Compile Include="Models\Common\HeaderLinksModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -265,6 +266,7 @@
     <Content Include="Views\Shared\Header.cshtml" />
     <Content Include="Views\Common\HeaderLinks.cshtml" />
     <Content Include="Views\Common\Footer.cshtml" />
+    <Content Include="Views\Common\ContactUs.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -15,6 +15,7 @@ using AC.Core.Data;
 using AC.Data.Abstract;
 using AC.Data.Concrete;
 using AC.Services.Topics;
+using AC.Web.Framework.Mvc.Routes;
 
 namespace AC.Web.Framework
 {
@@ -33,6 +34,8 @@ namespace AC.Web.Framework
             // services
             builder.RegisterType<PageHeadBuilder>().As<IPageHeadBuilder>().InstancePerLifetimeScope();
             builder.RegisterType<TopicService>().As<ITopicService>().InstancePerLifetimeScope();
+
+            builder.RegisterType<RoutePublisher>().As<IRoutePublisher>().SingleInstance();
         }
 
         public int Order
