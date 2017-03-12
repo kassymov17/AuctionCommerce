@@ -8,12 +8,12 @@ namespace AC.Services.Topics
     {
         //void DeleteTopic(int topicId);
 
-        //Topic GetTopicById(int topicId);
+        Topic GetTopicById(int topicId);
 
         IQueryable<Topic> GetAllTopics();
 
         //void InsertTopic(Topic topic);
 
-        //void UpdateTopic(Topic topic);
+        void UpdateTopic(Topic topic);
     }
 }

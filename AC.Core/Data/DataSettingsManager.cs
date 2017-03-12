@@ -13,7 +13,7 @@ namespace AC.Core.Data
         /// <summary>
         /// Парсить настройки
         /// </summary>
-        /// <param name="text">Text of settings file</param>
+        /// <param name="text">Текст файла</param>
         protected virtual DataSettings ParseSettings(string text)
         {
             var shellSettings = new DataSettings();
@@ -54,7 +54,28 @@ namespace AC.Core.Data
             }
             return shellSettings;
         }
+        /// <summary>
+        /// Конвертация настроек данных в строку 
+        /// </summary>
+        /// <param name="settings">Параметры</param>
+        /// <returns>Строка</returns>
+        protected virtual string ComposeSettings(DataSettings settings)
+        {
+            if (settings == null)
+                return "";
 
+            return string.Format("DataProvider: {0}{2}DataConnectionString: {1}{2}",
+                                settings.DataProvider,
+                                settings.DataConnectionString,
+                                Environment.NewLine
+                );
+        }
+
+        /// <summary>
+        /// Загрузка настроек подключения к бд
+        /// </summary>
+        /// <param name="filePath">Путь к файлу с настройками</param>
+        /// <returns></returns>
         public virtual DataSettings LoadSettings(string filePath = null)
         {
             if (String.IsNullOrEmpty(filePath))
@@ -67,6 +88,28 @@ namespace AC.Core.Data
                 return ParseSettings(text);
             }
             return new DataSettings();
+        }
+
+        /// <summary>
+        /// Сохранить настройки в файл
+        /// </summary>
+        /// <param name="settings"></param>
+        public virtual void SaveSettings(DataSettings settings)
+        {
+            if (settings == null)
+                throw new ArgumentNullException("settings");
+
+            string filePath = Path.Combine(CommonHelper.MapPath("~/App_Data/"), filename);
+            if (!File.Exists(filePath))
+            {
+                using (File.Create(filePath))
+                {
+                    // использовать using для закрытия файла после создания его
+                }
+            }
+
+            var text = ComposeSettings(settings);
+            File.WriteAllText(filePath, text);
         }
     }
 }

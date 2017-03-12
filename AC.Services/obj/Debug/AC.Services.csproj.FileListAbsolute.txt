@@ -1,25 +1,3 @@
-C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Services\obj\Debug\AC.Services.csprojResolveAssemblyReference.cache
-C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Services\bin\Debug\AC.Services.dll
-C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Services\bin\Debug\AC.Services.pdb
-C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Services\bin\Debug\AC.Core.dll
-C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Services\bin\Debug\Autofac.dll
-C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Services\bin\Debug\Autofac.Integration.Mvc.dll
-C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Services\bin\Debug\System.Web.Mvc.dll
-C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Services\bin\Debug\Microsoft.Web.Infrastructure.dll
-C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Services\bin\Debug\System.Web.Razor.dll
-C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Services\bin\Debug\System.Web.WebPages.Razor.dll
-C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Services\bin\Debug\System.Web.WebPages.dll
-C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Services\bin\Debug\System.Web.WebPages.Deployment.dll
-C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Services\bin\Debug\AC.Core.pdb
-C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Services\bin\Debug\Autofac.xml
-C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Services\bin\Debug\Autofac.Integration.Mvc.xml
-C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Services\bin\Debug\System.Web.Mvc.xml
-C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Services\bin\Debug\System.Web.Razor.xml
-C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Services\bin\Debug\System.Web.WebPages.Razor.xml
-C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Services\bin\Debug\System.Web.WebPages.xml
-C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Services\bin\Debug\System.Web.WebPages.Deployment.xml
-C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Services\obj\Debug\AC.Services.dll
-C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Services\obj\Debug\AC.Services.pdb
 C:\Диплом\AuctionCommerce\AC.Services\bin\Debug\AC.Services.dll
 C:\Диплом\AuctionCommerce\AC.Services\bin\Debug\AC.Services.pdb
 C:\Диплом\AuctionCommerce\AC.Services\bin\Debug\AC.Core.dll
@@ -51,12 +29,30 @@ C:\Диплом\AuctionCommerce\AC.Services\bin\Debug\FluentNHibernate.pdb
 C:\Диплом\AuctionCommerce\AC.Services\bin\Debug\FluentNHibernate.xml
 C:\Диплом\AuctionCommerce\AC.Services\bin\Debug\NHibernate.xml
 C:\Диплом\AuctionCommerce\AC.Services\bin\Debug\Iesi.Collections.xml
+C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Services\bin\Debug\AC.Services.dll
+C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Services\bin\Debug\AC.Services.pdb
+C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Services\bin\Debug\AC.Core.dll
 C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Services\bin\Debug\AC.Data.dll
-C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Services\bin\Debug\FluentNHibernate.dll
-C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Services\bin\Debug\NHibernate.dll
-C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Services\bin\Debug\Iesi.Collections.dll
+C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Services\bin\Debug\Autofac.dll
+C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Services\bin\Debug\Autofac.Integration.Mvc.dll
+C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Services\bin\Debug\System.Web.Mvc.dll
+C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Services\bin\Debug\EntityFramework.dll
+C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Services\bin\Debug\Microsoft.Web.Infrastructure.dll
+C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Services\bin\Debug\System.Web.Razor.dll
+C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Services\bin\Debug\System.Web.WebPages.Razor.dll
+C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Services\bin\Debug\System.Web.WebPages.dll
+C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Services\bin\Debug\System.Web.WebPages.Deployment.dll
+C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Services\bin\Debug\AC.Core.pdb
 C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Services\bin\Debug\AC.Data.pdb
-C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Services\bin\Debug\FluentNHibernate.pdb
-C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Services\bin\Debug\FluentNHibernate.xml
-C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Services\bin\Debug\NHibernate.xml
-C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Services\bin\Debug\Iesi.Collections.xml
+C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Services\bin\Debug\Autofac.xml
+C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Services\bin\Debug\Autofac.Integration.Mvc.xml
+C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Services\bin\Debug\System.Web.Mvc.xml
+C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Services\bin\Debug\EntityFramework.xml
+C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Services\bin\Debug\System.Web.Razor.xml
+C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Services\bin\Debug\System.Web.WebPages.Razor.xml
+C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Services\bin\Debug\System.Web.WebPages.xml
+C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Services\bin\Debug\System.Web.WebPages.Deployment.xml
+C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Services\bin\Debug\ru\EntityFramework.resources.dll
+C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Services\obj\Debug\AC.Services.csprojResolveAssemblyReference.cache
+C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Services\obj\Debug\AC.Services.dll
+C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Services\obj\Debug\AC.Services.pdb

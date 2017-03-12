@@ -1,6 +1,4 @@
-﻿using AC.Data.Abstract;
-using AC.Data.Entities.Common;
-using AC.Services.Topics;
+﻿using AC.Services.Topics;
 using AC.Web.Framework.UI;
 using AC.Web.Models.Common;
 using System.Web.Mvc;

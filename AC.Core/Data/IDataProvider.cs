@@ -5,29 +5,24 @@ namespace AC.Core.Data
     public interface IDataProvider
     {
         /// <summary>
-        /// Initialize connection factory
+        /// Инициализация фабрики
         /// </summary>
         void InitConnectionFactory();
         
         /// <summary>
-        /// Initialize database
-        /// </summary>
-        void InitDatabase();
-
-        /// <summary>
-        /// A value indicating whether this data provider supports stored procedures
+        /// Значение показывающее поддерживает ли поставщик данных хранимые процедуры
         /// </summary>
         bool StoredProceduredSupported { get; }
 
         /// <summary>
-        /// A value indicating whether this data provider supports backup
+        /// Значение показывающее поддержку бэкапа 
         /// </summary>
         bool BackupSupported { get; }
 
         /// <summary>
-        /// Gets a support database parameter object (used by stored procedures)
+        /// Получить параметр
         /// </summary>
-        /// <returns>Parameter</returns>
+        /// <returns>Параметр бд</returns>
         DbParameter GetParameter();
 
         /// <summary>

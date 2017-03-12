@@ -1,6 +1,7 @@
-﻿using AC.Core.Domain.Topics;
-using AC.Data.Abstract;
+﻿using System;
 using System.Linq;
+using AC.Core.Domain.Topics;
+using AC.Data.Abstract;
 
 namespace AC.Services.Topics
 {
@@ -15,7 +16,22 @@ namespace AC.Services.Topics
 
         public IQueryable<Topic> GetAllTopics()
         {
-            return _topicRepository.GetAll();
+            return _topicRepository.Table;
+        }
+
+        public Topic GetTopicById(int topicId)
+        {
+            if (topicId == 0)
+                return null;
+            return _topicRepository.GetById(topicId);
+        }
+
+        public virtual void UpdateTopic(Topic topic)
+        {
+            if (topic == null)
+                throw new ArgumentNullException("topic");
+
+            _topicRepository.Update(topic);
         }
     }
 }
