@@ -84,12 +84,23 @@
   <ItemGroup>
     <Compile Include="BaseEntity.cs" />
     <Compile Include="CommonHelper.cs" />
+    <Compile Include="ComponentModel\GenericDictionaryTypeConverter.cs" />
+    <Compile Include="ComponentModel\GenericListTypeConverter.cs" />
     <Compile Include="Configuration\ACConfig.cs" />
     <Compile Include="Data\BaseDataProviderManager.cs" />
     <Compile Include="Data\DataSettings.cs" />
     <Compile Include="Data\DataSettingsManager.cs" />
     <Compile Include="Data\IDataProvider.cs" />
+    <Compile Include="Domain\Common\GenericAttribute.cs" />
+    <Compile Include="Domain\Localization\Language.cs" />
+    <Compile Include="Domain\Localization\LocaleStringResource.cs" />
     <Compile Include="Domain\Topics\Topic.cs" />
+    <Compile Include="Domain\Users\PasswordFormat.cs" />
+    <Compile Include="Domain\Users\SystemUserAttributeNames.cs" />
+    <Compile Include="Domain\Users\SystemUserRoleNames.cs" />
+    <Compile Include="Domain\Users\User.cs" />
+    <Compile Include="Domain\Users\UserExtensions.cs" />
+    <Compile Include="Domain\Users\UserRole.cs" />
     <Compile Include="Infrastructure\ACEngine.cs" />
     <Compile Include="Infrastructure\AppDomainTypeFinder.cs" />
     <Compile Include="Infrastructure\DependencyManagement\ContainerManager.cs" />
@@ -100,6 +111,7 @@
     <Compile Include="Infrastructure\ITypeFinder.cs" />
     <Compile Include="Infrastructure\Singleton.cs" />
     <Compile Include="Infrastructure\WebAppTypeFinder.cs" />
+    <Compile Include="IWorkContext.cs" />
     <Compile Include="MimeTypes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

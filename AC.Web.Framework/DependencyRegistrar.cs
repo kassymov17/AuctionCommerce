@@ -17,6 +17,11 @@ using AC.Data.Concrete;
 using AC.Services.Topics;
 using AC.Web.Framework.Mvc.Routes;
 using AC.Data;
+using AC.Core;
+using AC.Services.Common;
+using AC.Services.Authentication;
+using AC.Services.Localization;
+using AC.Services.Users;
 
 namespace AC.Web.Framework
 {
@@ -24,6 +29,23 @@ namespace AC.Web.Framework
     {
         public virtual void Register(ContainerBuilder builder, ITypeFinder typeFinder, ACConfig config)
         {
+            // HttpContext
+            builder.Register(c =>
+                    new HttpContextWrapper(HttpContext.Current) as HttpContextBase).As<HttpContextBase>()
+                .InstancePerLifetimeScope();
+            builder.Register(c => c.Resolve<HttpContextBase>().Request)
+                .As<HttpRequestBase>()
+                .InstancePerLifetimeScope();
+            builder.Register(c => c.Resolve<HttpContextBase>().Response)
+                .As<HttpResponseBase>()
+                .InstancePerLifetimeScope();
+            builder.Register(c => c.Resolve<HttpContextBase>().Server)
+                .As<HttpServerUtilityBase>()
+                .InstancePerLifetimeScope();
+            builder.Register(c => c.Resolve<HttpContextBase>().Session)
+                .As<HttpSessionStateBase>()
+                .InstancePerLifetimeScope();
+
             // controllers
             builder.RegisterControllers(typeFinder.GetAssemblies().ToArray());
 
@@ -48,14 +70,22 @@ namespace AC.Web.Framework
                 builder.Register<IDbContext>(c => new ACObjectContext(dataSettingsManager.LoadSettings().DataConnectionString)).InstancePerLifetimeScope();
             }
 
-            //builder.Register(c => new UnitOfWork()).As<IUnitOfWork>().InstancePerLifetimeScope();
-
             builder.RegisterGeneric(typeof(GenericRepository<>)).As(typeof(IRepository<>)).InstancePerLifetimeScope();
+
+            // work context
+            builder.RegisterType<WebWorkContext>().As<IWorkContext>().InstancePerLifetimeScope();
+
             // services
             builder.RegisterType<PageHeadBuilder>().As<IPageHeadBuilder>().InstancePerLifetimeScope();
             builder.RegisterType<TopicService>().As<ITopicService>().InstancePerLifetimeScope();
+            builder.RegisterType<FormsAuthenticationService>().As<IAuthenticationService>().InstancePerLifetimeScope();
+            builder.RegisterType<UserService>().As<IUserService>().InstancePerLifetimeScope();
+            builder.RegisterType<LanguageService>().As<ILanguageService>().InstancePerLifetimeScope();
 
+            builder.RegisterType<LocalizationService>().As<ILocalizationService>().InstancePerLifetimeScope();
+            builder.RegisterType<GenericAttributeService>().As<IGenericAttributeService>().InstancePerLifetimeScope();
             builder.RegisterType<RoutePublisher>().As<IRoutePublisher>().SingleInstance();
+            
         }
 
         public int Order
