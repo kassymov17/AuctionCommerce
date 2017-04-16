@@ -5,6 +5,8 @@
 }
 <div class="page home-page">
     <div class="page-body">
-
+        @Html.Action("TopicBlock", "Topic", new { systemName = "HomePageText" })
+        @Html.Action("HomepageCategories", "Catalog")
+        @Html.Action("HomepageItems", "Item")
     </div>
 </div>

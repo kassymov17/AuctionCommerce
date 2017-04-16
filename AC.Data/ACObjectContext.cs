@@ -14,6 +14,10 @@ namespace AC.Data
     public class ACObjectContext : DbContext, IDbContext
     {
         #region Ctor
+        
+        public ACObjectContext()
+            : base("MyConnection")
+        { }
 
         public ACObjectContext(string nameOrConnectionString)
             : base(nameOrConnectionString)

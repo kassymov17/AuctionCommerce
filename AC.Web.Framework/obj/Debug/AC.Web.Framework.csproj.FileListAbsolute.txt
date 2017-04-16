@@ -53,8 +53,6 @@ C:\Диплом\AuctionCommerce\AC.Web.Framework\bin\Debug\FluentNHibernate.xml
 C:\Диплом\AuctionCommerce\AC.Web.Framework\bin\Debug\NHibernate.xml
 C:\Диплом\AuctionCommerce\AC.Web.Framework\bin\Debug\Iesi.Collections.xml
 C:\Диплом\AuctionCommerce\AC.Web.Framework\bin\Debug\ru\System.Web.Optimization.resources.dll
-C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Web.Framework\obj\Debug\AC.Web.Framework.csproj.App.config
-C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Web.Framework\obj\Debug\AC.Web.Framework.csprojResolveAssemblyReference.cache
 C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Web.Framework\bin\Debug\AC.Web.Framework.dll.config
 C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Web.Framework\bin\Debug\AC.Web.Framework.dll
 C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Web.Framework\bin\Debug\AC.Web.Framework.pdb
@@ -76,6 +74,7 @@ C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Web.Fram
 C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Web.Framework\bin\Debug\System.Web.WebPages.dll
 C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Web.Framework\bin\Debug\System.Web.WebPages.Razor.dll
 C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Web.Framework\bin\Debug\WebGrease.dll
+C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Web.Framework\bin\Debug\ImageResizer.dll
 C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Web.Framework\bin\Debug\AC.Core.pdb
 C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Web.Framework\bin\Debug\AC.Data.pdb
 C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Web.Framework\bin\Debug\AC.Services.pdb
@@ -92,6 +91,7 @@ C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Web.Fram
 C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Web.Framework\bin\Debug\System.Web.WebPages.xml
 C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Web.Framework\bin\Debug\System.Web.WebPages.Deployment.xml
 C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Web.Framework\bin\Debug\System.Web.WebPages.Razor.xml
+C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Web.Framework\bin\Debug\ImageResizer.xml
 C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Web.Framework\bin\Debug\ru\System.Web.Helpers.resources.dll
 C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Web.Framework\bin\Debug\ru\System.Web.Mvc.resources.dll
 C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Web.Framework\bin\Debug\ru\System.Web.Optimization.resources.dll
@@ -99,5 +99,7 @@ C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Web.Fram
 C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Web.Framework\bin\Debug\ru\System.Web.WebPages.resources.dll
 C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Web.Framework\bin\Debug\ru\System.Web.WebPages.Deployment.resources.dll
 C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Web.Framework\bin\Debug\ru\System.Web.WebPages.Razor.resources.dll
+C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Web.Framework\obj\Debug\AC.Web.Framework.csproj.App.config
+C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Web.Framework\obj\Debug\AC.Web.Framework.csprojResolveAssemblyReference.cache
 C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Web.Framework\obj\Debug\AC.Web.Framework.dll
 C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Web.Framework\obj\Debug\AC.Web.Framework.pdb

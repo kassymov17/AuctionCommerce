@@ -144,6 +144,7 @@ C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Web\bin\
 C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Web\bin\EntityFramework.dll
 C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Web\bin\EntityFramework.SqlServer.dll
 C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Web\bin\Iesi.Collections.dll
+C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Web\bin\ImageResizer.dll
 C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Web\bin\Microsoft.AI.Agent.Intercept.dll
 C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Web\bin\Microsoft.AI.DependencyCollector.dll
 C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Web\bin\Microsoft.AI.PerfCounterCollector.dll
@@ -183,6 +184,7 @@ C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Web\bin\
 C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Web\bin\Autofac.xml
 C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Web\bin\Autofac.Integration.Mvc.xml
 C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Web\bin\Iesi.Collections.xml
+C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Web\bin\ImageResizer.xml
 C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Web\bin\Microsoft.AI.DependencyCollector.xml
 C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Web\bin\Microsoft.AI.ServerTelemetryChannel.xml
 C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Web\bin\Microsoft.AI.Web.xml

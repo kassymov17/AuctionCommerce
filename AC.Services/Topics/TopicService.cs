@@ -33,5 +33,17 @@ namespace AC.Services.Topics
 
             _topicRepository.Update(topic);
         }
+
+        public virtual Topic GetTopicBySystemName(string systemName)
+        {
+            if (string.IsNullOrEmpty(systemName))
+                return null;
+            var query = _topicRepository.Table;
+            query = query.Where(t => t.SystemName == systemName);
+            query = query.OrderBy(t => t.Id);
+            var topics = query.ToList();
+
+            return topics.FirstOrDefault();
+        }
     }
 }

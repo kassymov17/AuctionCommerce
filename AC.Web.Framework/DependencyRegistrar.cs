@@ -20,7 +20,9 @@ using AC.Data;
 using AC.Core;
 using AC.Services.Common;
 using AC.Services.Authentication;
+using AC.Services.Catalog;
 using AC.Services.Localization;
+using AC.Services.Media;
 using AC.Services.Users;
 
 namespace AC.Web.Framework
@@ -81,7 +83,10 @@ namespace AC.Web.Framework
             builder.RegisterType<FormsAuthenticationService>().As<IAuthenticationService>().InstancePerLifetimeScope();
             builder.RegisterType<UserService>().As<IUserService>().InstancePerLifetimeScope();
             builder.RegisterType<LanguageService>().As<ILanguageService>().InstancePerLifetimeScope();
-
+            builder.RegisterType<CategoryService>().As<ICategoryService>().InstancePerLifetimeScope();
+            builder.RegisterType<ItemService>().As<IItemService>().InstancePerLifetimeScope();
+            builder.RegisterType<PictureService>().As<IPictureService>().InstancePerLifetimeScope();
+            
             builder.RegisterType<LocalizationService>().As<ILocalizationService>().InstancePerLifetimeScope();
             builder.RegisterType<GenericAttributeService>().As<IGenericAttributeService>().InstancePerLifetimeScope();
             builder.RegisterType<RoutePublisher>().As<IRoutePublisher>().SingleInstance();

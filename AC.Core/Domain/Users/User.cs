@@ -1,17 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using AC.Core.Domain.Catalog;
 
 namespace AC.Core.Domain.Users
 {
     public partial class User : BaseEntity
     {
         // [todo] товары, адреса, роли и тд
-        /*
+        
         // список вещей принадлежащих юзеру
         private ICollection<Item> _items;
+        private ICollection<Bid> _bids;
         // список товаров в корзине
-        private ICollection<ShoppingCartItem> _shoppingCartItems;
-        */
+        //private ICollection<ShoppingCartItem> _shoppingCartItems
+
         // роли
         private ICollection<UserRole> _userRoles;
         
@@ -64,13 +66,17 @@ namespace AC.Core.Domain.Users
             protected set { _userRoles = value; }
         }
 
-        //public virtual ICollection<Item> Items
-        //{
-        //    get { return _items ?? (_items = new List<Item>()); }
-        //    protected set { _items = value; }
-        //}
+        public virtual ICollection<Item> Items
+        {
+            get { return _items ?? (_items = new List<Item>()); }
+            protected set { _items = value; }
+        }
 
-        
+        public virtual ICollection<Bid> Bids
+        {
+            get { return _bids ?? (_bids = new List<Bid>()); }
+            protected set { _bids = value; }
+        }
 
         #endregion
 

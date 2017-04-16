@@ -1528,10 +1528,10 @@ label, label + * {
 	font-size: 0;
 }
 .item-box .add-to-compare-list-button {
-	background-image: url('../images/compare-button.png');
+	background-image: url('Images/compare-button.png');
 }
 .item-box .add-to-wishlist-button {
-	background-image: url('../images/wishlist-button.png');
+	background-image: url('Images/wishlist-button.png');
 }
 .item-box .add-to-compare-list-button:hover,
 .item-box .add-to-wishlist-button:hover {

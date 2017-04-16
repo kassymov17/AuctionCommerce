@@ -1,0 +1,61 @@
+﻿@model ItemOverviewModel
+@using AC.Core
+@using AC.Core.Domain.Catalog
+@using AC.Core.Domain.Orders
+@using AC.Core.Infrastructure
+@using AC.Web.Models.Catalog
+
+@{
+    // добавить в корзину
+    string addtocartlink = "";
+    var shoppingCartTypeId = (int) ShoppingCartType.ShoppingCart;
+    var quantity = 1;
+
+    addtocartlink = Url.RouteUrl("AddItemToCart-Catalog", new {itemId = Model.Id, shoppingCartTypeId = shoppingCartTypeId, quantity = quantity});
+
+    var addtowishlistlink = Url.RouteUrl("AddItemToCart-Catalog", new {itemId = Model.Id, shoppingCartTypeId = (int)ShoppingCartType.Wishlist, quantity = quantity});
+}
+<div class="product-item" data-producid="@Model.Id">
+    <div class="picture">
+        <a href="" title="@Model.DefaultPictureModel.Title">
+            <img alt="@Model.DefaultPictureModel.AlternateText" src="@Model.DefaultPictureModel.ImageUrl" title="@Model.DefaultPictureModel.Title"/>
+        </a>
+    </div>
+    <div class="details">
+        <h2 class="product-title">
+            <a href="">@Model.Name</a>
+        </h2>
+        @* Для отзывов о товаре *@
+        <div>
+            @{
+                if (Model.ItemType == ItemType.AuctionItem)
+                {
+                    <p>Ставок: </p>
+                    <strong>@Model.AuctionStartDate - @Model.AuctionEndDate</strong>
+                }
+            }
+        </div>
+        <div class="description">
+            @Html.Raw(Model.ShortDescription)
+        </div>
+        <div class="add-info">
+            <span class="price actual-price">@Model.ItemPrice.Price тенге</span>
+            <div class="buttons">
+                @if (!Model.ItemPrice.DisableBuyButton)
+                {
+                    var addToCartText = T("ShoppingCart.AddToCart").Text;
+                    <input type="button" value="@(addToCartText)" class="button-2 product-box-add-to-cart-button" onclick="AjaxCart.additemtocart_catalog('@addtocartlink');return false;" />
+                }
+                @if (Model.ItemType == ItemType.AuctionItem)
+                {
+                    var goAuctionDetails = T("Auction.GoToDetails").Text;
+                    <input type="button" value="@(goAuctionDetails)" class="button-2 product-box-add-to-cart-button" onclick="" />
+                }
+                @if (!Model.ItemPrice.DisableWishlistButton)
+                {
+                    <input type="button" value="@T("ShoppingCart.AddToWishlist")" title="@T("ShoppingCart.AddToWishlist")" class="button-2 add-to-wishlist-button" onclick="AjaxCart.additemtocart_catalog('@addtowishlistlink');return false;" />
+                }
+            </div>
+        </div>
+    </div>
+</div>

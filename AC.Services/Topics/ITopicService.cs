@@ -15,5 +15,7 @@ namespace AC.Services.Topics
         //void InsertTopic(Topic topic);
 
         void UpdateTopic(Topic topic);
+
+        Topic GetTopicBySystemName(string systemName);
     }
 }

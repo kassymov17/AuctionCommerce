@@ -7,7 +7,7 @@
     <div class="footer-upper">
         <div class="footer-block information">
             <div class="title">
-                <strong>@T("Информация")</strong>
+                <strong>@T("Footer.Information")</strong>
             </div>
             <ul class="list">
                 <li><a href="">Карта сайта</a></li>
@@ -15,36 +15,35 @@
                 {
                     <li><a href="">@topic.Name</a></li>
                 }
-                <li><a href="@Url.RouteUrl("ContactUs")">Написать нам</a></li>
+                <li><a href="@Url.RouteUrl("ContactUs")">@T("ContactUs")</a></li>
             </ul>
         </div>
         <div class="footer-block customer-service">
             <div class="title">
-                <strong>Маркетинг</strong>
+                <strong>@T("Footer.UserService")</strong>
             </div>
             <ul class="list">
-                <li><a href="">Поиск</a></li>
-                <li><a href="">Блог-Новости</a></li>
-                <li><a href="">Просмотренные товары</a></li>
-                <li><a href="">Новинки</a></li>
+                <li><a href="">@T("Search")</a></li>
+                <li><a href="">@T("News")</a></li>
+                <li><a href="">@T("Products.RecentlyViewedProducts")</a></li>
+                <li><a href="">@T("Products.NewProducts")</a></li>
             </ul>
         </div>
         <div class="footer-block my-account">
             <div class="title">
-                <strong>Мой аккаунт</strong>
+                <strong>@T("Footer.MyAccount")</strong>
             </div>
             <ul class="list">
-                <li><a href="">Личный кабинет</a></li>
-                <li><a href="">Заказы</a></li>
-                <li><a href="">Адреса</a></li>
-                <li><a href="">Корзина</a></li>
-                <li><a href="">Избранное</a></li>
+                <li><a href="">@T("Account.MyAccount")</a></li>
+                <li><a href="">@T("Account.UserOrders")</a></li>
+                <li><a href="">@T("ShoppingCart")</a></li>
+                <li><a href="">@T("Wishlist")</a></li>
             </ul>
         </div>
     </div>
     <div class="footer-lower">
         <div class="footer-info">
-            <span class="footer-disclaimer">Copyright @DateTime.Now.Year</span>
+            <span class="footer-disclaimer">Все права защищены @DateTime.Now.Year</span>
         </div>
     </div>
 </div>
