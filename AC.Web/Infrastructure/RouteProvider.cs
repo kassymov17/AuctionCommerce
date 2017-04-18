@@ -14,6 +14,12 @@ namespace AC.Web.Infrastructure
                 new { controller = "Home", action = "Index" },
                 new[] { "AC.Web.Controllers" });
 
+            // shopping cart
+            routes.MapRoute("ShoppingCart",
+                "cart/",
+                new {controller = "ShoppingCart", action = "Cart"},
+                new[] { "AC.Web.Controllers" });
+
             // contact us
             routes.MapRoute("ContactUs",
                 "contactus",

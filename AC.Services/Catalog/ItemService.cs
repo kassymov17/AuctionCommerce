@@ -55,5 +55,13 @@ namespace AC.Services.Catalog
             var items = query.ToList();
             return items;
         }
+
+        public virtual Item GetItemById(int itemId)
+        {
+            if (itemId == 0)
+                return null;
+
+            return _itemRepository.GetById(itemId);
+        }
     }
 }

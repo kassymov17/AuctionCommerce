@@ -13,7 +13,7 @@ using AC.Web.Extensions;
 
 namespace AC.Web.Controllers
 {
-    public class ItemController : Controller
+    public class ItemController : BasePublicController
     {
         #region Поля
 
@@ -64,6 +64,11 @@ namespace AC.Web.Controllers
 
             var model = PrepareItemOverviewModels(items, true, true, 500).ToList();
             return PartialView(model);
+        }
+
+        public ActionResult ItemDetails(int itemId)
+        {
+            return View();
         }
 
         #endregion

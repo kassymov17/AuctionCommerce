@@ -35,7 +35,44 @@
         });
     },
     success_process: function(response) {
-        
+        if (response.updatetopcartsectionhtml) {
+            $(AjaxCart.topcartselector).html(response.updatetopcartsectionhtml);
+        }
+
+        if (response.updatetopwishlistsectionhtml) {
+            $(AjaxCart.topwishlistselector).html(response.updatetopwishlistsectionhtml);
+        }
+
+        if (response.updateflyoutcartsectionhtml) {
+            $(AjaxCart.flyoutcartselector).html(response.updateflyoutcartsectionhtml);
+        }
+
+        if (response.message) {
+            // показать уведомления
+            if (response.success == true) {
+                // успешно
+                if (AjaxCart.usepopupnotifications == true) {
+                    displayPopupNotification(response.message, 'success', true);
+                } else {
+                    displayBarNotification(response.message, 'success', 3500);
+                }
+            }
+            else {
+                // ошибка
+                if (AjaxCart.usepopupnotifications == true) {
+                    displayPopupNotification(response.message, 'error', true);
+                }
+                else {
+                    displayBarNotification(response.message, 'error', 0);
+                }
+            }
+            return false;
+        }
+        if (response.redirect) {
+            location.href = response.redirect;
+            return true;
+        }
+        return false;
     },
 
     resetLoadWaiting: function() {

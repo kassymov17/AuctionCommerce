@@ -10,7 +10,7 @@ using AC.Web.Models.Topics;
 
 namespace AC.Web.Controllers
 {
-    public class TopicController : Controller
+    public partial class TopicController : BasePublicController
     {
         #region Поля
 

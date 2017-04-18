@@ -62,6 +62,9 @@
     <Compile Include="Media\IPictureService.cs" />
     <Compile Include="Media\PictureService.cs" />
     <Compile Include="Media\ResizeType.cs" />
+    <Compile Include="Orders\IShoppingCartService.cs" />
+    <Compile Include="Orders\ShoppingCartExtensions.cs" />
+    <Compile Include="Orders\ShoppingCartService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Topics\ITopicService.cs" />
     <Compile Include="Topics\TopicService.cs" />

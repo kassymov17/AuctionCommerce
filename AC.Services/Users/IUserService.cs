@@ -12,5 +12,7 @@ namespace AC.Services.Users
         User GetUserByUsername(string username);
 
         User InsertGuestUser();
+
+        void UpdateUser(User user);
     }
 }

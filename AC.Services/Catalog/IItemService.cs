@@ -9,5 +9,7 @@ namespace AC.Services.Catalog
         int GetNumberOfItemsInCategory(IList<int> categoryIds = null);
 
         IList<Item> GetAllItemsDisplayedOnHomePage();
+
+        Item GetItemById(int itemId);
     }
 }

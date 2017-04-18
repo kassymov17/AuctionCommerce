@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using AC.Core.Domain.Catalog;
+using AC.Core.Domain.Orders;
 
 namespace AC.Core.Domain.Users
 {
@@ -12,7 +13,7 @@ namespace AC.Core.Domain.Users
         private ICollection<Item> _items;
         private ICollection<Bid> _bids;
         // список товаров в корзине
-        //private ICollection<ShoppingCartItem> _shoppingCartItems
+        private ICollection<ShoppingCartItem> _shoppingCartItems;
 
         // роли
         private ICollection<UserRole> _userRoles;
@@ -52,13 +53,13 @@ namespace AC.Core.Domain.Users
         public DateTime LastActivityDateUtc { get; set; }
 
         #region Связи
-        
-        
-        //public virtual ICollection<ShoppingCartItem> ShoppingCartItems
-        //{
-        //    get { return _shoppingCartItems ?? (_shoppingCartItems = new List<ShoppingCartItem>()); }
-        //    protected set { _shoppingCartItems = value; }
-        //}
+
+
+        public virtual ICollection<ShoppingCartItem> ShoppingCartItems
+        {
+            get { return _shoppingCartItems ?? (_shoppingCartItems = new List<ShoppingCartItem>()); }
+            protected set { _shoppingCartItems = value; }
+        }
 
         public virtual ICollection<UserRole> UserRoles
         {

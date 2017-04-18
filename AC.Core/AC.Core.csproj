@@ -102,6 +102,7 @@
     <Compile Include="Domain\Localization\LocaleStringResource.cs" />
     <Compile Include="Domain\Media\Picture.cs" />
     <Compile Include="Domain\Media\PictureType.cs" />
+    <Compile Include="Domain\Orders\ShoppingCartItem.cs" />
     <Compile Include="Domain\Orders\ShoppingCartType.cs" />
     <Compile Include="Domain\Topics\Topic.cs" />
     <Compile Include="Domain\Users\PasswordFormat.cs" />

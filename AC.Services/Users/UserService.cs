@@ -97,6 +97,14 @@ namespace AC.Services.Users
             return userRole;
         }
 
+        public virtual void UpdateUser(User user)
+        {
+            if(user == null)
+                throw new ArgumentNullException("user");
+
+            _userRepository.Update(user);
+        }
+
         #endregion
 
     }
