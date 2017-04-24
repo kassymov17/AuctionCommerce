@@ -1,0 +1,26 @@
+﻿@model ItemDetailsModel.AddToCartModel
+@using AC.Core.Domain.Orders
+@using AC.Web.Models.Catalog;
+
+<div class="add-to-cart">
+    <div class="min-qty-notification"></div>
+    <div class="add-to-cart-panel">
+        @Html.LabelFor(model => model.EnteredQuantity, new { @class = "qty-label" }, ":")
+        @Html.TextBoxFor(model => model.EnteredQuantity, new { @class = "qty-label" })
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#@Html.FieldIdFor(model => model.EnteredQuantity)").keydown(function (event) {
+                    if (event.keyCode == 13) {
+                        $("#add-to-cart-button-@Model.ItemId").click();
+                        return false;
+                    }
+                });
+            });
+        </script>
+        @{
+            var addToCartText = T("ShoppingCart.AddToCart").Text;
+            var addtocartlink = Url.RouteUrl("AddItemToCart-Catalog", new { itemId = Model.ItemId, shoppingCartTypeId = (int)ShoppingCartType.ShoppingCart, quantity = 1 });
+            <input type="button" id="add-to-cart-button-@Model.ItemId" class="button-1 add-to-cart-button" value="@addToCartText" data-productId="@Model.ItemId" onclick="AjaxCart.additemtocart_catalog('@addtocartlink');return false;" />
+        }
+    </div>
+</div>

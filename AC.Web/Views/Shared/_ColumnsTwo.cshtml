@@ -1,0 +1,25 @@
+﻿@{
+    Layout = "~/Views/Shared/_Root.cshtml";
+}
+@{
+    
+}
+@if (IsSectionDefined("Breadcrumb"))
+{
+    @section Breadcrumb{
+        @RenderSection("Breadcrumb")
+    }
+}
+<div class="side-2">
+    @if (IsSectionDefined("left"))
+    {
+        @RenderSection("left")
+    }
+    else
+    {
+        
+    }
+</div>
+<div class="center-2">
+    @RenderBody()
+</div>

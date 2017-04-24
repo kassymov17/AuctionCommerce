@@ -51,3 +51,36 @@ function displayBarNotification(message, messagetype, timeout) {
     }
 
 }
+
+function displayPopupNotification(message, messageType, modal) {
+    var container;
+    if (messagetype == 'success') {
+        //success
+        container = $('#dialog-notifications-success');
+    }
+    else if (messagetype == 'error') {
+        //error
+        container = $('#dialog-notifications-error');
+    }
+    else {
+        //other
+        container = $('#dialog-notifications-success');
+    }
+
+    var htmlcode = '';
+    if ((typeof message) == 'string') {
+        htmlcode = '<p>' + message + '</p>';
+    } else {
+        for (var i = 0; i < message.length; i++) {
+            htmlcode = htmlcode + '<p>' + message[i] + '</p>';
+        }
+    }
+
+    container.html(htmlcode);
+
+    var isModal = (modal ? true : false);
+    container.dialog({
+        modal: isModal,
+        width: 350
+    });
+}

@@ -17,7 +17,40 @@ namespace AC.Web.Infrastructure
             // shopping cart
             routes.MapRoute("ShoppingCart",
                 "cart/",
-                new {controller = "ShoppingCart", action = "Cart"},
+                new { controller = "ShoppingCart", action = "Cart" },
+                new[] { "AC.Web.Controllers" });
+
+            // item
+            routes.MapRoute("Item",
+                "item/{itemId}",
+                new { controller = "Item", action = "ItemDetails" },
+                new { itemId = @"\d+" },
+                new[] { "AC.Web.Controllers" });
+            
+            // login
+            routes.MapRoute("Login",
+                "login/",
+                new { controller = "User", action = "Login" },
+                new[] { "AC.Web.Controllers" }
+            );
+
+            // logout
+            routes.MapRoute("Logout",
+                "logout/",
+                new { controller = "User", action = "Logout" },
+                new[] { "AC.Web.Controllers" });
+                
+            // register
+            routes.MapRoute("Register",
+                "register/",
+                new { controller = "User", action = "Register" },
+                new[] { "AC.Web.Controllers" }
+            );
+
+            // register result
+            routes.MapRoute("RegisterResult",
+                "registerresult/",
+                new { controller = "User", action = "RegisterResult" },
                 new[] { "AC.Web.Controllers" });
 
             // contact us
@@ -49,6 +82,14 @@ namespace AC.Web.Infrastructure
                 "additemtocart/catalog/{itemId}/{shoppingCartTypeId}/{quantity}",
                 new { controller = "ShoppingCart", action = "AddItemToCart_Catalog" },
                 new { itemId = @"\d+", shoppingCartTypeId = @"\d+", quantity = @"\d+" },
+                new[] { "AC.Web.Controllers" }
+                );
+
+            // place a bid
+            routes.MapRoute("BidForItem",
+                "bidforitem/item/{itemId}",
+                new { controller = "ShoppingCart", action = "PlaceBid" },
+                new { itemId = @"\d+" },
                 new[] { "AC.Web.Controllers" }
                 );
         }

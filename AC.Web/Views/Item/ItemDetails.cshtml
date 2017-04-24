@@ -1,0 +1,55 @@
+﻿@model ItemDetailsModel
+@using AC.Core.Domain.Catalog
+@using AC.Web.Models.Catalog;
+
+@{
+    Layout = "~/Views/Shared/_ColumnsOne.cshtml";
+    
+}
+@section Breadcrumb
+{
+    @* TODO breadcrumbs *@    
+}
+
+<div class="page product-details-page">
+    <div class="page-body">
+        @using (Html.BeginRouteForm("Item", new { itemId = Model.Id}, FormMethod.Post, new { id = "product-details-form" }))
+        {
+            <div itemscope itemtype="http://schema.org/Product" data-productid="@Model.Id">
+                <div class="product-essential">
+                    @Html.Partial("_ItemDetailsPictures", Model)
+                    <div class="overview">
+                        <div class="product-name">
+                            <h1 itemprop="name">
+                                @Model.Name
+                            </h1>
+                        </div>
+                        @if (!String.IsNullOrEmpty(Model.ShortDescription))
+                        {
+                            <div class="short-description">
+                                @Html.Raw(Model.ShortDescription)
+                            </div>
+                        }
+                        @{
+                            if (Model.ItemType == ItemType.AuctionItem)
+                            {
+                                <p>Стартовая цена</p>
+                                <h1>@Model.ItemPrice.Price тенге</h1>
+                                <p>Шаг аукциона</p>
+                                <h1>@Model.ItemPrice.BidStep тенге</h1>
+                                @Html.Partial("_PlaceBid", Model.PlaceBid)
+                            }
+                            else
+                            {
+                                <p>Цена</p>
+                                <h1>@Model.ItemPrice.Price</h1>
+                                @Html.Partial("_AddToCart", Model.AddToCart)
+                            }
+                        }
+                        
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

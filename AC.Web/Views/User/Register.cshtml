@@ -1,0 +1,108 @@
+﻿@model RegisterModel
+@using AC.Web.Models.User;
+
+@{
+    Layout = "~/Views/Shared/_ColumnsOne.cshtml";
+    // заголовок страницы
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="page registration-page">
+        <div class="page-title">
+            <h1>@T("Account.Register")</h1>
+        </div>
+        <div class="page-body">
+            @{
+                var validationSummary = Html.ValidationSummary(true);
+            }
+            @if (!MvcHtmlString.IsNullOrEmpty(validationSummary))
+            {
+                <div class="message-error">@validationSummary</div>
+            }
+            
+            <div class="fieldset">
+                <div class="title">
+                    <strong>@T("Account.YourPersonalDetails")</strong>
+                </div>
+                <div class="form-fields">
+                    <div class="inputs">
+                        <label>@T("Account.Fields.Gender"):</label>
+                        <div class="gender">
+                            <span class="male">
+                                @Html.RadioButton("Gender", "M", (Model.Gender == "M"), new { id = "gender-male" })
+                                <label class="forcheckbox" for="gender-male">@T("Account.Fields.Gender.Male")</label>
+                            </span>
+                            <span class="female">
+                                @Html.RadioButton("Gender", "F", (Model.Gender == "F"), new { id = "gender-female" })
+                                <label class="forcheckbox" for="gender-female">@T("Account.Fields.Gender.Female")</label>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="inputs">
+                        @Html.LabelFor(model => model.FirstName, new { }, ":")
+                        @Html.EditorFor(model => model.FirstName)
+                        @Html.RequiredHint()
+                        @Html.ValidationMessageFor(model => model.FirstName)
+                    </div>
+                    <div class="inputs">
+                        @Html.LabelFor(model => model.LastName, new { }, ":")
+                        @Html.EditorFor(model => model.LastName)
+                        @Html.RequiredHint()
+                        @Html.ValidationMessageFor(model => model.LastName)    
+                    </div>
+                    @*<div class="inputs date-of-birth">
+                        <label>@T("Account.Fields.DateOfBirth"):</label>
+                        @Html.DatePickerDropDowns(Html.FieldNameFor(x => x.DateOfBirthDay),
+                            Html.FieldNameFor(x => x.DateOfBirthMonth),
+                            Html.FieldNameFor(x => x.DateOfBirthYear),
+                            DateTime.Now.Year - 110,
+                            DateTime.Now.Year,
+                            Model.DateOfBirthDay,
+                            Model.DateOfBirthMonth,
+                            Model.DateOfBirthYear)
+                        
+                        @Html.ValidationMessageFor(model => model.DateOfBirthDay)
+                        @Html.ValidationMessageFor(model => model.DateOfBirthMonth)
+                        @Html.ValidationMessageFor(model => model.DateOfBirthYear)
+                    </div>*@
+                    <div class="inputs">
+                        @Html.LabelFor(model => model.Email, new { }, ":")
+                        @Html.EditorFor(model => model.Email)
+                        @Html.RequiredHint()
+                        @Html.ValidationMessageFor(model => model.Email)
+                    </div>
+
+                </div>
+            </div>
+            <div class="fieldset">
+                <div class="title">
+                    <strong>@T("Account.YourPassword")</strong>
+                </div>
+                <div class="form-fields">
+                    <div class="inputs">
+                        @Html.LabelFor(model => model.Password, new { }, ":")
+                        @Html.EditorFor(model => model.Password)
+                        @Html.RequiredHint()
+                        @Html.ValidationMessageFor(model => model.Password)
+                    </div>
+                    <div class="inputs">
+                        @Html.LabelFor(model => model.ConfirmPassword, new { }, ":")
+                        @Html.EditorFor(model => model.ConfirmPassword)
+                        @Html.RequiredHint()
+                        @Html.ValidationMessageFor(model => model.ConfirmPassword)
+                    </div>
+                    @*@if (Model.DisplayCaptcha)
+                    {
+                        <div class="captcha-box">
+                            @Html.Raw(Html.GenerateCaptcha())
+                        </div>
+                    }*@
+                </div>
+            </div>
+            <div class="buttons">
+                <input type="submit" id="register-button" class="button-1 register-next-step-button" value="@T("Account.Register.Button")" name="register-button" />
+            </div>
+        </div>
+    </div>
+}

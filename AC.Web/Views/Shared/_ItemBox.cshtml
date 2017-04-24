@@ -17,7 +17,7 @@
 }
 <div class="product-item" data-producid="@Model.Id">
     <div class="picture">
-        <a href="" title="@Model.DefaultPictureModel.Title">
+        <a href="@Url.RouteUrl("Item", new { itemId = Model.Id })" title="@Model.DefaultPictureModel.Title">
             <img alt="@Model.DefaultPictureModel.AlternateText" src="@Model.DefaultPictureModel.ImageUrl" title="@Model.DefaultPictureModel.Title"/>
         </a>
     </div>
@@ -49,7 +49,7 @@
                 @if (Model.ItemType == ItemType.AuctionItem)
                 {
                     var goAuctionDetails = T("Auction.GoToDetails").Text;
-                    <input type="button" value="@(goAuctionDetails)" class="button-2 product-box-add-to-cart-button" onclick="" />
+                    <input type="button" value="@(goAuctionDetails)" class="button-2 product-box-add-to-cart-button" onclick="location.href = '@Url.RouteUrl("Item", new { itemId = Model.Id })'" />
                 }
                 @if (!Model.ItemPrice.DisableWishlistButton)
                 {

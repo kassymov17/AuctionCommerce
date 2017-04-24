@@ -18,5 +18,7 @@ namespace AC.Services.Orders
         IList<string> GetStandardWarnings(User user, ShoppingCartType shoppingCartType, Item item, int quantity);
 
         IList<string> AddToCart(User user, Item item, ShoppingCartType shoppingCartType, int quantity = 1);
+
+        IList<string> PlaceBid(User user, Item item, decimal userEnteredPrice = decimal.Zero);
     }
 }

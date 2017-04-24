@@ -1,0 +1,22 @@
+﻿@model ItemDetailsModel.PlaceBidModel
+@using AC.Core.Domain.Orders
+@using AC.Web.Models.Catalog;
+
+<div class="add-to-cart">
+    <div class="customer-entered-price">
+        <div class="price-input">
+            @Html.LabelFor(model => model.Amount, new { @class = "enter-price-label" }, ":")
+            @Html.TextBox("Amount", Model.Amount, new { @class = "enter-price-input" })
+        </div>
+        <div class="price-range">
+            Ставка не должна ниже стартовой цены лота
+        </div>
+    </div>
+    <div class="add-to-cart-panel">
+        @{
+            var addToCartText = T("Auction.GoToDetails").Text;
+            var placebidlink = Url.RouteUrl("BidForItem", new { itemId = Model.ItemId });
+            <input type="button" id="add-to-cart-button-@Model.ItemId" class="button-1 add-to-cart-button" value="@addToCartText" data-productId="@Model.ItemId" onclick="AjaxCart.placebid('@placebidlink', '#product-details-form');return false;"/>
+        }
+    </div>   
+</div>

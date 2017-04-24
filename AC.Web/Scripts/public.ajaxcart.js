@@ -34,6 +34,23 @@
             error: this.ajaxFailure
         });
     },
+
+    placebid: function(urlbid, formselector) {
+        if (this.loadWaiting != false)
+            return;
+        this.setLoadWaiting(true);
+
+        $.ajax({
+            cache: false,
+            url: urlbid,
+            data: $(formselector).serialize(),
+            type: 'post',
+            success: this.success_process,
+            complete: this.resetLoadWaiting,
+            error: this.ajaxFailure
+        });
+    },
+
     success_process: function(response) {
         if (response.updatetopcartsectionhtml) {
             $(AjaxCart.topcartselector).html(response.updatetopcartsectionhtml);

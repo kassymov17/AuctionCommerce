@@ -1,0 +1,24 @@
+﻿@model RegisterResultModel
+@using AC.Web.Models.User;
+
+@{
+    Layout = "~/Views/Shared/_ColumnsOne.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="page registration-result-page">
+        <div class="page-title">
+            <h1>@T("Account.Register")</h1>
+        </div>
+        <div class="page-body">
+            <div class="result">
+                @Model.Result
+            </div>
+            <div class="buttons">
+                <input type="submit" name="register-continue" class="button-1 register-continue-button" value="@T("Account.Register.Result.Continue")" />    
+            </div>
+        </div>
+    </div>
+}

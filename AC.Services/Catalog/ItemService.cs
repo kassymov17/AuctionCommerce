@@ -63,5 +63,13 @@ namespace AC.Services.Catalog
 
             return _itemRepository.GetById(itemId);
         }
+
+        public virtual void UpdateItem(Item item)
+        {
+            if(item == null)
+                throw new ArgumentNullException("item");
+
+            _itemRepository.Update(item);
+        }
     }
 }

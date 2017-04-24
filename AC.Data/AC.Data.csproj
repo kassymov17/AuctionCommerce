@@ -72,6 +72,7 @@
     <Compile Include="Abstract\IRepository.cs" />
     <Compile Include="ACObjectContext.cs" />
     <Compile Include="Concrete\GenericRepository.cs" />
+    <Compile Include="DbContextExtensions.cs" />
     <Compile Include="EfDataProviderManager.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="IDbContext.cs" />

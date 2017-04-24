@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using AC.Core;
@@ -25,19 +26,22 @@ namespace AC.Services.Orders
         private readonly IItemService _itemService;
         private readonly ILocalizationService _localizationService;
         private readonly IUserService _userService;
+        private readonly IRepository<Bid> _bidRepository;
 
         #endregion
 
         #region Конструктор
 
         public ShoppingCartService(IRepository<ShoppingCartItem> sciRepository, IWorkContext workContext,
-            IItemService itemService, ILocalizationService localizationService, IUserService userService)
+            IItemService itemService, ILocalizationService localizationService, IUserService userService,
+            IRepository<Bid> bidRepository)
         {
             _sciRepository = sciRepository;
             _workContext = workContext;
             _itemService = itemService;
             _localizationService = localizationService;
             _userService = userService;
+            _bidRepository = bidRepository;
         }
 
         #endregion
@@ -209,6 +213,39 @@ namespace AC.Services.Orders
                     warnings.Add(_localizationService.GetResource("ShoppingCart.NotAvailable"));
                 }
             }
+
+            return warnings;
+        }
+
+        public virtual IList<string> PlaceBid(User user, Item item, decimal userEnteredPrice = decimal.Zero)
+        {
+            if(user == null)
+                throw new ArgumentNullException("user");
+
+            if(item == null)
+                throw new ArgumentNullException("item");
+
+            var warnings = new List<string>();
+
+            if (userEnteredPrice <= 0)
+            {
+                warnings.Add(_localizationService.GetResource("ShoppingCart.EnteredPriceShouldPositive"));
+                return warnings;
+            }
+
+            if (userEnteredPrice < item.InitialPrice)
+            {
+                warnings.Add(_localizationService.GetResource("ShoppingCart.EnteredPriceShouldBeMoreThanInitial"));
+                return warnings;
+            }
+
+            _bidRepository.Insert(new Bid
+            {
+                User = user,
+                Item = item,
+                Amount = userEnteredPrice,
+                CreatedOn = DateTime.UtcNow
+            });
 
             return warnings;
         }

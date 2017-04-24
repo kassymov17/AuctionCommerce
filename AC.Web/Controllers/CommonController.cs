@@ -3,36 +3,73 @@ using AC.Web.Framework.UI;
 using AC.Web.Models.Common;
 using System.Web.Mvc;
 using System.Linq;
+using AC.Core;
+using AC.Core.Domain.Orders;
+using AC.Core.Domain.Users;
+using AC.Services.Localization;
+using AC.Services.Orders;
 
 namespace AC.Web.Controllers
 {
     public partial class CommonController : BasePublicController
     {
         #region Fields
+
         private readonly IPageHeadBuilder _pageHeadBuilder;
         private readonly ITopicService _topicService;
+        private readonly IWorkContext _workContext;
+        private readonly ILocalizationService _localizationService;
+
         #endregion
 
-        public CommonController(IPageHeadBuilder pageHeadBuilder, ITopicService topicService)
+        public CommonController(IWorkContext workContext, ILocalizationService localizationService, IPageHeadBuilder pageHeadBuilder, ITopicService topicService)
         {
             _pageHeadBuilder = pageHeadBuilder;
             _topicService = topicService;
+            _workContext = workContext;
+            _localizationService = localizationService;
         }
         
         [ChildActionOnly]
         public ActionResult HeaderLinks()
         {
+            var user = _workContext.CurrentUser;
+            //var unreadMessageCount = GetUnreadPrivateMessages();
+            //var unreadMessage = string.Empty;
+            //var alertMessage = string.Empty;
+
+            //if (unreadMessageCount > 0)
+            //{
+            //    unreadMessage = string.Format(_localizationService.GetResource("PrivateMessages.TotalUnread"),
+            //        unreadMessageCount);
+
+            //    alertMessage = string.Format(_localizationService.GetResource("PrivateMessages.YouHaveUnreadPM"),
+            //        unreadMessageCount);
+            //}
+
             var model = new HeaderLinksModel
             {
                 // зарегистрирован ли пользователь
-                IsAuthenticated = false,
-                CustomerEmailUsername = "CustomerEmailUsername",
+                IsAuthenticated = user.IsRegistered(),
+                CustomerEmailUsername = user.IsRegistered() ? user.Email : "",
                 ShoppingCartEnabled = true,
                 WishlistEnabled = true,
                 AllowPrivateMessages = true,
                 UnreadPrivateMessages = "",
                 AlertMessage = string.Empty
             };
+
+            if (user.HasShoppingCartItems)
+            {
+                model.ShoppingCartItems =
+                    user.ShoppingCartItems.Where(sci => sci.ShoppingCartType == ShoppingCartType.ShoppingCart)
+                        .ToList()
+                        .GetTotalProducts();
+
+                model.WishlistItems = user.ShoppingCartItems.Where(sci => sci.ShoppingCartType == ShoppingCartType.Wishlist)
+                        .ToList()
+                        .GetTotalProducts();
+            }
 
             return PartialView(model);
         }

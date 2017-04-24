@@ -110,6 +110,7 @@
     <Compile Include="Domain\Users\SystemUserRoleNames.cs" />
     <Compile Include="Domain\Users\User.cs" />
     <Compile Include="Domain\Users\UserExtensions.cs" />
+    <Compile Include="Domain\Users\UserLoginResults.cs" />
     <Compile Include="Domain\Users\UserRole.cs" />
     <Compile Include="Infrastructure\ACEngine.cs" />
     <Compile Include="Infrastructure\AppDomainTypeFinder.cs" />

@@ -105,6 +105,19 @@ namespace AC.Services.Users
             _userRepository.Update(user);
         }
 
+        public virtual User GetUserByEmail(string email)
+        {
+            if (string.IsNullOrWhiteSpace(email))
+                return null;
+
+            var query = from u in _userRepository.Table
+                orderby u.Id
+                where u.Email == email
+                select u;
+            var user = query.FirstOrDefault();
+            return user;
+        }
+
         #endregion
 
     }

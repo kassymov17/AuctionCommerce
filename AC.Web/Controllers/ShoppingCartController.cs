@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using AC.Core;
 using AC.Core.Domain.Catalog;
+using AC.Core.Domain.Users;
 using AC.Core.Domain.Orders;
 using AC.Services.Catalog;
 using AC.Services.Localization;
@@ -128,6 +129,67 @@ namespace AC.Web.Controllers
                     });
                 }
             }
+        }
+
+        [HttpPost]
+        public ActionResult PlaceBid(int itemId, FormCollection form)
+        {
+            if (!_workContext.CurrentUser.IsRegistered())
+            {     return Json(new
+                {
+                    redirect = Url.RouteUrl("Login")
+                });
+            }
+            var item = _itemService.GetItemById(itemId);
+            if (item == null)
+            {
+                return Json(new
+                {
+                    success = false,
+                    message = "Позволяется делать ставки только на товара типа аукцион"
+                });
+            }
+            if (item.UserId == _workContext.CurrentUser.Id)
+            {
+                return Json(new
+                {
+                    success = false,
+                    message = "Вы являетесь владельцем лота"
+                });
+            }
+            if (!(item.AuctionStartDate <= DateTime.UtcNow && item.AuctionEndDate >= DateTime.UtcNow))
+            {
+                return Json(new
+                {
+                    success = false,
+                    message = "Время аукциона закончилось"
+                });
+            }
+
+            // ставка
+            decimal userEnteredPrice = decimal.Zero;
+            foreach (string formKey in form.AllKeys)
+            {
+                decimal.TryParse(form[formKey], out userEnteredPrice);
+            }
+
+            var placeBidWarnings = new List<string>();
+            placeBidWarnings.AddRange(_shoppingCartService.PlaceBid(_workContext.CurrentUser, item, userEnteredPrice));
+
+            if (placeBidWarnings.Any())
+            {
+                return Json(new
+                {
+                    success = false,
+                    message = placeBidWarnings.ToArray()
+                });
+            }
+
+            return Json(new
+            {
+                success = true,
+                message = string.Format(_localizationService.GetResource("Products.BidHasBeenPlaced.Link"), Url.RouteUrl("UserInfo"))
+            });
         }
 
         #endregion

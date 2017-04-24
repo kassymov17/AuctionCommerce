@@ -93,7 +93,6 @@ namespace AC.Web.Framework
                 if (user != null && !user.Deleted && user.Active)
                 {
                     var impersonatedUserId = user.GetAttribute<int?>(SystemUserAttributeNames.ImpersonatedUserId);
-                    /* [todo] user service
                     if (impersonatedUserId.HasValue && impersonatedUserId.Value > 0)
                     {
                         var impersonatedUser = _userService.GetUserById(impersonatedUserId.Value);
@@ -103,8 +102,7 @@ namespace AC.Web.Framework
                             user = impersonatedUser;
                         }
                     }
-                    */
-                }
+                }       
 
                 if (user == null || user.Deleted || !user.Active)
                 {

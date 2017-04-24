@@ -11,5 +11,7 @@ namespace AC.Services.Catalog
         IList<Item> GetAllItemsDisplayedOnHomePage();
 
         Item GetItemById(int itemId);
+
+        void UpdateItem(Item item);
     }
 }

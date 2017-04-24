@@ -5,11 +5,13 @@ using System.Web;
 using System.Web.Mvc;
 using AC.Core;
 using AC.Core.Domain.Catalog;
+using AC.Core.Domain.Orders;
 using AC.Services.Catalog;
 using AC.Services.Localization;
 using AC.Services.Media;
 using AC.Web.Models.Catalog;
 using AC.Web.Extensions;
+using AC.Web.Models.Media;
 
 namespace AC.Web.Controllers
 {
@@ -50,6 +52,90 @@ namespace AC.Web.Controllers
                 _pictureService, items, preparePriceModel, preparePictureModel, itemThumbPictureSize, forceRedirectionAfterAddingToCart);
         }
 
+        [NonAction]
+        protected virtual ItemDetailsModel PrepareItemDetailsPageModel(Item item)
+        {
+            if(item == null)
+                throw new ArgumentNullException("item");
+
+            #region Стандартные свойства
+
+            var model = new ItemDetailsModel
+            {
+                Id = item.Id,
+                Name = item.Name,
+                ShortDescription = item.ShortDescription,
+                FullDescription = item.FullDescription,
+                MetaKeywords = item.MetaKeywords,
+                MetaTitle = item.MetaTitle,
+                MetaDescription = item.MetaDescription,
+                ItemType =  item.ItemType
+            };
+
+            #region Breadrumbs
+
+
+
+            #endregion
+
+            #region Изображения 
+
+            var defaultPictureSize = 550;
+
+            var pictures = _pictureService.GetPicturesByItemId(item.Id);
+            var defaultPicture = pictures.FirstOrDefault();
+            var defaultPictureModel = new PictureModel
+            {
+                ImageUrl = _pictureService.GetPictureUrl(defaultPicture, defaultPictureSize),
+                FullSizeImgUrl = _pictureService.GetPictureUrl(defaultPicture, 0),
+            };
+
+            var pictureModels = new List<PictureModel>();
+            foreach (var picture in pictures)
+            {
+                var pictureModel = new PictureModel
+                {
+                    ImageUrl = _pictureService.GetPictureUrl(picture, 100),
+                    FullSizeImgUrl = _pictureService.GetPictureUrl(picture),
+                };
+
+                pictureModels.Add(pictureModel);
+            }
+            model.DefaultPictureModel = defaultPictureModel;
+            model.PictureModels = pictureModels;
+
+            #endregion
+
+            #region Цены
+
+            model.ItemPrice.Price = item.InitialPrice.ToString();
+            if (item.ItemType == ItemType.AuctionItem)
+            {
+                model.ItemPrice.BidStep = item.BidStep.ToString();
+                model.StartDate = item.AuctionStartDate;
+                model.EndDate = item.AuctionEndDate;
+            }
+
+            #endregion
+
+            #region Добавить в корзину
+
+            model.AddToCart.ItemId = item.Id;
+            model.AddToCart.EnteredQuantity = 1;
+
+            #endregion
+
+            // доступность товара
+            model.IsAvailable = item.AuctionStartDate.HasValue && item.AuctionStartDate <= DateTime.UtcNow &&
+                                item.AuctionEndDate.HasValue && item.AuctionEndDate >= DateTime.UtcNow;
+
+            model.PlaceBid.ItemId = item.Id;
+
+            return model;
+
+            #endregion
+        }
+
         #endregion
 
         #region Методы
@@ -68,7 +154,15 @@ namespace AC.Web.Controllers
 
         public ActionResult ItemDetails(int itemId)
         {
-            return View();
+            var item = _itemService.GetItemById(itemId);
+            if (item == null || item.Deleted)
+                return InvokeHttp404();
+            
+            var model = PrepareItemDetailsPageModel(item);
+
+            // TODO добавить в недавно просмотренные
+
+            return View(model);
         }
 
         #endregion

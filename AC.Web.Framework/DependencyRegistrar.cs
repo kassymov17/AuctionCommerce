@@ -24,6 +24,7 @@ using AC.Services.Catalog;
 using AC.Services.Localization;
 using AC.Services.Media;
 using AC.Services.Orders;
+using AC.Services.Security;
 using AC.Services.Users;
 
 namespace AC.Web.Framework
@@ -88,6 +89,8 @@ namespace AC.Web.Framework
             builder.RegisterType<ItemService>().As<IItemService>().InstancePerLifetimeScope();
             builder.RegisterType<PictureService>().As<IPictureService>().InstancePerLifetimeScope();
             builder.RegisterType<ShoppingCartService>().As<IShoppingCartService>().InstancePerLifetimeScope();
+            builder.RegisterType<UserRegistrationService>().As<IUserRegistrationService>().InstancePerLifetimeScope();
+            builder.RegisterType<EncryptionService>().As<IEncryptionService>().InstancePerLifetimeScope();
             
             builder.RegisterType<LocalizationService>().As<ILocalizationService>().InstancePerLifetimeScope();
             builder.RegisterType<GenericAttributeService>().As<IGenericAttributeService>().InstancePerLifetimeScope();

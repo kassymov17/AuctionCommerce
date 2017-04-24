@@ -8,7 +8,7 @@ namespace AC.Core.Domain.Orders
     {
         public int ShoppingCartTypeId { get; set; }
 
-        public int UserId { get; set; }
+        public int UserId { get; set; } // покупатель
 
         public int ItemId { get; set; }
 

@@ -14,5 +14,9 @@ namespace AC.Services.Users
         User InsertGuestUser();
 
         void UpdateUser(User user);
+
+        User GetUserByEmail(string email);
+
+        UserRole GetUserRoleBySystemName(string systemName);
     }
 }
