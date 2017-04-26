@@ -71,5 +71,13 @@ namespace AC.Services.Catalog
 
             _itemRepository.Update(item);
         }
+
+        public virtual void InsertItem(Item item)
+        {
+            if(item == null)
+                throw new ArgumentNullException("item");
+
+            _itemRepository.Insert(item);
+        }
     }
 }

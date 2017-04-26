@@ -71,6 +71,32 @@ namespace AC.Web.Infrastructure
                 new { controller = "User", action = "Info" },
                 new[] { "AC.Web.Controllers" });
 
+            // account
+            routes.MapRoute("AddItem",
+                "user/additem",
+                new {controller = "User", action = "AddItem"},
+                new[] {"AC.Web.Controllers"});
+
+            routes.MapRoute("MyItems",
+                "user/myitems",
+                new { controller = "User", action = "MyItems" },
+                new[] { "AC.Web.Controllers" });
+
+            routes.MapRoute("MyBids",
+                "user/mybids",
+                new { controller = "User", action = "MyBids" },
+                new[] { "AC.Web.Controllers" });
+
+            routes.MapRoute("UserOrders",
+                "user/userorders",
+                new { controller = "User", action = "Orders" },
+                new[] { "AC.Web.Controllers" });
+
+            routes.MapRoute("WonBids",
+                "user/wonbids",
+                new { controller = "User", action = "WonBids" },
+                new[] { "AC.Web.Controllers" });
+
             // category
             routes.MapRoute("Category",
                 "{SeName}",

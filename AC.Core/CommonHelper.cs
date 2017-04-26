@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -87,6 +88,25 @@ namespace AC.Core
 
             email = email.Trim();
             var result = Regex.IsMatch(email, "^(?:[\\w\\!\\#\\$\\%\\&\\'\\*\\+\\-\\/\\=\\?\\^\\`\\{\\|\\}\\~]+\\.)*[\\w\\!\\#\\$\\%\\&\\'\\*\\+\\-\\/\\=\\?\\^\\`\\{\\|\\}\\~]+@(?:(?:(?:[a-zA-Z0-9](?:[a-zA-Z0-9\\-](?!\\.)){0,61}[a-zA-Z0-9]?\\.)+[a-zA-Z0-9](?:[a-zA-Z0-9\\-](?!$)){0,61}[a-zA-Z0-9]?)|(?:\\[(?:(?:[01]?\\d{1,2}|2[0-4]\\d|25[0-5])\\.){3}(?:[01]?\\d{1,2}|2[0-4]\\d|25[0-5])\\]))$", RegexOptions.IgnoreCase);
+            return result;
+        }
+
+        public static int GenerateRandomInteger(int min = 0, int max = int.MaxValue)
+        {
+            var randomNumberBuffer = new byte[10];
+            new RNGCryptoServiceProvider().GetBytes(randomNumberBuffer);
+            return new Random(BitConverter.ToInt32(randomNumberBuffer, 0)).Next(min, max);
+        }
+
+        public static string ConvertEnum(string str)
+        {
+            if (string.IsNullOrEmpty(str)) return string.Empty;
+            string result = string.Empty;
+            foreach (var c in str)
+                if (c.ToString() != c.ToString().ToLower())
+                    result += " " + c.ToString();
+                else
+                    result += c.ToString();
             return result;
         }
     }

@@ -13,5 +13,7 @@ namespace AC.Services.Catalog
         Item GetItemById(int itemId);
 
         void UpdateItem(Item item);
+
+        void InsertItem(Item item);
     }
 }

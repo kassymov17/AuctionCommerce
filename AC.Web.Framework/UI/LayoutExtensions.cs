@@ -60,5 +60,37 @@ namespace AC.Web.Framework.UI
             var pageHeadBuilder = EngineContext.Current.Resolve<IPageHeadBuilder>();
             return MvcHtmlString.Create(pageHeadBuilder.GenerateScripts(urlHelper, location, bundleFiles));
         }
+
+        public static void AddCssFileParts(this HtmlHelper html, string part, bool excludeFromBundle = false)
+        {
+            AddCssFileParts(html, ResourceLocation.Head, part, excludeFromBundle);
+        }
+
+        public static void AddCssFileParts(this HtmlHelper html, ResourceLocation location, string part, bool excludeFromBundle = false)
+        {
+            var pageHeadBuilder = EngineContext.Current.Resolve<IPageHeadBuilder>();
+            pageHeadBuilder.AddCssFileParts(location, part, excludeFromBundle);
+        }
+
+        public static void AppendCssFileParts(this HtmlHelper html, string part, bool excludeFromBundle = false)
+        {
+            AppendCssFileParts(html, ResourceLocation.Head, part, excludeFromBundle);
+        }
+
+        public static void AppendCssFileParts(this HtmlHelper html, ResourceLocation location, string part, bool excludeFromBundle = false)
+        {
+            var pageHeadBuilder = EngineContext.Current.Resolve<IPageHeadBuilder>();
+            pageHeadBuilder.AppendCssFileParts(location, part, excludeFromBundle);
+        }
+
+        public static void AddScriptParts(this HtmlHelper html, string part, bool excludeFromBundle = false, bool isAsync = false)
+        {
+            AddScriptParts(html, ResourceLocation.Head, part, excludeFromBundle, isAsync);
+        }
+        public static void AddScriptParts(this HtmlHelper html, ResourceLocation location, string part, bool excludeFromBundle = false, bool isAsync = false)
+        {
+            var pageHeadBuilder = EngineContext.Current.Resolve<IPageHeadBuilder>();
+            pageHeadBuilder.AddScriptParts(location, part, excludeFromBundle, isAsync);
+        }
     }
 }

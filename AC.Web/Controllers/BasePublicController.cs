@@ -24,5 +24,26 @@ namespace AC.Web.Controllers
 
             return new EmptyResult();
         }
+
+        protected void SaveSelectedTabName(string tabName = "", bool persistForTheNextRequest = true)
+        {
+            if (string.IsNullOrEmpty(tabName))
+            {
+                tabName = this.Request.Form["selected-tab-name"];
+            }
+
+            if (!string.IsNullOrEmpty(tabName))
+            {
+                const string dataKey = "ac.selected-tab-name";
+                if (persistForTheNextRequest)
+                {
+                    TempData[dataKey] = tabName;
+                }
+                else
+                {
+                    ViewData[dataKey] = tabName;
+                }
+            }
+        }
     }
 }

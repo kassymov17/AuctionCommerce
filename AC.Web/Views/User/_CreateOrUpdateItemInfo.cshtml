@@ -1,0 +1,98 @@
+﻿@model ItemModel
+@using AC.Web.Models.Catalog
+@using AC.Services.Catalog;
+@using System.Text;
+@using AC.Core.Domain.Catalog
+@using AC.Services;
+@using AC.Services.Users;
+
+@{
+    Html.AppendCssFileParts("~/Content/tagEditor/jquery.tag-editor.css");
+    Html.AppendScriptParts("~/Scripts/tagEditor/jquery.tag-editor.min.js");
+    Html.AppendScriptParts("~/Scripts/tagEditor/jquery.caret.min.js");
+}
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#@Html.FieldIdFor(model => model.ItemTypeId)").change(toggleItemType);
+
+        toggleItemType();
+
+        console.log('ds');
+
+        function toggleItemType() {
+            var selectedItemTypeId = $("#@Html.FieldIdFor(model => model.ItemTypeId)").val();
+            if (!selectedItemTypeId || selectedItemTypeId == @(((int) ItemType.ShopItem).ToString())) {
+                console.log("Магазин");
+            } else if (selectedItemTypeId == @(((int) ItemType.AuctionItem).ToString())) {
+                console.log("Аукцион");
+            }
+        }
+    });
+</script>
+
+<div class="raw clearfix">
+    <div class="col-md-7">
+        <div panel="panel-group">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Общая информация
+                </div>
+                <div class="panel-body">
+                    @if (Model.Id > 0)
+                    {
+                        <div class="form-group advanced-setting">
+                            <div class="col-md-3">
+                                @Html.ACLabelFor(model => model.Id)
+                            </div>
+                            <div class="col-md-9">
+                                @Html.ACDisplayFor(model => model.Id)
+                                @Html.ValidationMessageFor(model => model.Id)
+                            </div>
+                        </div>
+                    }
+                    <div class="form-group advanced-setting">
+                        <div class="col-md-3">
+                            @Html.ACLabelFor(model => model.ItemTypeId)
+                        </div>
+                        <div class="col-md-9">
+                            @Html.ACDropDownListFor(model => model.ItemTypeId, ((ItemType)Model.ItemTypeId).ToSelectList())
+                            @Html.ValidationMessageFor(model => model.ItemTypeId)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.ACLabelFor(model => model.Name)
+                        </div>
+                        <div class="col-md-9">
+                            @Html.ACEditorFor(model => model.Name)
+                            @Html.ValidationMessageFor(model => model.Name)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.ACLabelFor(model => model.ShortDescription)
+                        </div>
+                        <div class="col-md-9">
+                            @Html.ACTextAreaFor(model => model.ShortDescription)
+                            @Html.ValidationMessageFor(model => model.ShortDescription)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.ACLabelFor(model => model.FullDescription)
+                        </div>
+                        <div class="col-md-9">
+                            @Html.ACTextAreaFor(model => model.FullDescription)
+                            @Html.ValidationMessageFor(model => model.FullDescription)
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-5">
+        
+    </div>
+</div>

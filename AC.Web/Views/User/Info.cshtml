@@ -6,7 +6,7 @@
 }
 @section left
 {
-    @* TODO навигация пользователя *@    
+    @Html.Action("UserNavigation", "User", new { selectedTabId = UserNavigationEnum.Info })
 }
 
 <div class="page account-page customer-info-page">
@@ -14,6 +14,56 @@
         <h1>@T("Account.MyAccount") - @T("Account.CustomerInfo")</h1>
     </div>
     <div class="page-body">
-        
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            var validationSummary = Html.ValidationSummary(true);
+            if (!MvcHtmlString.IsNullOrEmpty(validationSummary))
+            {
+                <div class="message-error">@validationSummary</div>
+            }
+
+            <div class="fieldset">
+                <div class="title">
+                    <strong>@T("Account.YourPersonalDetails")</strong>
+                </div>
+                <div class="form-fields">
+                    <div class="inputs">
+                        <label>@T("Account.Fields.Gender"):</label>
+                        <div class="gender">
+                            <span class="male">
+                                @Html.RadioButton("Gender", "M", (Model.Gender == "M"), new { id = "gender-male" })
+                                <label class="forcheckbox" for="gender-male">@T("Account.Fields.Gender.Male")</label>
+                            </span>
+                            <span class="female">
+                                @Html.RadioButton("Gender", "F", (Model.Gender == "F"), new { id = "gender-female" })
+                                <label class="forcheckbox" for="gender-female">@T("Account.Fields.Gender.Female")</label>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="inputs">
+                        @Html.LabelFor(model => model.FirstName, new { }, ":")
+                        @Html.EditorFor(model => model.FirstName)
+                        @Html.RequiredHint()
+                        @Html.ValidationMessageFor(model => model.FirstName)
+                    </div>
+                    <div class="inputs">
+                        @Html.LabelFor(model => model.LastName, new { }, ":")
+                        @Html.EditorFor(model => model.LastName)
+                        @Html.RequiredHint()
+                        @Html.ValidationMessageFor(model => model.LastName)
+                    </div>
+                    <div class="inputs">
+                        @Html.LabelFor(model => model.Email, new { }, ":")
+                        @Html.EditorFor(model => model.Email)
+                        @Html.RequiredHint()
+                        @Html.ValidationMessageFor(model => model.Email)
+                    </div>
+                </div>
+            </div>
+            <div class="buttons">
+                <input type="submit" value="@T("Common.Save")" name="save-info-button" class="button-1 save-customer-info-button" />
+            </div>
+        }
     </div>
 </div>

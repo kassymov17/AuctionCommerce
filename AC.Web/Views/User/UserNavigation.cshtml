@@ -1,0 +1,17 @@
+﻿@model UserNavigationModel
+@using AC.Web.Models.User;
+<div class="block block-account-navigation">
+    <div class="title">
+        <strong>@T("Account.Navigation")</strong>
+    </div>
+    <div class="listbox">
+        <ul class="list">
+            @foreach (var item in Model.UserNavigationItems)
+            {
+                <li class="@item.ItemClass">
+                    <a href="@Url.RouteUrl(item.RouteName)" class="@(Model.SelectedTab == item.Tab ? "active" : "inactive")">@(item.Title)</a>
+                </li>
+            }
+        </ul>
+    </div>
+</div>

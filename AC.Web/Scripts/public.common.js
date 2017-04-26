@@ -84,3 +84,12 @@ function displayPopupNotification(message, messageType, modal) {
         width: 350
     });
 }
+
+// добавление товара
+
+function bindBootstrapTabSelectEvent(tabsId) {
+    $('#' + tabsId + ' > ul li a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+        var tabName = $(e.target).attr("data-tab-name");
+        $("#selected-tab-name").val(tabName);
+    });
+}

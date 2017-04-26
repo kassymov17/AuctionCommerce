@@ -4,12 +4,16 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using AC.Core;
+using AC.Core.Domain.Catalog;
 using AC.Core.Domain.Users;
 using AC.Services.Authentication;
+using AC.Services.Catalog;
 using AC.Services.Common;
 using AC.Services.Localization;
 using AC.Services.Orders;
 using AC.Services.Users;
+using AC.Web.Helpers;
+using AC.Web.Models.Catalog;
 using AC.Web.Models.User;
 
 namespace AC.Web.Controllers
@@ -25,12 +29,14 @@ namespace AC.Web.Controllers
         private readonly IShoppingCartService _shoppingCartService;
         private readonly IUserRegistrationService _userRegistrationService;
         private readonly IGenericAttributeService _genericAttributeService;
+        private readonly ICategoryService _categoryService;
+        private readonly IItemService _itemService;
 
         #endregion
 
         #region Конструктор
 
-        public UserController(IUserRegistrationService userRegistrationService, IGenericAttributeService genericAttributeService, IAuthenticationService authenticationService, ILocalizationService localizationService, IWorkContext workContext, IUserService userService, IShoppingCartService shoppingCartService)
+        public UserController(IItemService itemService, ICategoryService categoryService, IUserRegistrationService userRegistrationService, IGenericAttributeService genericAttributeService, IAuthenticationService authenticationService, ILocalizationService localizationService, IWorkContext workContext, IUserService userService, IShoppingCartService shoppingCartService)
         {
             _userRegistrationService = userRegistrationService;
             _authenticationService = authenticationService;
@@ -39,11 +45,52 @@ namespace AC.Web.Controllers
             _userService = userService;
             _shoppingCartService = shoppingCartService;
             _genericAttributeService = genericAttributeService;
+            _categoryService = categoryService;
+            _itemService = itemService;
         }
 
         #endregion
 
         #region Вспомогательные методы
+
+        [NonAction]
+        protected virtual void PrepareItemModel(ItemModel model, Item item)
+        {
+            if (model == null)
+                throw new ArgumentNullException("model");
+
+            if (item != null)
+            {
+                model.CreatedOn = DateTime.UtcNow;
+                model.UpdatedOn = DateTime.UtcNow;
+            }
+
+            //last stock quantity
+            if (item != null)
+            {
+                model.LastStockQuantity = item.StockQuantity;
+            }
+
+            model.StockQuantity = 10000;
+            model.Published = true;
+        }
+
+        [NonAction]
+        protected virtual void PrepareCategoryMappingModel(ItemModel model, Item item)
+        {
+            if (model == null)
+                throw new ArgumentNullException("model");
+
+            if (item != null)
+                model.SelectedCategoryIds = _categoryService.GetItemCategoriesByItemId(item.Id, true).Select(c => c.CategoryId).ToList();
+            
+            var allCategories = SelectListHelper.GetCategoryList(_categoryService, true);
+            foreach (var c in allCategories)
+            {
+                c.Selected = model.SelectedCategoryIds.Contains(int.Parse(c.Value));
+                model.AvailableCategories.Add(c);
+            }
+        }
 
         [NonAction]
         protected virtual void PrepareUserRegisterModel(RegisterModel model)
@@ -61,7 +108,17 @@ namespace AC.Web.Controllers
         [NonAction]
         protected virtual void PrepareUserInfoModel(UserInfoModel model, User user)
         {
-            
+            if(model == null)
+                throw new ArgumentNullException("model");
+
+            if(user == null)
+                throw new ArgumentNullException("user");
+
+            model.FirstName = user.GetAttribute<string>(SystemUserAttributeNames.FirstName);
+            model.LastName = user.GetAttribute<string>(SystemUserAttributeNames.LastName);
+            model.Gender = user.GetAttribute<string>(SystemUserAttributeNames.Gender);
+
+            model.Email = user.Email;
         }
 
         #endregion
@@ -199,7 +256,115 @@ namespace AC.Web.Controllers
             PrepareUserInfoModel(model, user);
 
             return View(model);
-        } 
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult Info(UserInfoModel model)
+        {
+            if(!_workContext.CurrentUser.IsRegistered())
+                return new HttpUnauthorizedResult();
+
+            var user = _workContext.CurrentUser;
+
+            return View(model);
+        }
+
+        [ChildActionOnly]
+        public ActionResult UserNavigation(int selectedTabId = 0)
+        {
+            var model = new UserNavigationModel();
+
+            model.UserNavigationItems.Add(new UserNavigationItemModel
+            {
+                RouteName = "UserInfo",
+                Title = _localizationService.GetResource("Account.UserInfo"),
+                Tab = UserNavigationEnum.Info,
+                ItemClass = "user-info"
+            });
+
+            model.UserNavigationItems.Add(new UserNavigationItemModel
+            {
+                RouteName = "AddItem",
+                Title = _localizationService.GetResource("Account.AddItem"),
+                Tab = UserNavigationEnum.AddItem,
+                ItemClass = "add-item"
+            });
+
+            model.UserNavigationItems.Add(new UserNavigationItemModel
+            {
+                RouteName = "MyItems",
+                Title = _localizationService.GetResource("Account.MyItems"),
+                Tab = UserNavigationEnum.Items,
+                ItemClass = "my-items"
+            });
+
+            model.UserNavigationItems.Add(new UserNavigationItemModel
+            {
+                RouteName = "MyBids",
+                Title = _localizationService.GetResource("Account.MyBids"),
+                Tab = UserNavigationEnum.Bids,
+                ItemClass = "my-bids"
+            });
+
+            model.UserNavigationItems.Add(new UserNavigationItemModel
+            {
+                RouteName = "UserOrders",
+                Title = _localizationService.GetResource("Account.UserOrders"),
+                Tab = UserNavigationEnum.Orders,
+                ItemClass = "user-orders"
+            });
+
+            model.UserNavigationItems.Add(new UserNavigationItemModel
+            {
+                RouteName = "WonBids",
+                Title = _localizationService.GetResource("Account.WonBids"),
+                Tab = UserNavigationEnum.WonBids,
+                ItemClass = "won-bids"
+            });
+
+            model.SelectedTab = (UserNavigationEnum) selectedTabId;
+
+            return PartialView(model);
+        }
+
+        public ActionResult AddItem()
+        {
+            if (!_workContext.CurrentUser.IsRegistered())
+                return new HttpUnauthorizedResult();
+            var model = new ItemModel();
+            PrepareItemModel(model, null);
+            PrepareCategoryMappingModel(model, null);
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult AddItem(ItemModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var item = new Item();
+                item.CreatedOnUtc = DateTime.UtcNow;
+                item.UpdatedOnUtc = DateTime.UtcNow;
+                item.Name = model.Name;
+                item.ShortDescription = model.ShortDescription;
+                item.FullDescription = model.FullDescription;
+                item.User = _workContext.CurrentUser;
+                item.AuctionEndDate = model.StartDateTimeUtc;
+                item.AuctionEndDate = model.EndDateTimeUtc;
+                item.InitialPrice = model.Price;
+                item.Deleted = false;
+                item.Published = true;
+                item.ItemType = (ItemType) model.ItemTypeId;
+                item.ItemTypeId = model.ItemTypeId;
+                item.ShowOnHomePage = true;
+                _itemService.InsertItem(item);
+
+                return RedirectToRoute("HomePage");
+            }
+            return View(model);
+        }
 
         #endregion
     }

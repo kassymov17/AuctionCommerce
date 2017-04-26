@@ -1,0 +1,37 @@
+﻿@model AC.Web.Models.Catalog.ItemModel
+
+@Html.ValidationSummary(false)
+@Html.HiddenFor(model => model.Id)
+
+<script>
+    $(document).ready(function() {
+        bindBootstrapTabSelectEvent('product-edit');
+    });
+</script>
+
+<div class="content">
+    <div class="form-horizontal">
+        <div id="product-edit" class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+                @Html.RenderBootstrapTabHeader("tab-info", "Информация", true)
+                @Html.RenderBootstrapTabHeader("tab-pictures", "Изображения")
+            </ul>
+            <div class="tab-content">
+                @Html.RenderBootstrapTabContent("tab-info", @TabInfo(), true)
+                @Html.RenderBootstrapTabContent("tab-pictures", @TabPictures())
+            </div>
+        </div>
+    </div>
+</div>
+
+<input type="hidden" id="selected-tab-name" name="selected-tab-name" value="@(Html.GetSelectedTabName())"/>
+
+@helper TabInfo()
+{
+    @Html.Partial("_CreateOrUpdateItemInfo", Model)
+}
+
+@helper TabPictures()
+{
+    @Html.Partial("_CreateOrUpdateItemPictures", Model)
+}

@@ -1,12 +1,17 @@
 ﻿@using AC.Core.Infrastructure;
 @using AC.Web.Framework.UI;
-@{ 
+@{
+    var kendoVersion = "2014.1.318";
+
+    Html.AppendScriptParts(string.Format("~/Scripts/kendo/{0}/kendo.web.min.js", kendoVersion));
     Html.AppendScriptParts("~/Scripts/public.ajaxcart.js");
     Html.AppendScriptParts("~/Scripts/public.common.js");
     Html.AppendScriptParts("~/Scripts/jquery-migrate-1.2.1.min.js");
     Html.AppendScriptParts("~/Scripts/jquery-ui-1.10.3.custom.min.js");
     Html.AppendScriptParts("~/Scripts/jquery.validate.unobtrusive.min.js");
     Html.AppendScriptParts("~/Scripts/jquery.validate.min.js");
+    Html.AppendScriptParts("~/Scripts/fineuploader/jquery.fineuploader-4.2.2.min.js");
+    Html.AppendScriptParts("~/Scripts/bootstrap.min.js");
     Html.AppendScriptParts("~/Scripts/jquery-1.10.2.min.js");
 }
 <!DOCTYPE html>
@@ -19,8 +24,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     @Html.ACCssFiles(this.Url, ResourceLocation.Head)
     @*Решить проблему с загрузкой css файлов чере htmlhelper,а пока напрямую*@
+    
+    <link href="~/Content/styles.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href=@(string.Format("~/Content/kendo/{0}/kendo.default.min.css", kendoVersion)) rel="stylesheet" type="text/css" />
+    <link href=@(string.Format("~/Content/kendo/{0}/kendo.common.min.css", kendoVersion)) rel="stylesheet" type="text/css" />
+    <link href="~/Content/fontAwesome/css/font-awesome-4.6.3.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/typeahead/typeahead.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/jquery-ui-themes/smoothness/jquery-ui-1.10.3.custom.min.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    
     @Html.ACScripts(this.Url, ResourceLocation.Head)
 </head>
 <body>

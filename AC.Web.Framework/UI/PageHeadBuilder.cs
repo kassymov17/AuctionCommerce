@@ -181,6 +181,7 @@ namespace AC.Web.Framework.UI
 
             if (string.IsNullOrEmpty(part))
                 return;
+
             _cssParts[location].Add(new CssReferenceMeta
             {
                 ExcludeFromBundle = excludeFromBundle,

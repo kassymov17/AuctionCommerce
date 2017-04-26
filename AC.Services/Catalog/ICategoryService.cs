@@ -34,5 +34,7 @@ namespace AC.Services.Catalog
         /// <param name="showHidden">Показывать скрытые поля?</param>
         /// <returns>Категории</returns>
         IList<Category> GetAllCategoriesDisplayedOnHomePage(bool showHidden = false);
+
+        IList<ItemCategory> GetItemCategoriesByItemId(int itemId, bool showHidden = false);
     }
 }

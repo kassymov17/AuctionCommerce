@@ -13,14 +13,16 @@ namespace AC.Services.Catalog
         #region Поля
 
         private readonly IRepository<Category> _categoryRepository;
+        private readonly IRepository<ItemCategory> _itemCategoryRepository;
         private readonly IWorkContext _workContext;
 
         #endregion
 
         #region Конструктор
 
-        public CategoryService(IRepository<Category> categoryRepository, IWorkContext workContext)
+        public CategoryService(IRepository<ItemCategory> itemCategoryRepository, IRepository<Category> categoryRepository, IWorkContext workContext)
         {
+            _itemCategoryRepository = itemCategoryRepository;
             _categoryRepository = categoryRepository;
             _workContext = workContext;
         }
@@ -28,6 +30,37 @@ namespace AC.Services.Catalog
         #endregion
 
         #region Методы
+
+        public virtual IList<ItemCategory> GetItemCategoriesByItemId(int itemId, bool showHidden = false)
+        {
+            if (itemId == 0)
+                return new List<ItemCategory>();
+
+
+            var query = from pc in _itemCategoryRepository.Table
+                        join c in _categoryRepository.Table on pc.CategoryId equals c.Id
+                        where pc.ItemId == itemId &&
+                              !c.Deleted &&
+                              (showHidden || c.Published)
+                        orderby pc.DisplayOrder
+                        select pc;
+
+            var allItemCategories = query.ToList();
+            var result = new List<ItemCategory>();
+            if (!showHidden)
+            {
+                foreach (var pc in allItemCategories)
+                {
+                    result.Add(pc);
+                }
+            }
+            else
+            {
+                // без фильтра
+                result.AddRange(allItemCategories);
+            }
+            return result;
+        }
 
         public virtual IPagedList<Category> GetAllCategories(string categoryName = "", int pageIndex = 0,
             int pageSize = int.MaxValue, bool showHidden = false)
