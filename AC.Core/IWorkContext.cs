@@ -11,8 +11,6 @@ namespace AC.Core
 
         Language WorkingLanguage { get; set; }
         
-        // [todo] для валюты, пока тенге используется 
-
         /// <summary>
         /// Свойство показывающее находимся ли мы в админке
         /// </summary>

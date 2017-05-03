@@ -35,14 +35,15 @@
                             {
                                 <p>Стартовая цена</p>
                                 <h1>@Model.ItemPrice.Price тенге</h1>
-                                <p>Шаг аукциона</p>
-                                <h1>@Model.ItemPrice.BidStep тенге</h1>
+                                <p>Ставок: 0</p>
+                                @*<p>Шаг аукциона</p>
+                                <h1>@Model.ItemPrice.BidStep тенге</h1>*@
                                 @Html.Partial("_PlaceBid", Model.PlaceBid)
                             }
                             else
                             {
                                 <p>Цена</p>
-                                <h1>@Model.ItemPrice.Price</h1>
+                                <h1>@Model.ItemPrice.Price Тенге</h1>
                                 @Html.Partial("_AddToCart", Model.AddToCart)
                             }
                         }

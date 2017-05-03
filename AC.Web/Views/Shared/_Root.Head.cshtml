@@ -3,6 +3,9 @@
 @{
     var kendoVersion = "2014.1.318";
 
+    Html.AppendCssFileParts(string.Format("~/Content/kendo/{0}/kendo.default.min.css", kendoVersion));
+    Html.AppendCssFileParts(string.Format("~/Content/kendo/{0}/kendo.common.min.css", kendoVersion));
+
     Html.AppendScriptParts(string.Format("~/Scripts/kendo/{0}/kendo.web.min.js", kendoVersion));
     Html.AppendScriptParts("~/Scripts/public.ajaxcart.js");
     Html.AppendScriptParts("~/Scripts/public.common.js");
@@ -27,8 +30,6 @@
     
     <link href="~/Content/styles.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-    <link href=@(string.Format("~/Content/kendo/{0}/kendo.default.min.css", kendoVersion)) rel="stylesheet" type="text/css" />
-    <link href=@(string.Format("~/Content/kendo/{0}/kendo.common.min.css", kendoVersion)) rel="stylesheet" type="text/css" />
     <link href="~/Content/fontAwesome/css/font-awesome-4.6.3.min.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/typeahead/typeahead.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/jquery-ui-themes/smoothness/jquery-ui-1.10.3.custom.min.css" rel="stylesheet" type="text/css" />

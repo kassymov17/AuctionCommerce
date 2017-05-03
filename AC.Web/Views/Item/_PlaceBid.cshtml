@@ -5,7 +5,7 @@
 <div class="add-to-cart">
     <div class="customer-entered-price">
         <div class="price-input">
-            @Html.LabelFor(model => model.Amount, new { @class = "enter-price-label" }, ":")
+            <label class="enter-price-label">Ваша ставка:</label>
             @Html.TextBox("Amount", Model.Amount, new { @class = "enter-price-input" })
         </div>
         <div class="price-range">

@@ -52,6 +52,10 @@
       <HintPath>..\packages\Autofac.Mvc5.4.0.1\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="AutoMapper, Version=6.0.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.0.2\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="FluentValidation, Version=6.4.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FluentValidation.6.4.1\lib\Net45\FluentValidation.dll</HintPath>
       <Private>True</Private>
@@ -231,7 +235,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\SelectListHelper.cs" />
+    <Compile Include="Infrastructure\AutoMapperConfiguration.cs" />
     <Compile Include="Infrastructure\DependencyRegistrar.cs" />
+    <Compile Include="Infrastructure\Mapper\AutoMapperStartupTask.cs" />
     <Compile Include="Infrastructure\RouteProvider.cs" />
     <Compile Include="Models\Catalog\CategoryModel.cs" />
     <Compile Include="Models\Catalog\CategorySimpleModel.cs" />

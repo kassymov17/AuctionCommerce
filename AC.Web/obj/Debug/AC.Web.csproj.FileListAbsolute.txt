@@ -257,3 +257,5 @@ C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Web\bin\
 C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Web\bin\sv\FluentValidation.resources.dll
 C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Web\bin\tr\FluentValidation.resources.dll
 C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Web\bin\zh-CN\FluentValidation.resources.dll
+C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Web\bin\AutoMapper.dll
+C:\Users\kassy\documents\visual studio 2015\Projects\AuctionCommerce\AC.Web\bin\AutoMapper.xml

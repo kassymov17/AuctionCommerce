@@ -83,5 +83,15 @@ namespace AC.Services.Catalog
             result.Reverse();
             return result;
         }
+
+        public static ItemCategory FindItemCategory(this IList<ItemCategory> source, int itemId, int categoryId)
+        {
+            foreach(var itemCategory in source)
+                if(itemCategory.ItemId == itemId && itemCategory.CategoryId == categoryId)
+                    return itemCategory;
+
+            return null;
+        }
+
     }
 }

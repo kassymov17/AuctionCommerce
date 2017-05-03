@@ -110,6 +110,7 @@
   <ItemGroup>
     <Compile Include="ACResourceDisplayName.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\ParameterBasedOnFormNameAttribute.cs" />
     <Compile Include="DependencyRegistrar.cs" />
     <Compile Include="HtmlExtensions.cs" />
     <Compile Include="Kendoui\Dynamic.cs" />

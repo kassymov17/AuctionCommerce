@@ -14,16 +14,19 @@ namespace AC.Services.Catalog
 
         private readonly IRepository<Category> _categoryRepository;
         private readonly IRepository<ItemCategory> _itemCategoryRepository;
+        private readonly IRepository<Item> _itemRepository;
+
         private readonly IWorkContext _workContext;
 
         #endregion
 
         #region Конструктор
 
-        public CategoryService(IRepository<ItemCategory> itemCategoryRepository, IRepository<Category> categoryRepository, IWorkContext workContext)
+        public CategoryService(IRepository<Item> itemRepository, IRepository<ItemCategory> itemCategoryRepository, IRepository<Category> categoryRepository, IWorkContext workContext)
         {
             _itemCategoryRepository = itemCategoryRepository;
             _categoryRepository = categoryRepository;
+            _itemRepository = itemRepository;
             _workContext = workContext;
         }
 
@@ -123,6 +126,51 @@ namespace AC.Services.Catalog
             var categories = query.ToList();
 
             return categories;
+        }
+
+        public virtual void DeleteItemCategory(ItemCategory itemCategory)
+        {
+            if(itemCategory == null)
+                throw new ArgumentNullException("itemCategory");
+
+            _itemCategoryRepository.Delete(itemCategory);
+        }
+
+        public virtual IPagedList<ItemCategory> GetItemCategoriesByCategoryId(int categoryId, int pageIndex = 0,
+            int pageSize = int.MaxValue, bool showHidden = false)
+        {
+            if (categoryId == 0)
+                return new PagedList<ItemCategory>(new List<ItemCategory>(), pageIndex, pageSize);
+
+            var query = from ic in _itemCategoryRepository.Table
+                        join i in _itemRepository.Table on ic.ItemId equals i.Id
+                        where ic.CategoryId == categoryId &&
+                              !i.Deleted &&
+                              (showHidden || i.Published)
+                        orderby ic.DisplayOrder
+                        select ic;
+
+            if (!showHidden)
+            {
+                query = from c in query
+                    group c by c.Id
+                    into cGroup
+                    orderby cGroup.Key
+                    select cGroup.FirstOrDefault();
+
+                query = query.OrderBy(ic => ic.DisplayOrder);
+            }
+
+            var itemCategories = new PagedList<ItemCategory>(query, pageIndex, pageSize);
+            return itemCategories;
+        }
+
+        public virtual void InsertItemCategory(ItemCategory itemCategory)
+        {
+            if (itemCategory == null)
+                throw new ArgumentNullException("itemCategory");
+
+            _itemCategoryRepository.Insert(itemCategory);
         }
 
         #endregion

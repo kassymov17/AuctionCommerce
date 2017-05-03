@@ -62,18 +62,18 @@ namespace AC.Web.Models.Catalog
         public string StockQuantityStr { get; set; }
 
         [ACResourceDisplayName("Admin.Catalog.Products.Fields.Price")]
-        public decimal Price { get; set; }
+        public decimal InitialPrice { get; set; }
 
         [ACResourceDisplayName("Admin.Catalog.Products.Fields.BidStep")]
         public decimal BidStep { get; set; }
 
         [ACResourceDisplayName("Admin.Catalog.Products.Fields.AuctionStartDate")]
         [UIHint("DateTimeNullable")]
-        public DateTime? StartDateTimeUtc { get; set; }
+        public DateTime? AuctionStartDate { get; set; }
 
         [ACResourceDisplayName("Admin.Catalog.Products.Fields.AuctionEndDate")]
         [UIHint("DateTimeNullable")]
-        public DateTime EndDateTimeUtc { get; set; }
+        public DateTime AuctionEndDate { get; set; }
 
         [ACResourceDisplayName("Admin.Catalog.Products.Fields.Weight")]
         public decimal Weight { get; set; }
@@ -92,6 +92,8 @@ namespace AC.Web.Models.Catalog
 
         [ACResourceDisplayName("Admin.Catalog.Products.Fields.Published")]
         public bool Published { get; set; }
+
+        public bool Deleted { get; set; }
 
         [ACResourceDisplayName("Admin.Catalog.Products.Fields.CreatedOn")]
         public DateTime? CreatedOn { get; set; }

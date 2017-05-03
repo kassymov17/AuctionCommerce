@@ -12,6 +12,8 @@ using AC.Services.Common;
 using AC.Services.Localization;
 using AC.Services.Orders;
 using AC.Services.Users;
+using AC.Web.Extensions;
+using AC.Web.Framework.Controllers;
 using AC.Web.Helpers;
 using AC.Web.Models.Catalog;
 using AC.Web.Models.User;
@@ -73,6 +75,7 @@ namespace AC.Web.Controllers
 
             model.StockQuantity = 10000;
             model.Published = true;
+            model.Deleted = false;
         }
 
         [NonAction]
@@ -89,6 +92,35 @@ namespace AC.Web.Controllers
             {
                 c.Selected = model.SelectedCategoryIds.Contains(int.Parse(c.Value));
                 model.AvailableCategories.Add(c);
+            }
+        }
+
+        [NonAction]
+        protected virtual void SaveCategoryMappings(Item item, ItemModel model)
+        {
+            var existingItemCategories = _categoryService.GetItemCategoriesByItemId(item.Id, true);
+
+            // удалить категории
+            foreach(var existingItemCategory in existingItemCategories)
+                if(!model.SelectedCategoryIds.Contains(existingItemCategory.CategoryId))
+                    _categoryService.DeleteItemCategory(existingItemCategory);
+
+            // добавить категории
+            foreach (var categoryId in model.SelectedCategoryIds)
+            {
+                if (existingItemCategories.FindItemCategory(item.Id, categoryId) == null)
+                {
+                    var displayOrder = 1;
+                    var existingCategoryMapping = _categoryService.GetItemCategoriesByCategoryId(categoryId, showHidden : true);
+                    if (existingCategoryMapping.Any())
+                        displayOrder = existingCategoryMapping.Max(x => x.DisplayOrder) + 1;
+                    _categoryService.InsertItemCategory(new ItemCategory
+                    {
+                        ItemId = item.Id,
+                        CategoryId = categoryId,
+                        DisplayOrder = displayOrder
+                    });
+                }
             }
         }
 
@@ -339,30 +371,32 @@ namespace AC.Web.Controllers
             return View(model);
         }
 
-        [HttpPost]
-        public ActionResult AddItem(ItemModel model)
+        [HttpPost, ParameterBasedOnFormName("save-continue", "continueEditing")]
+        public ActionResult AddItem(ItemModel model, bool continueEditing)
         {
             if (ModelState.IsValid)
             {
-                var item = new Item();
-                item.CreatedOnUtc = DateTime.UtcNow;
+                var item = model.ToEntity();
                 item.UpdatedOnUtc = DateTime.UtcNow;
-                item.Name = model.Name;
-                item.ShortDescription = model.ShortDescription;
-                item.FullDescription = model.FullDescription;
-                item.User = _workContext.CurrentUser;
-                item.AuctionEndDate = model.StartDateTimeUtc;
-                item.AuctionEndDate = model.EndDateTimeUtc;
-                item.InitialPrice = model.Price;
-                item.Deleted = false;
-                item.Published = true;
-                item.ItemType = (ItemType) model.ItemTypeId;
-                item.ItemTypeId = model.ItemTypeId;
+                item.CreatedOnUtc = DateTime.UtcNow;
                 item.ShowOnHomePage = true;
+                item.Published = true;
+                item.User = _workContext.CurrentUser;
                 _itemService.InsertItem(item);
 
-                return RedirectToRoute("HomePage");
+                SaveCategoryMappings(item, model);
+
+                if (continueEditing)
+                {
+                    // вкладка
+                    SaveSelectedTabName();
+                    return RedirectToAction("Edit", new { id = item.Id });
+                }
+                RedirectToAction("Info");
             }
+            PrepareItemModel(model, null);
+            PrepareCategoryMappingModel(model, null);
+
             return View(model);
         }
 

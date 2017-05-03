@@ -1,69 +1,6 @@
 ﻿@model ItemModel
 @using AC.Web.Models.Catalog;
 
-
-@*<div class="page account-page customer-info-page">
-    <div class="page-title">
-        <h1>@T("Account.MyAccount") - Добавить товар</h1>
-    </div>
-    <div class="page-body">
-        @using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
-            var validationSummary = Html.ValidationSummary(true);
-            if (!MvcHtmlString.IsNullOrEmpty(validationSummary))
-            {
-                <div class="message-error">@validationSummary</div>
-            }
-            <div class="fieldset">
-                <div class="title">
-                    <strong>Введите данные</strong>
-                </div>
-                <div class="inputs">
-                    <label>Название</label>
-                    @Html.EditorFor(model => model.Name)
-                    @Html.RequiredHint()
-                    @Html.ValidationMessageFor(model => model.Name)
-                </div>
-                <div class="inputs">
-                    <label>Тип товара</label>
-                    @Html.ACDropDownListFor(model => model.ItemTypeId, ((ItemType)Model.ItemTypeId).ToSelectList())
-                    @Html.ValidationMessageFor(model => model.ItemTypeId)
-                </div>
-                <div class="inputs">
-                    <label>Краткое описание</label>
-                    @Html.TextAreaFor(model => model.ShortDescription)
-                    @Html.RequiredHint()
-                    @Html.ValidationMessageFor(model => model.ShortDescription)
-                </div>
-                <div class="inputs">
-                    <label>Описание</label>
-                    @Html.TextAreaFor(model => model.FullDescription)
-                    @Html.RequiredHint()
-                    @Html.ValidationMessageFor(model => model.FullDescription)
-                </div>
-                <div class="inputs">
-                    <label>Цена</label>
-                    @Html.EditorFor(model => model.Price)
-                    @Html.RequiredHint()
-                    @Html.ValidationMessageFor(model => model.Price)
-                </div>
-                <div class="inputs">
-                    <label>Дата старта</label>
-                    @Html.EditorFor(x => x.StartDateTimeUtc)
-                </div>
-                <div class="inputs">
-                    <label>Дата окончания</label>
-                    @Html.EditorFor(model => model.EndDateTimeUtc)
-                </div>
-            </div>
-            <div class="buttons">
-                <input type="submit" value="@T("Common.Save")" name="save-info-button" class="button-1 save-customer-info-button" />
-            </div>
-        }
-    </div>
-</div>*@
-
 @using (Html.BeginForm(null, null, FormMethod.Post, new {id = "product-form"}))
 {
     @Html.AntiForgeryToken()

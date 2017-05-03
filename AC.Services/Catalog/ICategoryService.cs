@@ -36,5 +36,12 @@ namespace AC.Services.Catalog
         IList<Category> GetAllCategoriesDisplayedOnHomePage(bool showHidden = false);
 
         IList<ItemCategory> GetItemCategoriesByItemId(int itemId, bool showHidden = false);
+
+        void DeleteItemCategory(ItemCategory itemCategory);
+
+        IPagedList<ItemCategory> GetItemCategoriesByCategoryId(int categoryId, int pageIndex = 0,
+            int pageSize = int.MaxValue, bool showHidden = false);
+
+        void InsertItemCategory(ItemCategory itemCategory);
     }
 }
