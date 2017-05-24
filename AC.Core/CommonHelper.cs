@@ -109,5 +109,29 @@ namespace AC.Core
                     result += c.ToString();
             return result;
         }
+
+        public static string EnsureNotNull(string str)
+        {
+            return str ?? string.Empty;
+        }
+
+        public static string EnsureMaximumLength(string str, int maxLength, string postfix = null)
+        {
+            if (String.IsNullOrEmpty(str))
+                return str;
+
+            if (str.Length > maxLength)
+            {
+                var pLen = postfix == null ? 0 : postfix.Length;
+
+                var result = str.Substring(0, maxLength - pLen);
+                if (!String.IsNullOrEmpty(postfix))
+                {
+                    result += postfix;
+                }
+                return result;
+            }
+            return str;
+        }
     }
 }

@@ -11,6 +11,7 @@ namespace AC.Core.Domain.Catalog
     public partial class Item : BaseEntity
     {
         private ICollection<Bid> _bids;
+        private ICollection<ProxyBid> _proxyBids;
         private ICollection<ItemCategory> _itemCategories;
         private ICollection<ItemPicture> _itemPictures;
 
@@ -98,6 +99,12 @@ namespace AC.Core.Domain.Catalog
         {
             get { return _bids ?? (_bids = new List<Bid>()); }
             protected set { _bids = value; }
+        }
+
+        public virtual ICollection<ProxyBid> ProxyBids
+        {
+            get { return _proxyBids ?? (_proxyBids = new List<ProxyBid>()); }
+            protected set { _proxyBids = value; }
         }
 
         public virtual ICollection<ItemCategory> ItemCategories

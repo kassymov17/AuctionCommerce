@@ -27,6 +27,7 @@ namespace AC.Services.Orders
         private readonly ILocalizationService _localizationService;
         private readonly IUserService _userService;
         private readonly IRepository<Bid> _bidRepository;
+        private readonly IRepository<ProxyBid> _proxyBidRepository;
 
         #endregion
 
@@ -34,7 +35,7 @@ namespace AC.Services.Orders
 
         public ShoppingCartService(IRepository<ShoppingCartItem> sciRepository, IWorkContext workContext,
             IItemService itemService, ILocalizationService localizationService, IUserService userService,
-            IRepository<Bid> bidRepository)
+            IRepository<Bid> bidRepository, IRepository<ProxyBid> proxyBidRepository)
         {
             _sciRepository = sciRepository;
             _workContext = workContext;
@@ -42,6 +43,7 @@ namespace AC.Services.Orders
             _localizationService = localizationService;
             _userService = userService;
             _bidRepository = bidRepository;
+            _proxyBidRepository = proxyBidRepository;
         }
 
         #endregion
@@ -219,10 +221,10 @@ namespace AC.Services.Orders
 
         public virtual IList<string> PlaceBid(User user, Item item, decimal userEnteredPrice = decimal.Zero)
         {
-            if(user == null)
+            if (user == null)
                 throw new ArgumentNullException("user");
 
-            if(item == null)
+            if (item == null)
                 throw new ArgumentNullException("item");
 
             var warnings = new List<string>();
@@ -233,20 +235,180 @@ namespace AC.Services.Orders
                 return warnings;
             }
 
-            if (userEnteredPrice < item.InitialPrice)
+            if (userEnteredPrice < item.InitialPrice + item.BidStep)
             {
                 warnings.Add(_localizationService.GetResource("ShoppingCart.EnteredPriceShouldBeMoreThanInitial"));
                 return warnings;
             }
+            // todo переписать в AC.Services
+            decimal highBid;
+            
+            var winningBid = _bidRepository.Table.Where(b => b.ItemId == item.Id).OrderByDescending(b => b.Amount).FirstOrDefault();
+            var winningBidder = winningBid == null ? null : winningBid.User;
 
-            _bidRepository.Insert(new Bid
+            var bid = item.InitialPrice + item.BidStep;
+            var biddingEnded = false;
+            if (winningBidder == user)
             {
-                User = user,
-                Item = item,
-                Amount = userEnteredPrice,
-                CreatedOn = DateTime.UtcNow
-            });
+                var proxyBid =
+                    _proxyBidRepository.Table.Where(p => p.UserId == user.Id && p.ItemId == item.Id)
+                        .OrderByDescending(p => p.Bid)
+                        .FirstOrDefault();
+                if (proxyBid != null)
+                {
+                    var winnerProxyBid = proxyBid.Bid;
+                    if (winnerProxyBid >= userEnteredPrice)
+                    {
+                        warnings.Add("Ваша предыдущая ставка была выше текущей");
+                        return warnings;
+                    }
+                    else
+                    {
+                        // обновить максимальную ставку
+                        proxyBid.Bid = userEnteredPrice;
+                        _proxyBidRepository.Update(proxyBid);
 
+                        // добавить ставку todo продумать с резервной ценой
+                        biddingEnded = true;
+                    }
+                }
+            }
+            if (!biddingEnded)
+            {
+                var proxyBidQuery =
+                    _proxyBidRepository.Table.Where(p => p.ItemId == item.Id)
+                        .OrderByDescending(p => p.Bid)
+                        .FirstOrDefault();
+                if (proxyBidQuery == null) // первая ставка
+                {
+                    _proxyBidRepository.Insert(new ProxyBid
+                    {
+                        User = user,
+                        Item = item,
+                        Bid = userEnteredPrice
+                    });
+
+                    _bidRepository.Insert(new Bid
+                    {
+                        User = user,
+                        Item = item,
+                        Amount = bid,
+                        CreatedOn = DateTime.UtcNow
+                    });
+
+                    // обновить цену лота
+                    item.InitialPrice = bid;
+                    _itemService.UpdateItem(item);
+                }
+                else // не первая ставка
+                {
+                    var proxyBidder = proxyBidQuery.User;
+                    var proxyMaxBid = proxyBidQuery.Bid;
+
+                    if (proxyMaxBid < userEnteredPrice)
+                    {
+                        if (proxyBidder != user)
+                        {
+                            // отправить уведомление пользователю, чью ставку сбили
+                        }
+                        var nextBid = proxyMaxBid + item.BidStep;
+                        if (nextBid > bid)
+                            nextBid = bid;
+
+                        var proxyBidData =
+                            _proxyBidRepository.Table.FirstOrDefault(p => p.ItemId == item.Id && p.UserId == user.Id);
+                        if (proxyBidData == null)
+                        {
+                            _proxyBidRepository.Insert(new ProxyBid
+                            {
+                                Item = item,
+                                User = user,
+                                Bid = userEnteredPrice
+                            });
+                        }
+                        else
+                        {
+                            proxyBidData.Bid = userEnteredPrice;
+                            _proxyBidRepository.Update(proxyBidData);
+                        }
+
+                        // левые стаки для отображения последовательных ставок
+                        if (item.InitialPrice < proxyMaxBid)
+                        {
+                            _bidRepository.Insert(new Bid
+                            {
+                                User = user,
+                                Item = item,
+                                Amount = proxyMaxBid,
+                                CreatedOn = DateTime.UtcNow
+                            });
+                        }
+
+                        _bidRepository.Insert(new Bid
+                        {
+                            User = user,
+                            Item = item,
+                            Amount = nextBid,
+                            CreatedOn = DateTime.UtcNow
+                        });
+
+                        item.InitialPrice = nextBid;
+                        _itemService.UpdateItem(item);
+                    }
+                    else if (proxyMaxBid == userEnteredPrice)
+                    {
+                        _bidRepository.Insert(new Bid
+                        {
+                            User = user,
+                            Item = item,
+                            Amount = userEnteredPrice,
+                            CreatedOn = DateTime.Now
+                        });
+
+                        _bidRepository.Insert(new Bid
+                        {
+                            User = proxyBidQuery.User,
+                            Item = item,
+                            Amount = proxyMaxBid,
+                            CreatedOn = DateTime.Now
+                        });
+
+                        item.InitialPrice = userEnteredPrice;
+                    }
+                    else if (proxyMaxBid > userEnteredPrice)
+                    {
+                        _bidRepository.Insert(new Bid()
+                        {
+                            Item = item,
+                            User = user,
+                            CreatedOn = DateTime.Now,
+                            Amount = userEnteredPrice
+                        });
+                        decimal cBid;
+                        if (userEnteredPrice + item.BidStep - proxyMaxBid >= 0)
+                        {
+                            cBid = proxyMaxBid;
+                        }
+                        else
+                        {
+                            cBid = userEnteredPrice + item.BidStep;
+                        }
+
+                        warnings.Add("Ваша ставка не является максимальной. Попробуйте еще раз");
+
+                        _bidRepository.Insert(new Bid
+                        {
+                            Item = item,
+                            User = proxyBidder,
+                            Amount = cBid,
+                            CreatedOn = DateTime.Now
+                        });
+
+                        item.InitialPrice = userEnteredPrice;
+                        _itemService.UpdateItem(item);
+                    }
+                }
+            }
             return warnings;
         }
 

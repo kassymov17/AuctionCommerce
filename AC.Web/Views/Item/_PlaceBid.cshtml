@@ -9,7 +9,7 @@
             @Html.TextBox("Amount", Model.Amount, new { @class = "enter-price-input" })
         </div>
         <div class="price-range">
-            Ставка не должна ниже стартовой цены лота
+            Минимальная ставка @(Model.CurrentPrice + Model.BidStep) тенге
         </div>
     </div>
     <div class="add-to-cart-panel">

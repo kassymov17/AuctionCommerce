@@ -13,14 +13,16 @@ namespace AC.Services.Catalog
         #region Поля 
 
         private readonly IRepository<Item> _itemRepository;
+        private readonly IRepository<ItemPicture> _itemPictureRepository;
 
         #endregion
 
         #region Конструктор
 
-        public ItemService(IRepository<Item> itemRepository)
+        public ItemService(IRepository<Item> itemRepository, IRepository<ItemPicture> itemPictureRepository)
         {
             _itemRepository = itemRepository;
+            _itemPictureRepository = itemPictureRepository;
         }
 
         #endregion
@@ -78,6 +80,50 @@ namespace AC.Services.Catalog
                 throw new ArgumentNullException("item");
 
             _itemRepository.Insert(item);
+        }
+
+        public virtual void InsertItemPicture(ItemPicture itemPicture)
+        {
+            if (itemPicture == null)
+                throw new ArgumentNullException("itemPicture");
+
+            _itemPictureRepository.Insert(itemPicture);
+        }
+
+
+        public virtual IList<ItemPicture> GetItemPicturesByItemId(int itemId)
+        {
+            var query = from ip in _itemPictureRepository.Table
+                where ip.ItemId == itemId
+                orderby ip.DisplayOrder
+                select ip;
+
+            var itemPictures = query.ToList();
+            return itemPictures;
+        }
+
+        public virtual ItemPicture GetItemPictureById(int itemPictureId)
+        {
+            if (itemPictureId == 0)
+                return null;
+
+            return _itemPictureRepository.GetById(itemPictureId);
+        }
+
+        public virtual void UpdateItemPicture(ItemPicture itemPicture)
+        {
+            if(itemPicture == null)
+                throw new ArgumentNullException("itemPicture");
+
+            _itemPictureRepository.Update(itemPicture);
+        }
+
+        public virtual void DeleteItemPicture(ItemPicture itemPicture)
+        {
+            if(itemPicture == null)
+                throw new ArgumentNullException("itemPicture");
+
+            _itemPictureRepository.Delete(itemPicture);
         }
     }
 }

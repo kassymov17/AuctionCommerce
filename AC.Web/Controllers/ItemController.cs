@@ -11,6 +11,8 @@ using AC.Services.Localization;
 using AC.Services.Media;
 using AC.Web.Models.Catalog;
 using AC.Web.Extensions;
+using AC.Web.Framework;
+using AC.Web.Framework.Kendoui;
 using AC.Web.Models.Media;
 
 namespace AC.Web.Controllers
@@ -53,6 +55,27 @@ namespace AC.Web.Controllers
         }
 
         [NonAction]
+        protected virtual Item PrepareBidStep(Item item)
+        {
+            if (item.InitialPrice > 100 && item.InitialPrice <= 1000)
+                item.BidStep = 50;
+
+            if (item.InitialPrice > 1000 && item.InitialPrice < 10000)
+                item.BidStep = 500;
+
+            if (item.InitialPrice >= 10000 && item.InitialPrice < 50000)
+                item.BidStep = 1000;
+
+            if (item.InitialPrice >= 50000 && item.InitialPrice < 100000)
+                item.BidStep = 5000;
+
+            if (item.InitialPrice >= 100000 && item.InitialPrice < 1000000)
+                item.BidStep = 10000;
+
+            return item;
+        }
+
+        [NonAction]
         protected virtual ItemDetailsModel PrepareItemDetailsPageModel(Item item)
         {
             if(item == null)
@@ -60,6 +83,8 @@ namespace AC.Web.Controllers
 
             #region Стандартные свойства
 
+            PrepareBidStep(item);
+            _itemService.UpdateItem(item);
             var model = new ItemDetailsModel
             {
                 Id = item.Id,
@@ -69,13 +94,11 @@ namespace AC.Web.Controllers
                 MetaKeywords = item.MetaKeywords,
                 MetaTitle = item.MetaTitle,
                 MetaDescription = item.MetaDescription,
-                ItemType =  item.ItemType
+                ItemType =  item.ItemType,
+                User = item.User
             };
 
             #region Breadrumbs
-
-
-
             #endregion
 
             #region Изображения 
@@ -130,6 +153,10 @@ namespace AC.Web.Controllers
                                 item.AuctionEndDate.HasValue && item.AuctionEndDate >= DateTime.UtcNow;
 
             model.PlaceBid.ItemId = item.Id;
+            model.PlaceBid.CurrentPrice = item.InitialPrice;
+            model.PlaceBid.BidStep = item.BidStep;
+
+            model.Bids = item.Bids.OrderByDescending(b => b.Amount).ToList();
 
             return model;
 
@@ -164,6 +191,119 @@ namespace AC.Web.Controllers
 
             return View(model);
         }
+
+        #region Изображения товара
+
+        [ValidateInput(false)]
+        public ActionResult ItemPictureAdd(int pictureId, int displayOrder, string overrideAltAttribute,
+            string overrideTitleAttribute,
+            int itemId)
+        {
+            if (pictureId == 0)
+                throw new ArgumentException();
+
+            var item = _itemService.GetItemById(itemId);
+            if (item == null)
+                throw new ArgumentException("Не найден продукт с данным id");
+
+            var picture = _pictureService.GetPictureById(pictureId);
+            if (picture == null)
+                throw new ArgumentException("Не найдено изображение с данным id");
+
+            _itemService.InsertItemPicture(new ItemPicture
+            {
+                PictureId = pictureId,
+                ItemId = itemId,
+                DisplayOrder = displayOrder
+            });
+
+            _pictureService.UpdatePicture(picture.Id,
+                _pictureService.LoadPictureBinary(picture),
+                picture.MimeType,
+                picture.SeoFilename,
+                overrideAltAttribute,
+                overrideTitleAttribute);
+
+            return Json(new {Result = true}, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult ItemPictureList(DataSourceRequest command, int itemId)
+        {
+            var itemPictures = _itemService.GetItemPicturesByItemId(itemId);
+            var itemPicturesModel = itemPictures
+                .Select(x =>
+                {
+                    var picture = _pictureService.GetPictureById(x.PictureId);
+                    if (picture == null)
+                        throw new Exception("Изображение не получается загрузиться");
+                    var m = new ItemModel.ItemPictureModel
+                    {
+                        Id = x.Id,
+                        ItemId =  x.ItemId,
+                        PictureId = x.PictureId,
+                        PictureUrl = _pictureService.GetPictureUrl(picture),
+                        OverrideTitleAttribute = picture.AltAttribute,
+                        OverrideAltAttribute = picture.TitleAttribute,
+                        DisplayOrder = x.DisplayOrder
+                    };
+                    return m;
+                }).ToList();
+
+            var gridModel = new DataSourceResult
+            {
+                Data = itemPicturesModel,
+                Total = itemPicturesModel.Count
+            };
+
+            return Json(gridModel);
+        }
+
+        [HttpPost]
+        public ActionResult ItemPictureUpdate(ItemModel.ItemPictureModel model)
+        {
+            var itemPicture = _itemService.GetItemPictureById(model.Id);
+            if (itemPicture == null)
+                throw new ArgumentException("Не найдено изображание с данным id");
+
+            itemPicture.DisplayOrder = model.DisplayOrder;
+            _itemService.UpdateItemPicture(itemPicture);
+
+            var picture = _pictureService.GetPictureById(itemPicture.PictureId);
+            if(picture == null)
+                throw new ArgumentException("Не найдено изображение с таким id");
+
+            _pictureService.UpdatePicture(picture.Id, 
+            _pictureService.LoadPictureBinary(picture),
+            picture.MimeType,
+            picture.SeoFilename,
+            model.OverrideAltAttribute,
+            model.OverrideTitleAttribute
+            );
+
+            return new NullJsonResult();
+        }
+
+        [HttpPost]
+        public ActionResult ItemPictureDelete(int id)
+        {
+            var itemPicture = _itemService.GetItemPictureById(id);
+            if(itemPicture == null)
+                throw new ArgumentException("Не найдено изображение с данным id");
+
+            var pictureId = itemPicture.PictureId;
+            _itemService.DeleteItemPicture(itemPicture);
+
+            var picture = _pictureService.GetPictureById(pictureId);
+            if(picture == null)
+                throw new ArgumentException("Не найдено изображение с данным id");
+
+            _pictureService.DeletePicture(picture);
+
+            return new NullJsonResult();
+        }
+
+        #endregion
 
         #endregion
     }

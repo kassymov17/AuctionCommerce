@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Web.Mvc;
 using AC.Core.Domain.Catalog;
-using AC.Core.Domain.Orders;
 using AC.Web.Framework.Mvc;
 using AC.Web.Models.Media;
 
@@ -19,6 +17,7 @@ namespace AC.Web.Models.Catalog
             PlaceBid = new PlaceBidModel();
         }
 
+        public Core.Domain.Users.User User { get; set; }
         public PictureModel DefaultPictureModel { get; set; }
         public IList<PictureModel> PictureModels { get; set; }
 
@@ -37,6 +36,7 @@ namespace AC.Web.Models.Catalog
 
         public string StockAvailability { get; set; }
 
+        public List<Bid> Bids { get; set; }
         public ItemOverviewModel.ItemPriceModel ItemPrice { get; set; }
         public AddToCartModel AddToCart { get; set; }
         public PlaceBidModel PlaceBid { get; set; }
@@ -54,6 +54,8 @@ namespace AC.Web.Models.Catalog
         {
             public int ItemId { get; set; }
             public int Amount { get; set; }
+            public decimal CurrentPrice { get; set; }
+            public decimal BidStep { get; set; }
         } 
 
         #endregion

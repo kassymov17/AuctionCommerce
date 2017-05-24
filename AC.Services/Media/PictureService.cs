@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading;
 using ImageResizer;
 using System.Threading.Tasks;
+using System.Web;
 using AC.Core;
 using AC.Core.Domain.Catalog;
 using AC.Core.Domain.Media;
@@ -374,6 +375,62 @@ namespace AC.Services.Media
             return GetThumbLocalPath(Path.GetFileName(url));
         }
 
+        public Picture UpdatePicture(int pictureId, byte[] pictureBinary, string mimeType, string seoFilename,
+            string altAttribute = null,
+            string titleAttribute = null, bool isNew = true, bool validateBinary = true)
+        {
+            mimeType = CommonHelper.EnsureNotNull(mimeType);
+            mimeType = CommonHelper.EnsureMaximumLength(mimeType, 20);
+
+            seoFilename = CommonHelper.EnsureMaximumLength(seoFilename, 100);
+
+            if (validateBinary)
+                pictureBinary = ValidatePicture(pictureBinary, mimeType);
+
+            var picture = GetPictureById(pictureId);
+            if (picture == null)
+                return null;
+
+            if(seoFilename != picture.SeoFilename)
+                DeletePictureThumbs(picture);
+
+            picture.PictureBinary = pictureBinary;
+            picture.MimeType = mimeType;
+            picture.SeoFilename = seoFilename;
+            picture.AltAttribute = altAttribute;
+            picture.TitleAttribute = titleAttribute;
+            picture.IsNew = isNew;
+
+            _pictureRepository.Update(picture);
+
+            return picture;
+        }
+
+        public virtual byte[] ValidatePicture(byte[] pictureBinary, string mimeType)
+        {
+            using (var destStream = new MemoryStream())
+            {
+                ImageBuilder.Current.Build(pictureBinary, destStream, new ResizeSettings
+                {
+                    MaxWidth = 1980,
+                    MaxHeight = 1980,
+                    Quality = 80
+                });
+                return destStream.ToArray();
+            }
+        }
+
+        public virtual void DeletePicture(Picture picture)
+        {
+            if(picture == null)
+                throw new ArgumentNullException("picture");
+
+            DeletePictureThumbs(picture);
+
+            _pictureRepository.Delete(picture);
+        }
+
         #endregion
     }
 }
+

@@ -82,6 +82,7 @@
     <Compile Include="Mapping\Catalog\ItemCategoryMap.cs" />
     <Compile Include="Mapping\Catalog\ItemMap.cs" />
     <Compile Include="Mapping\Catalog\ItemPictureMap.cs" />
+    <Compile Include="Mapping\Catalog\ProxyBidMap.cs" />
     <Compile Include="Mapping\Common\GenericAttributeMap.cs" />
     <Compile Include="Mapping\Localization\LanguageMap.cs" />
     <Compile Include="Mapping\Localization\LocaleStringResourceMap.cs" />

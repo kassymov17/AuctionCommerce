@@ -1,0 +1,30 @@
+﻿@model IList<Bid>
+@using AC.Core.Domain.Catalog;
+
+@if (Model.Count > 0)
+{
+    <div class="product-specs-box">
+        <div class="title">
+            <strong>История ставок</strong>
+        </div>
+        <div class="table-wrapper">
+            <table class="data-table">
+                <tbody>
+                    <tr>
+                        <th class="text-center" width="33%">Участник</th>
+                        <th class="text-center" width="33%">Размер ставки</th>
+                        <th class="text-center" width="33%">Время</th>
+                    </tr>
+                    @foreach (var bid in Model)
+                    {
+                        <tr valign="top">
+                            <td class="text-center">@bid.User.Username</td>
+                            <td align="center">@bid.Amount</td>
+                            <td align="center">@bid.CreatedOn</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}

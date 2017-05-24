@@ -15,5 +15,15 @@ namespace AC.Services.Catalog
         void UpdateItem(Item item);
 
         void InsertItem(Item item);
+
+        void InsertItemPicture(ItemPicture itemPicture);
+
+        IList<ItemPicture> GetItemPicturesByItemId(int itemId);
+
+        ItemPicture GetItemPictureById(int itemPictureId);
+
+        void UpdateItemPicture(ItemPicture itemPicture);
+
+        void DeleteItemPicture(ItemPicture itemPicture);
     }
 }

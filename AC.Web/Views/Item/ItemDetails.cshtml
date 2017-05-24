@@ -11,6 +11,16 @@
     @* TODO breadcrumbs *@    
 }
 
+<script type="text/javascript">
+    $(document).ready(function () {
+        var endDate = "@String.Format("{0:yyyy/M/d}", Model.EndDate).Replace(".", "/")";
+        console.log(endDate);
+        $("#timeLeft").countdown(endDate, function(event) {
+            $(this).html(event.strftime('%D дней %H:%M:%S'));
+        });
+    });
+</script>
+
 <div class="page product-details-page">
     <div class="page-body">
         @using (Html.BeginRouteForm("Item", new { itemId = Model.Id}, FormMethod.Post, new { id = "product-details-form" }))
@@ -33,11 +43,11 @@
                         @{
                             if (Model.ItemType == ItemType.AuctionItem)
                             {
-                                <p>Стартовая цена</p>
-                                <h1>@Model.ItemPrice.Price тенге</h1>
-                                <p>Ставок: 0</p>
-                                @*<p>Шаг аукциона</p>
-                                <h1>@Model.ItemPrice.BidStep тенге</h1>*@
+                                <p>Тип товара: <strong>Аукцион</strong></p>
+                                <p>Времени до окончания: <strong id="timeLeft"></strong></p>
+                                <p>Ставок: @Model.Bids.Count (<a href="#bids">Показать</a>)</p>
+                                <p>Текущая цена: <strong>@Model.ItemPrice.Price тенге</strong></p>
+                                <p>Владелец лота: <strong>@Model.User.Username</strong></p>
                                 @Html.Partial("_PlaceBid", Model.PlaceBid)
                             }
                             else
@@ -49,6 +59,9 @@
                         }
                         
                     </div>
+                </div>
+                <div class="product-collateral" id="bids">
+                    @Html.Partial("_ItemBids", Model.Bids)
                 </div>
             </div>
         }

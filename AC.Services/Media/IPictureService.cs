@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using AC.Core.Domain.Media;
 
 namespace AC.Services.Media
@@ -24,5 +25,10 @@ namespace AC.Services.Media
 
         IList<Picture> GetPicturesByItemId(int itemId, int recordsToReturn = 0);
 
+        Picture UpdatePicture(int pictureId, byte[] pictureBinary, string mimeType, string seoFilename,
+            string altAttribute = null,
+            string titleAttribute = null, bool isNew = true, bool validateBinary = true);
+
+        void DeletePicture(Picture picture);
     }
 }

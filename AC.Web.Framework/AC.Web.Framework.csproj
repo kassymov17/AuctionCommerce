@@ -113,6 +113,8 @@
     <Compile Include="Controllers\ParameterBasedOnFormNameAttribute.cs" />
     <Compile Include="DependencyRegistrar.cs" />
     <Compile Include="HtmlExtensions.cs" />
+    <Compile Include="Kendoui\DataSourceRequest.cs" />
+    <Compile Include="Kendoui\DataSourceResult.cs" />
     <Compile Include="Kendoui\Dynamic.cs" />
     <Compile Include="Localization\LocalizedString.cs" />
     <Compile Include="Localization\Localizer.cs" />
@@ -121,6 +123,7 @@
     <Compile Include="Mvc\Routes\IRouteProvider.cs" />
     <Compile Include="Mvc\Routes\IRoutePublisher.cs" />
     <Compile Include="Mvc\Routes\RoutePublisher.cs" />
+    <Compile Include="NullJsonResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UI\AsIsBundleOrderer.cs" />
     <Compile Include="UI\IPageHeadBuilder.cs" />

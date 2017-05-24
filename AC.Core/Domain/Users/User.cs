@@ -12,6 +12,7 @@ namespace AC.Core.Domain.Users
         // список вещей принадлежащих юзеру
         private ICollection<Item> _items;
         private ICollection<Bid> _bids;
+        private ICollection<ProxyBid> _proxyBids;
         // список товаров в корзине
         private ICollection<ShoppingCartItem> _shoppingCartItems;
 
@@ -77,6 +78,12 @@ namespace AC.Core.Domain.Users
         {
             get { return _bids ?? (_bids = new List<Bid>()); }
             protected set { _bids = value; }
+        }
+
+        public virtual ICollection<ProxyBid> ProxyBids
+        {
+            get { return _proxyBids ?? (_proxyBids = new List<ProxyBid>()); }
+            protected set { _proxyBids = value; }
         }
 
         #endregion

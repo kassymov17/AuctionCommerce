@@ -5,13 +5,13 @@
 
 <script>
     $(document).ready(function() {
-        bindBootstrapTabSelectEvent('product-edit');
+        bindBootstrapTabSelectEvent('item-edit');
     });
 </script>
 
 <div class="content">
     <div class="form-horizontal">
-        <div id="product-edit" class="nav-tabs-custom">
+        <div id="item-edit" class="nav-tabs-custom">
             <ul class="nav nav-tabs">
                 @Html.RenderBootstrapTabHeader("tab-info", "Информация", true)
                 @Html.RenderBootstrapTabHeader("tab-pictures", "Изображения")

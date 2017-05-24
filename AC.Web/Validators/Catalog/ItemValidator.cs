@@ -7,7 +7,7 @@ using AC.Web.Models.Catalog;
 
 namespace AC.Web.Validators.Catalog
 {
-    public class ItemValidator : BaseACValidator<ItemModel>
+    public partial class ItemValidator : BaseACValidator<ItemModel>
     {
         public ItemValidator(ILocalizationService localizationService, IDbContext dbContext)
         {
