@@ -4,6 +4,17 @@
 @using AC.Core.Domain.Orders
 @using AC.Core.Infrastructure
 @using AC.Web.Models.Catalog
+@using Microsoft.Ajax.Utilities
+
+<script>
+    $(document).ready(function () {
+        var endDate = "@String.Format("{0:yyyy/M/d}", Model.AuctionEndDate).Replace(".", "/")";
+        console.log(endDate);
+        $("#timeLeft" + @Model.Id).countdown(endDate, function(event) {
+            $(this).html(event.strftime('%D дней %H:%M:%S'));
+        });
+    });
+</script>
 
 @{
     // добавить в корзину
@@ -30,8 +41,8 @@
             @{
                 if (Model.ItemType == ItemType.AuctionItem)
                 {
-                    <p>Ставок: </p>
-                    <strong>@Model.AuctionStartDate - @Model.AuctionEndDate</strong>
+                    <p>Ставок: @Model.ItemPrice.Bids.Count</p>
+                    <strong id="@("timeLeft" + Model.Id)"></strong>
                 }
             }
         </div>

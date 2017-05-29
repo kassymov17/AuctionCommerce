@@ -277,6 +277,13 @@ namespace AC.Web.Controllers
             return View(model);
         }
 
+        public ActionResult Logout()
+        {
+            _authenticationService.SignOut();
+
+            return RedirectToRoute("Homepage");
+        }
+
         public ActionResult Info()
         {
             if(!_workContext.CurrentUser.IsRegistered())

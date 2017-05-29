@@ -61,6 +61,7 @@ namespace AC.Web.Extensions
 
                                 priceModel.BidStep = item.BidStep.ToString();
                                 priceModel.Price = item.InitialPrice.ToString();
+                                priceModel.Bids = item.Bids.ToList();
 
                                 #endregion
                             }
@@ -112,6 +113,7 @@ namespace AC.Web.Extensions
                 model.AuctionStartDate = item.AuctionStartDate;
                 model.AuctionEndDate = item.AuctionEndDate;
                 
+
                 models.Add(model);
             }
             return models;

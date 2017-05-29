@@ -312,8 +312,8 @@ namespace AC.Services.Orders
                             // отправить уведомление пользователю, чью ставку сбили
                         }
                         var nextBid = proxyMaxBid + item.BidStep;
-                        if (nextBid > bid)
-                            nextBid = bid;
+                        if (nextBid > userEnteredPrice)
+                            nextBid = userEnteredPrice;
 
                         var proxyBidData =
                             _proxyBidRepository.Table.FirstOrDefault(p => p.ItemId == item.Id && p.UserId == user.Id);
@@ -337,7 +337,7 @@ namespace AC.Services.Orders
                         {
                             _bidRepository.Insert(new Bid
                             {
-                                User = user,
+                                User = proxyBidder,
                                 Item = item,
                                 Amount = proxyMaxBid,
                                 CreatedOn = DateTime.UtcNow
@@ -359,21 +359,22 @@ namespace AC.Services.Orders
                     {
                         _bidRepository.Insert(new Bid
                         {
-                            User = user,
-                            Item = item,
-                            Amount = userEnteredPrice,
-                            CreatedOn = DateTime.Now
-                        });
-
-                        _bidRepository.Insert(new Bid
-                        {
                             User = proxyBidQuery.User,
                             Item = item,
                             Amount = proxyMaxBid,
                             CreatedOn = DateTime.Now
                         });
 
+                        _bidRepository.Insert(new Bid
+                        {
+                            User = user,
+                            Item = item,
+                            Amount = userEnteredPrice,
+                            CreatedOn = DateTime.Now
+                        });
+                        
                         item.InitialPrice = userEnteredPrice;
+                        _itemService.UpdateItem(item);
                     }
                     else if (proxyMaxBid > userEnteredPrice)
                     {
@@ -404,7 +405,7 @@ namespace AC.Services.Orders
                             CreatedOn = DateTime.Now
                         });
 
-                        item.InitialPrice = userEnteredPrice;
+                        item.InitialPrice = cBid;
                         _itemService.UpdateItem(item);
                     }
                 }

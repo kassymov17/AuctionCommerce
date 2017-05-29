@@ -38,6 +38,7 @@ namespace AC.Web.Models.Catalog
         {
             public string Price { get; set; }
             public string BidStep { get; set; }
+            public List<Bid> Bids { get; set; }
 
             public bool DisableBuyButton { get; set; }
             public bool DisableWishlistButton { get; set; }

@@ -156,7 +156,7 @@ namespace AC.Web.Controllers
             model.PlaceBid.CurrentPrice = item.InitialPrice;
             model.PlaceBid.BidStep = item.BidStep;
 
-            model.Bids = item.Bids.OrderByDescending(b => b.Amount).ToList();
+            model.Bids = item.Bids.OrderByDescending(b => b.Amount).ThenBy(b => b.CreatedOn).ToList();
 
             return model;
 
