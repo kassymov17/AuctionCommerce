@@ -151,6 +151,20 @@ namespace AC.Web.Framework
             return MvcHtmlString.Create(result.ToString());
         }
 
+        public static MvcHtmlString ACDropDownList<TModel>(this HtmlHelper<TModel> helper, string name,
+            IEnumerable<SelectListItem> itemList, object htmlAttributes = null, bool renderFormControlClass = true)
+        {
+            var result = new StringBuilder();
+
+            var attrs = HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes);
+            if (renderFormControlClass)
+                attrs = AddFormControlClassToHtmlAttributes(attrs);
+
+            result.Append(helper.DropDownList(name, itemList, attrs));
+
+            return MvcHtmlString.Create(result.ToString());
+        }
+
         public static RouteValueDictionary AddFormControlClassToHtmlAttributes(IDictionary<string, object> htmlAttributes)
         {
             if (htmlAttributes["class"] == null || string.IsNullOrEmpty(htmlAttributes["class"].ToString()))

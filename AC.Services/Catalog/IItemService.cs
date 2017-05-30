@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using AC.Core;
 using AC.Core.Domain.Catalog;
 
 namespace AC.Services.Catalog
@@ -14,6 +15,8 @@ namespace AC.Services.Catalog
 
         void UpdateItem(Item item);
 
+        void UpdateItems(IList<Item> items);
+
         void InsertItem(Item item);
 
         void InsertItemPicture(ItemPicture itemPicture);
@@ -25,5 +28,17 @@ namespace AC.Services.Catalog
         void UpdateItemPicture(ItemPicture itemPicture);
 
         void DeleteItemPicture(ItemPicture itemPicture);
+
+        IPagedList<Item> SearchItems(
+            int pageIndex = 0,
+            int pageSize = int.MaxValue,
+            IList<int> categoryIds = null,
+            ItemType? itemType = null,
+            string keywords = null     
+        );
+
+        IList<Item> GetItemsByIds(int[] itemIds);
+
+        void DeleteItems(IList<Item> items);
     }
 }

@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using AC.Core;
 using AC.Core.Domain.Catalog;
 using AC.Core.Domain.Users;
+using AC.Services;
 using AC.Services.Authentication;
 using AC.Services.Catalog;
 using AC.Services.Common;
@@ -305,6 +306,36 @@ namespace AC.Web.Controllers
                 return new HttpUnauthorizedResult();
 
             var user = _workContext.CurrentUser;
+
+            return View(model);
+        }
+
+        public ActionResult MyItems()
+        {
+            if(!_workContext.CurrentUser.IsRegistered())
+                return new HttpUnauthorizedResult();
+
+            var model = new ItemListModel();
+
+            // категории
+            model.AvailableCategories.Add(new SelectListItem { Text = "Все", Value = "0" });
+            var categories = SelectListHelper.GetCategoryList(_categoryService, true);
+            foreach (var c in categories)
+                model.AvailableCategories.Add(c);
+
+            // типы товаров
+            model.AvailableItemTypes = ItemType.ShopItem.ToSelectList(false).ToList();
+            model.AvailableItemTypes.Insert(0, new SelectListItem { Text = "Все", Value = "0" });
+
+            return View(model);
+        }
+
+        public ActionResult MyBids()
+        {
+            if (!_workContext.CurrentUser.IsRegistered())
+                return new HttpUnauthorizedResult();
+
+            var model = new ItemListModel();
 
             return View(model);
         }

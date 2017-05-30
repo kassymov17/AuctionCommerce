@@ -62,6 +62,12 @@
                         }
                         
                     </div>
+                    @if (!String.IsNullOrEmpty(Model.FullDescription))
+                    {
+                        <div class="full-description" itemprop="description">
+                            @Html.Raw(Model.FullDescription)
+                        </div>
+                    }
                 </div>
                 <div class="product-collateral" id="bids">
                     @Html.Partial("_ItemBids", Model.Bids)

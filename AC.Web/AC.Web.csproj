@@ -226,6 +226,7 @@
     <Compile Include="Controllers\CommonController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ItemController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Controllers\TopicController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -242,12 +243,14 @@
     <Compile Include="Models\Catalog\CategoryModel.cs" />
     <Compile Include="Models\Catalog\CategorySimpleModel.cs" />
     <Compile Include="Models\Catalog\ItemDetailsModel.cs" />
+    <Compile Include="Models\Catalog\ItemListModel.cs" />
     <Compile Include="Models\Catalog\ItemModel.cs" />
     <Compile Include="Models\Catalog\ItemOverviewModel.cs" />
     <Compile Include="Models\Catalog\TopMenuModel.cs" />
     <Compile Include="Models\Common\FooterTopicModel.cs" />
     <Compile Include="Models\Common\HeaderLinksModel.cs" />
     <Compile Include="Models\Media\PictureModel.cs" />
+    <Compile Include="Models\Order\UserOrderListModel.cs" />
     <Compile Include="Models\Topics\TopicModel.cs" />
     <Compile Include="Models\User\LoginModel.cs" />
     <Compile Include="Models\User\RegisterModel.cs" />
@@ -1394,11 +1397,14 @@
     <Content Include="Scripts\kendo\2014.1.318\kendo.window.min.js.map" />
     <Content Include="Views\Shared\EditorTemplates\RichEditor.cshtml" />
     <Content Include="Views\Item\_ItemBids.cshtml" />
+    <Content Include="Views\User\MyItems.cshtml" />
+    <Content Include="Views\User\MyBids.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Images\Thumbs\" />
     <Folder Include="Content\Roxy_Fileman\tmp\" />
+    <Folder Include="Views\Order\" />
     <Folder Include="Views\ShoppingCart\" />
   </ItemGroup>
   <ItemGroup>

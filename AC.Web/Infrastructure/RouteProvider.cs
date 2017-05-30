@@ -88,8 +88,8 @@ namespace AC.Web.Infrastructure
                 new[] { "AC.Web.Controllers" });
 
             routes.MapRoute("UserOrders",
-                "user/userorders",
-                new { controller = "User", action = "Orders" },
+                "account/myorders",
+                new { controller = "Order", action = "UserOrders" },
                 new[] { "AC.Web.Controllers" });
 
             routes.MapRoute("WonBids",

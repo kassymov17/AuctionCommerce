@@ -24,6 +24,19 @@ namespace AC.Web.Infrastructure
                     .ForMember(dest => dest.NotApprovedTotalReviews, mo => mo.Ignore())
                     .ForMember(dest => dest.ItemCategories, mo => mo.Ignore())
                     .ForMember(dest => dest.ItemPictures, mo => mo.Ignore());
+
+                // items
+                cfg.CreateMap<Item, ItemModel>()
+                    .ForMember(dest => dest.ItemTypeName, mo => mo.Ignore())
+                    .ForMember(dest => dest.StockQuantityStr, mo => mo.Ignore())
+                    .ForMember(dest => dest.CreatedOn, mo => mo.Ignore())
+                    .ForMember(dest => dest.UpdatedOn, mo => mo.Ignore())
+                    .ForMember(dest => dest.PictureThumbnailUrl, mo => mo.Ignore())
+                    .ForMember(dest => dest.AvailableCategories, mo => mo.Ignore())
+                    .ForMember(dest => dest.AddPictureModel, mo => mo.Ignore())
+                    .ForMember(dest => dest.ItemPictureModels, mo => mo.Ignore())
+                    .ForMember(dest => dest.SelectedCategoryIds, mo => mo.Ignore())
+                    .ForMember(dest => dest.LastStockQuantity, mo => mo.Ignore());
             });
             _mapper = _mapperConfiguration.CreateMapper();
         }

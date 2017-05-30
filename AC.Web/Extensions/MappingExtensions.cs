@@ -40,6 +40,11 @@ namespace AC.Web.Extensions
             return model;
         }
 
+        public static ItemModel ToModel(this Item entity)
+        {
+            return entity.MapTo<Item, ItemModel>();
+        }
+
         public static Item ToEntity(this ItemModel model)
         {
             return model.MapTo<ItemModel, Item>();

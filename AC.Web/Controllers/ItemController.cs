@@ -14,6 +14,7 @@ using AC.Web.Extensions;
 using AC.Web.Framework;
 using AC.Web.Framework.Kendoui;
 using AC.Web.Models.Media;
+using Microsoft.Ajax.Utilities;
 
 namespace AC.Web.Controllers
 {
@@ -177,6 +178,76 @@ namespace AC.Web.Controllers
 
             var model = PrepareItemOverviewModels(items, true, true, 500).ToList();
             return PartialView(model);
+        }
+
+        [HttpPost]
+        public ActionResult ItemList(DataSourceRequest command, ItemListModel model)
+        {
+            var categoryIds = new List<int> { model.SearchCategoryId };
+
+            var items = _itemService.SearchItems(
+                categoryIds: categoryIds,
+                itemType: model.SearchItemTypeId > 0 ? (ItemType?)model.SearchItemTypeId : null,
+                keywords: model.SearchItemName,
+                pageIndex: command.Page - 1,
+                pageSize: command.PageSize    
+            );
+
+            var gridModel = new DataSourceResult();
+
+            gridModel.Data = items.Select(x =>
+            {
+                var itemModel = x.ToModel();
+                itemModel.FullDescription = "";
+
+                itemModel.FullDescription = "";
+                var defaultItemPicture = _pictureService.GetPicturesByItemId(x.Id, 1).FirstOrDefault();
+                itemModel.PictureThumbnailUrl = _pictureService.GetPictureUrl(defaultItemPicture, 75, true);
+
+                itemModel.ItemTypeName = x.ItemType.ToString();
+
+                return itemModel;
+            });
+            gridModel.Total = items.TotalCount;
+
+            return Json(gridModel);
+        }
+
+        [HttpPost]
+        public ActionResult ItemBidList(DataSourceRequest command, ItemListModel model)
+        {
+            var items = _workContext.CurrentUser.Bids.Select(b => b.Item).DistinctBy(i => i.Id);
+
+            var gridModel = new DataSourceResult();
+
+            var enumerable = items as IList<Item> ?? items.ToList();
+            gridModel.Data = enumerable.Select(x =>
+            {
+                var itemModel = x.ToModel();
+                itemModel.FullDescription = "";
+
+                itemModel.FullDescription = "";
+                var defaultItemPicture = _pictureService.GetPicturesByItemId(x.Id, 1).FirstOrDefault();
+                itemModel.PictureThumbnailUrl = _pictureService.GetPictureUrl(defaultItemPicture, 75, true);
+
+                itemModel.ItemTypeName = x.ItemType.ToString();
+
+                return itemModel;
+            });
+            gridModel.Total = enumerable.Count();
+
+            return Json(gridModel);
+        }
+
+        [HttpPost]
+        public ActionResult DeleteSelected(ICollection<int> selectedIds)
+        {
+            if (selectedIds != null)
+            {
+                _itemService.DeleteItems(_itemService.GetItemsByIds(selectedIds.ToArray()).ToList());
+            }
+
+            return Json(new { Result = true });
         }
 
         public ActionResult ItemDetails(int itemId)

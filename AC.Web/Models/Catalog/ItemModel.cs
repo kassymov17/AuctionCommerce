@@ -23,6 +23,10 @@ namespace AC.Web.Models.Catalog
 
         public override int Id { get; set; }
 
+        //picture thumbnail
+        [ACResourceDisplayName("Admin.Catalog.Products.Fields.PictureThumbnailUrl")]
+        public string PictureThumbnailUrl { get; set; }
+
         [ACResourceDisplayName("Admin.Catalog.Products.Fields.ProductType")]
         public int ItemTypeId { get; set; }
         [ACResourceDisplayName("Admin.Catalog.Products.Fields.ProductType")]
