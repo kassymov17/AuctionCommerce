@@ -1399,12 +1399,12 @@
     <Content Include="Views\Item\_ItemBids.cshtml" />
     <Content Include="Views\User\MyItems.cshtml" />
     <Content Include="Views\User\MyBids.cshtml" />
+    <Content Include="Views\Order\UserOrders.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Images\Thumbs\" />
     <Folder Include="Content\Roxy_Fileman\tmp\" />
-    <Folder Include="Views\Order\" />
     <Folder Include="Views\ShoppingCart\" />
   </ItemGroup>
   <ItemGroup>

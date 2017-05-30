@@ -1,0 +1,44 @@
+﻿@model AC.Web.Models.Order.UserOrderListModel
+@{
+    Layout = "~/Views/Shared/_ColumnsTwo.cshtml";
+}
+@using AC.Web.Models.User
+@using AC.Web.Models.Order
+@section left{
+    @Html.Action("UserNavigation", "User", new { selectedTabId = UserNavigationEnum.Orders })
+}
+
+<div class="page account-page order-list-page">
+    <div class="page-title">
+        <h1>Мой кабинет - Заказы</h1>
+    </div>
+    <div class="page-body">
+        @if (Model.Orders.Count > 0)
+        {
+            <div class="order-list">
+                @foreach (var order in Model.Orders)
+                {
+                    <div class="section order-item">
+                        <div class="title">
+                            <strong>Заказ №@order.Id</strong>
+                        </div>
+                        <ul class="info">
+                            <li>Статус: <span class="order-status @order.OrderStatusEnum.ToString().ToLowerInvariant()">@order.OrderStatus</span></li>
+                            <li>Дата заказа: <span class="order-date">@order.CreatedOn.ToString()</span></li>
+                            <li>Общая сумма: <span class="order-total">@order.OrderTotal тенге</span></li>
+                        </ul>
+                        <div class="buttons">
+                            <input type="button" value="Подробнее" class="button-2 order-details-button" onclick="setLocation('@Url.RouteUrl("OrderDetails", new { orderId = order.Id })')" />
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            <div class="no-data">
+                У вас нет заказов
+            </div>
+        }
+    </div>
+</div>

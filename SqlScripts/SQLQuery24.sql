@@ -167,9 +167,77 @@ SELECT 145, 72, N'User', N'LanguageId', N'1' UNION ALL
 SELECT 146, 73, N'User', N'LanguageAutomaticallyDetected', N'True' UNION ALL
 SELECT 147, 73, N'User', N'LanguageId', N'1' UNION ALL
 SELECT 148, 74, N'User', N'LanguageAutomaticallyDetected', N'True' UNION ALL
-SELECT 149, 74, N'User', N'LanguageId', N'1'
+SELECT 149, 74, N'User', N'LanguageId', N'1' UNION ALL
+SELECT 150, 75, N'User', N'LanguageAutomaticallyDetected', N'True'
 COMMIT;
 RAISERROR (N'[dbo].[GenericAttribute]: Insert Batch: 3.....Done!', 10, 1) WITH NOWAIT;
+GO
+
+BEGIN TRANSACTION;
+INSERT INTO [dbo].[GenericAttribute]([Id], [EntityId], [KeyGroup], [Key], [Value])
+SELECT 151, 75, N'User', N'LanguageId', N'1' UNION ALL
+SELECT 152, 76, N'User', N'LanguageAutomaticallyDetected', N'True' UNION ALL
+SELECT 153, 76, N'User', N'LanguageId', N'1' UNION ALL
+SELECT 154, 77, N'User', N'LanguageAutomaticallyDetected', N'True' UNION ALL
+SELECT 155, 77, N'User', N'LanguageId', N'1' UNION ALL
+SELECT 156, 78, N'User', N'LanguageAutomaticallyDetected', N'True' UNION ALL
+SELECT 157, 78, N'User', N'LanguageId', N'1' UNION ALL
+SELECT 158, 79, N'User', N'LanguageAutomaticallyDetected', N'True' UNION ALL
+SELECT 159, 79, N'User', N'LanguageId', N'1' UNION ALL
+SELECT 160, 80, N'User', N'LanguageAutomaticallyDetected', N'True' UNION ALL
+SELECT 161, 80, N'User', N'LanguageId', N'1' UNION ALL
+SELECT 162, 81, N'User', N'LanguageAutomaticallyDetected', N'True' UNION ALL
+SELECT 163, 81, N'User', N'LanguageId', N'1' UNION ALL
+SELECT 164, 82, N'User', N'LanguageAutomaticallyDetected', N'True' UNION ALL
+SELECT 165, 82, N'User', N'LanguageId', N'1' UNION ALL
+SELECT 166, 83, N'User', N'LanguageAutomaticallyDetected', N'True' UNION ALL
+SELECT 167, 83, N'User', N'LanguageId', N'1' UNION ALL
+SELECT 168, 84, N'User', N'LanguageAutomaticallyDetected', N'True' UNION ALL
+SELECT 169, 84, N'User', N'LanguageId', N'1' UNION ALL
+SELECT 170, 85, N'User', N'LanguageAutomaticallyDetected', N'True' UNION ALL
+SELECT 171, 85, N'User', N'LanguageId', N'1' UNION ALL
+SELECT 172, 86, N'User', N'LanguageAutomaticallyDetected', N'True' UNION ALL
+SELECT 173, 86, N'User', N'LanguageId', N'1' UNION ALL
+SELECT 174, 87, N'User', N'LanguageAutomaticallyDetected', N'True' UNION ALL
+SELECT 175, 87, N'User', N'LanguageId', N'1' UNION ALL
+SELECT 176, 88, N'User', N'LanguageAutomaticallyDetected', N'True' UNION ALL
+SELECT 177, 88, N'User', N'LanguageId', N'1' UNION ALL
+SELECT 178, 89, N'User', N'LanguageAutomaticallyDetected', N'True' UNION ALL
+SELECT 179, 89, N'User', N'LanguageId', N'1' UNION ALL
+SELECT 180, 90, N'User', N'LanguageAutomaticallyDetected', N'True' UNION ALL
+SELECT 181, 90, N'User', N'LanguageId', N'1' UNION ALL
+SELECT 182, 91, N'User', N'LanguageAutomaticallyDetected', N'True' UNION ALL
+SELECT 183, 91, N'User', N'LanguageId', N'1' UNION ALL
+SELECT 184, 92, N'User', N'LanguageAutomaticallyDetected', N'True' UNION ALL
+SELECT 185, 92, N'User', N'LanguageId', N'1' UNION ALL
+SELECT 186, 93, N'User', N'LanguageAutomaticallyDetected', N'True' UNION ALL
+SELECT 187, 93, N'User', N'LanguageId', N'1' UNION ALL
+SELECT 188, 94, N'User', N'LanguageAutomaticallyDetected', N'True' UNION ALL
+SELECT 189, 94, N'User', N'LanguageId', N'1' UNION ALL
+SELECT 190, 95, N'User', N'LanguageAutomaticallyDetected', N'True' UNION ALL
+SELECT 191, 95, N'User', N'LanguageId', N'1' UNION ALL
+SELECT 192, 96, N'User', N'LanguageAutomaticallyDetected', N'True' UNION ALL
+SELECT 193, 96, N'User', N'LanguageId', N'1' UNION ALL
+SELECT 194, 97, N'User', N'LanguageAutomaticallyDetected', N'True' UNION ALL
+SELECT 195, 97, N'User', N'LanguageId', N'1' UNION ALL
+SELECT 196, 98, N'User', N'LanguageAutomaticallyDetected', N'True' UNION ALL
+SELECT 197, 98, N'User', N'LanguageId', N'1' UNION ALL
+SELECT 198, 99, N'User', N'LanguageAutomaticallyDetected', N'True' UNION ALL
+SELECT 199, 99, N'User', N'LanguageId', N'1' UNION ALL
+SELECT 200, 100, N'User', N'LanguageAutomaticallyDetected', N'True'
+COMMIT;
+RAISERROR (N'[dbo].[GenericAttribute]: Insert Batch: 4.....Done!', 10, 1) WITH NOWAIT;
+GO
+
+BEGIN TRANSACTION;
+INSERT INTO [dbo].[GenericAttribute]([Id], [EntityId], [KeyGroup], [Key], [Value])
+SELECT 201, 100, N'User', N'LanguageId', N'1' UNION ALL
+SELECT 202, 101, N'User', N'LanguageAutomaticallyDetected', N'True' UNION ALL
+SELECT 203, 101, N'User', N'LanguageId', N'1' UNION ALL
+SELECT 204, 102, N'User', N'LanguageAutomaticallyDetected', N'True' UNION ALL
+SELECT 205, 102, N'User', N'LanguageId', N'1'
+COMMIT;
+RAISERROR (N'[dbo].[GenericAttribute]: Insert Batch: 5.....Done!', 10, 1) WITH NOWAIT;
 GO
 
 SET IDENTITY_INSERT [dbo].[GenericAttribute] OFF;

@@ -90,7 +90,7 @@ SELECT 87, 1, N'Media.MagnificPopup.Counter', N'%curr% of %total%' UNION ALL
 SELECT 88, 1, N'Media.MagnificPopup.Close', N'Закрыть' UNION ALL
 SELECT 89, 1, N'Media.MagnificPopup.Loading', N'Загрузка' UNION ALL
 SELECT 90, 1, N'EnteredPriceShouldPositive', N'Значение должно быт положительное' UNION ALL
-SELECT 91, 1, N'ShoppingCart.EnteredPriceShouldBeMoreThanInitial', N'Значение ставки должно быть выше стартвой цены' UNION ALL
+SELECT 91, 1, N'ShoppingCart.EnteredPriceShouldBeMoreThanInitial', N'Значение ставки должно быть выше текущей цены и шага' UNION ALL
 SELECT 92, 1, N'Products.BidHasBeenPlaced.Link', N'Ваша ставка была успешно добавлена. Вы можете проследить за своими лотами, ставками в <a href="{0}">кабинете</a>' UNION ALL
 SELECT 93, 1, N'Common.Save', N'Сохранить' UNION ALL
 SELECT 94, 1, N'Account.AddItem', N'Добавить товар' UNION ALL
@@ -126,7 +126,11 @@ SELECT 125, 1, N'Admin.Common.Delete', N'Удалить' UNION ALL
 SELECT 126, 1, N'Admin.Common.Edit', N'Изменить' UNION ALL
 SELECT 127, 1, N'Admin.Common.Update', N'Обновить' UNION ALL
 SELECT 128, 1, N'Admin.Common.Cancel', N'Отмена' UNION ALL
-SELECT 129, 1, N'Admin.Catalog.Products.Pictures.AddButton', N'Добавить'
+SELECT 129, 1, N'Admin.Catalog.Products.Pictures.AddButton', N'Добавить' UNION ALL
+SELECT 130, 1, N'Admin.Catalog.Products.List.SearchProductName', N'Название товара' UNION ALL
+SELECT 131, 1, N'Admin.Catalog.Products.List.SearchCategory', N'Категория' UNION ALL
+SELECT 132, 1, N'Admin.Catalog.Products.List.SearchProductType', N'Тип товара' UNION ALL
+SELECT 133, 1, N'Admin.Common.DeleteConfirmation', N'Вы уверены что хотите удалить этот товар?'
 COMMIT;
 RAISERROR (N'[dbo].[LocaleStringResource]: Insert Batch: 3.....Done!', 10, 1) WITH NOWAIT;
 GO

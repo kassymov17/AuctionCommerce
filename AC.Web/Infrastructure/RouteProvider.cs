@@ -92,6 +92,12 @@ namespace AC.Web.Infrastructure
                 new { controller = "Order", action = "UserOrders" },
                 new[] { "AC.Web.Controllers" });
 
+            routes.MapRoute("OrderDetails",
+                "account/myorders/{orderId}",
+                new {controller = "Order", action = "OrderDetails"}, 
+                new {orderId = @"\d+"},
+                new[] { "AC.Web.Controllers" });
+
             routes.MapRoute("WonBids",
                 "user/wonbids",
                 new { controller = "User", action = "WonBids" },

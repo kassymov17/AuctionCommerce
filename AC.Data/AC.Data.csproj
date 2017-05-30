@@ -87,6 +87,9 @@
     <Compile Include="Mapping\Localization\LanguageMap.cs" />
     <Compile Include="Mapping\Localization\LocaleStringResourceMap.cs" />
     <Compile Include="Mapping\Media\PictureMap.cs" />
+    <Compile Include="Mapping\Orders\OrderItemMap.cs" />
+    <Compile Include="Mapping\Orders\OrderMap.cs" />
+    <Compile Include="Mapping\Orders\OrderNoteMap.cs" />
     <Compile Include="Mapping\Orders\ShoppingCartItemMap.cs" />
     <Compile Include="Mapping\Topics\TopicMap.cs" />
     <Compile Include="Mapping\Users\UserMap.cs" />
