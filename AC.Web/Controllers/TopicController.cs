@@ -69,6 +69,11 @@ namespace AC.Web.Controllers
             return PartialView(model);
         }
 
+        public ActionResult TopicDetailsPopup(string systemName)
+        {
+            return PartialView();
+        }
+
         #endregion
     }
 }

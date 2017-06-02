@@ -126,3 +126,18 @@ function display_kendoui_grid_error(e) {
         alert('Произошла ошибка');
     }
 }
+
+function displayPopupContentFromUrl(url, title, modal, width) {
+    var isModal = (modal ? true : false);
+    var targetWidth = (width ? width : 550);
+
+    $('<div></div>').load(url)
+        .dialog({
+            modal: isModal,
+            width: targetWidth,
+            title: title,
+            close: function (event, ui) {
+                $(this).dialog('destroy').remove();
+            }
+        });
+}

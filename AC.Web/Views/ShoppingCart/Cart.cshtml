@@ -1,0 +1,15 @@
+﻿@model ShoppingCartModel
+@using AC.Web.Models.ShoppingCart
+
+@{
+    Layout = "~/Views/Shared/_ColumnsOne.cshtml";
+}
+
+<div class="page shopping-cart-page">
+    <div class="page-title">
+        <h1>Корзина</h1>
+    </div>
+    <div class="page-body">
+        @Html.Partial("OrderSummary", Model)
+    </div>
+</div>

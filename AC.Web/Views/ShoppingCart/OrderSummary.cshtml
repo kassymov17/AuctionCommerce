@@ -1,0 +1,133 @@
+﻿@model ShoppingCartModel
+@using AC.Web.Models.ShoppingCart
+
+<div class="order-summary-content">
+    @if (Model.Items.Count > 0)
+    {
+        using (Html.BeginRouteForm("ShoppingCart", FormMethod.Post, new {enctype = "multipart/form-data", id = "shopping-cart-form"}))
+        {
+            @Html.AntiForgeryToken()
+            <div class="table-wrapper">
+                <table class="cart">
+                    <colgroup>
+                        <col width="1"/>
+                        <col width="1"/>
+                        <col width="1"/>
+                        <col width="1"/>
+                        <col width="1"/>
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <th class="remove-from-cart">
+                            Удалить
+                        </th>
+                        <th class="product-picture">
+                            Изображение
+                        </th>
+                        <th class="product">
+                            Название
+                        </th>
+                        <th class="unit-price">
+                            Цена
+                        </th>
+                        <th class="quantity">
+                            Количество
+                        </th>
+                        <th class="subtotal">
+                            Общая стоимость
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var item in Model.Items)
+                    {
+                        <tr>
+                            <td class="remove-from-cart">
+                                <label class="td-title">Удалить</label>
+                                <input type="checkbox" name="removeFromCart" value="@(item.Id)"/>
+                            </td>
+                            <td class="product-picture">
+                                <a href="@Url.RouteUrl("Item", new {itemId = item.Id})"><img alt="@item.Picture.AlternateText" src="@item.Picture.ImageUrl" title="@item.Picture.Title"/></a>
+                            </td>
+                            <td class="product">
+                                <a href="@Url.RouteUrl("Item", new {itemId = item.Id})" class="product-name">@item.ItemName</a>
+                            </td>
+                            <td class="unit-price">
+                                <label class="td-title">Цена:</label>
+                                <span class="product-unit-price">@item.UnitPrice тенге</span>
+                            </td>
+                            <td class="quantity">
+                                <label class="td-title">Количество:</label>
+                                <input name="itemquantity@(item.Id)" type="text" value="@(item.Quantity)" class="qty-input"/>
+                            </td>
+                            <td class="subtotal">
+                                <label class="td-title">Итог:</label>
+                                <span class="product-subtotal">@item.SubTotal тенге</span>
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+            <div class="cart-options">
+                <div class="common-buttons">
+                    <input type="submit" name="updatecart" value="Обновить" class="button-2 update-cart-button"/>
+                    <input type="submit" name="continueshopping" value="Продожить покупки" class="button-2 continue-shopping-button"/>
+                </div>
+            </div>
+            <div class="cart-footer">
+                <div class="totals">
+                    @Html.Action("OrderTotals", "ShoppingCart")
+                    <div id="terms-of-service-warning-box" style="display: none;" title="Уведомление">
+                        <p>Ознакомьтесь с условиями пользования и подтвердите свое согласие для оформления покупки</p>
+                    </div>
+                    <div class="terms-of-service">
+                        <input id="termsofservice" type="checkbox" name="termsofservice"/>
+                        <span>
+                            Я согласен с данными условиями
+                            <a class="read" id="read-terms">
+                                (Читать)
+                            </a>
+                        </span>
+                        <script>
+                            $(document).ready(function() {
+                                $('#read-terms').on('click',
+                                    function(e) {
+                                        e.preventDefault();
+                                        displayPopupContentFromUrl('@Url.RouteUrl("TopicPopup", new {SystemName = "conditionofuse"})', 'Условия пользования');
+                                    });
+                            });
+                        </script>
+                    </div>
+                    <div class="checkout-buttons">
+                        <script type="text/javascript">
+                            $(document).ready(function() {
+                                $('#checkout').click(function() {
+                                    var termsOfServiceOk = true;
+                                    if ($('#termsofservice').length > 0) {
+                                        if (!$('#termsofservice').is(':checked')) {
+                                            $("#terms-of-service-warning-box").dialog();
+                                            termsOfServiceOk = false;
+                                        } else {
+                                            termsOfServiceOk = true;
+                                        }
+                                    }
+                                    return termsOfServiceOk;
+                                });
+                            });
+                        </script>
+                        <button type="submit" id="checkout" name="checkout" value="checkout" class="button-1 checkout-button">
+                            Оформить заказ
+                        </button>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="no-data">
+            Корзина пуста
+        </div>
+    }
+</div>

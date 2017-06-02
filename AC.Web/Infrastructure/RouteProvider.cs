@@ -103,6 +103,12 @@ namespace AC.Web.Infrastructure
                 new { controller = "User", action = "WonBids" },
                 new[] { "AC.Web.Controllers" });
 
+            // topics
+            routes.MapRoute("TopicPopup",
+                "t-popup/{SystemName}",
+                new {controller = "Topic", action = "TopicDetailsPopup"},
+                new[] {"AC.Web.Controllers"});
+            
             // category
             routes.MapRoute("Category",
                 "{SeName}",

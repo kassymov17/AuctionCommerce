@@ -34,7 +34,7 @@
         @if (Model.ShoppingCartEnabled)
         {
             <li id="topcartlink">
-                <a href="" class="ico-cart">
+                <a href="@Url.RouteUrl("ShoppingCart")" class="ico-cart">
                     <span class="cart-label">Корзина</span>
                     <span class="cart-qty">(@Model.ShoppingCartItems)</span>
                 </a>
