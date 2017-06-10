@@ -1,0 +1,41 @@
+﻿@model AC.Web.Models.Checkout.AddressModel
+
+@Html.HiddenFor(model => model.Id)
+<div class="edit-address">
+    <div class="inputs">
+        @Html.LabelFor(model => model.FirstName, new {}, ":")
+        @Html.EditorFor(model => model.FirstName)
+        @Html.RequiredHint()
+        @Html.ValidationMessageFor(model => model.FirstName)
+    </div>
+    <div class="inputs">
+        @Html.LabelFor(model => model.LastName, new { }, ":")
+        @Html.EditorFor(model => model.LastName)
+        @Html.RequiredHint()
+        @Html.ValidationMessageFor(model => model.LastName)
+    </div>
+    <div class="inputs">
+        @Html.LabelFor(model => model.Email, new { }, ":")
+        @Html.EditorFor(model => model.Email)
+        @Html.RequiredHint()
+        @Html.ValidationMessageFor(model => model.Email)
+    </div>
+    <div class="inputs">
+        @Html.LabelFor(model => model.City, new { }, ":")
+        @Html.EditorFor(model => model.City)
+        @Html.RequiredHint()
+        @Html.ValidationMessageFor(model => model.City)
+    </div>
+    <div class="inputs">
+        @Html.LabelFor(model => model.Address, new { }, ":")
+        @Html.EditorFor(model => model.Address)
+        @Html.RequiredHint()
+        @Html.ValidationMessageFor(model => model.Address)
+    </div>
+    <div class="inputs">
+        @Html.LabelFor(model => model.Phone, new { }, ":")
+        @Html.EditorFor(model => model.Phone)
+        @Html.RequiredHint()
+        @Html.ValidationMessageFor(model => model.Phone)
+    </div>
+</div>

@@ -1,0 +1,20 @@
+﻿@model AC.Web.Models.Checkout.AddressModel
+<div class="checkout-data">
+    <div class="section new-billing-address" id="billing-new-address-form">
+        <div class="enter-address">
+            @{
+                var validationSummary = Html.ValidationSummary(true);
+            }
+            @if (!MvcHtmlString.IsNullOrEmpty(validationSummary))
+            {
+                <div class="message-error">@validationSummary</div>
+            }
+            @{
+                var dataDictAddress = new ViewDataDictionary();
+                dataDictAddress.ModelState.Merge(ViewData.ModelState);
+                dataDictAddress.TemplateInfo.HtmlFieldPrefix = "BillingNewAddress";
+                @Html.Partial("_CreateOrUpdateAddress", Model, dataDictAddress);
+            }
+        </div>
+    </div>
+</div>

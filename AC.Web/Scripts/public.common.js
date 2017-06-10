@@ -141,3 +141,7 @@ function displayPopupContentFromUrl(url, title, modal, width) {
             }
         });
 }
+
+function setLocation(url) {
+    window.location.href = url;
+}

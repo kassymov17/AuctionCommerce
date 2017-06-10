@@ -1,0 +1,68 @@
+﻿@{
+    Layout = "~/Views/Shared/_ColumnsOne.cshtml";
+
+    Html.AddScriptParts("~/Scripts/public.accordion.js");
+    Html.AddScriptParts("~/Scripts/public.onepagecheckout.js");
+    
+}
+
+@{
+    // номера шагов
+    int billingAddressStepNumber = 1;
+    int confirmOrderStepNumber = 2;
+}
+
+<div class="page checkout-page">
+    <div class="page-title">
+        <h1>Оформление заказа</h1>
+    </div>
+    <div class="page-body checkout-data">
+        <ol class="opc" id="checkout-steps">
+            <li id="opc-billing" class="tab-section allow">
+                <div class="step-title">
+                    <span class="number">@billingAddressStepNumber</span>
+                    <h2 class="title">Ваши данные</h2>
+                </div>
+                <div class="checkout-step-billing" class="step a-item" style="display: none;">
+                    <form id="co-billing-form" action="">
+                        <div id="checkout-billing-load">
+                            @Html.Action("OpcBillingForm", "Checkout")
+                        </div>
+                        <script type="text/javascript">
+                            Billing.init('#co-billing-form', '/checkout/opcsavebilling/', false);
+                        </script>
+                        <div class="buttons" id="billing-buttons-container">
+                            <input type="button" title="Продолжить" class="button-1 new-address-next-step-button" onclick="Billing.save()" value="Продолжить" />
+                            <span class="please-wait" id="billing-please-wait" style="display: none;">Идет загрузка след.шага...</span>
+                        </div>
+                    </form>
+                </div>
+            </li>
+            <li id="opc-confirm_order" class="tab-section">
+                <div class="step-title">
+                    <span class="number">@confirmOrderStepNumber</span>
+                    <h2 class="title">Заказ</h2>
+                </div>
+                <div id="checkout-step-confirm-order" class="step a-item" style="display: none;">
+                    <div id="checkout-confirm-order-load"></div>
+                    <script type="text/javascript">
+                        ConfirmOrder.init('/checkout/OpcConfirmOrder/', '/checkout/completed/');
+                    </script>
+                    <div class="buttons" id="confirm-order-buttons-container">
+                        <p class="back-link">
+                            <a href="#" onclick="Checkout.back(); return false;"><small>&laquo; </small>Назад</a>
+                            <input type="button" class="button-1 confirm-order-next-step-button" onclick="ConfirmOrder.save()" value="Готово" />
+                            <span class="please-wait" id="confirm-order-please-wait" style="display: none;">Идет загрузка...</span>
+                        </p>
+                    </div>
+                </div>
+            </li>
+        </ol>
+    </div>
+    <script type="text/javascript">
+        Accordion.init('checkout-steps', '.step-title', true);
+        Accordion.openSection('#opc-billing');
+        Checkout.init('cart/');
+    </script>
+</div>
+

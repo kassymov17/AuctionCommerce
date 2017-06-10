@@ -2,7 +2,19 @@
     Layout = "~/Views/Shared/_Root.cshtml";
 }
 @{
-    
+    int currentCategoryId = 0;
+    if (Url.RequestContext.RouteData.Values["controller"].ToString().Equals("catalog", StringComparison.InvariantCultureIgnoreCase) &&
+        Url.RequestContext.RouteData.Values["action"].ToString().Equals("category", StringComparison.InvariantCultureIgnoreCase))
+    {
+        currentCategoryId = Convert.ToInt32(Url.RequestContext.RouteData.Values["categoryId"].ToString());
+    }
+
+    int currentItemId = 0;
+    if (Url.RequestContext.RouteData.Values["controller"].ToString().Equals("item", StringComparison.InvariantCultureIgnoreCase) &&
+        Url.RequestContext.RouteData.Values["action"].ToString().Equals("itemdetails", StringComparison.InvariantCultureIgnoreCase))
+    {
+        currentItemId = Convert.ToInt32(Url.RequestContext.RouteData.Values["itemId"].ToString());
+    }
 }
 @if (IsSectionDefined("Breadcrumb"))
 {
@@ -17,7 +29,7 @@
     }
     else
     {
-        
+        @Html.Action("CategoryNavigation", "Catalog", new { currentCategoryId = currentCategoryId, currentItemId = currentItemId })
     }
 </div>
 <div class="center-2">

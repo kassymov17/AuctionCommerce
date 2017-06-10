@@ -176,6 +176,106 @@ namespace AC.Services.Catalog
             return items;
         }
 
+        public virtual IPagedList<Item> SearchItems(
+            int pageIndex = 0,
+            int pageSize = int.MaxValue,
+            IList<int> categoryIds = null,
+            ItemType? itemType = null,
+            string keywords = null,
+            bool searchDescriptions = false,
+            ItemSortingEnum orderBy = ItemSortingEnum.Position,
+            bool showHidden = false,
+            bool? overridePublished = null
+        )
+        {
+            if (categoryIds != null && categoryIds.Contains(0))
+                categoryIds.Remove(0);
+
+            // use linq instead stored procedures
+            #region поиск товаров
+
+            var query = _itemRepository.Table;
+            query = query.Where(i => !i.Deleted);
+
+            if (!overridePublished.HasValue)
+            {
+                if (!showHidden)
+                {
+                    query = query.Where(i => i.Published);
+                }
+            } else if (overridePublished.Value)
+            {
+                query = query.Where(i => !i.Published);
+            }
+
+            if (itemType.HasValue)
+            {
+                var itemTypeId = (int) itemType.Value;
+                query = query.Where(i => i.ItemTypeId == itemTypeId);
+            }
+
+            if (!String.IsNullOrWhiteSpace(keywords))
+            {
+                query = from i in query
+                        where (i.Name.Contains(keywords))
+                        select i;
+            }
+
+            if (categoryIds != null && categoryIds.Any())
+            {
+                query = from i in query
+                        from ic in i.ItemCategories.Where(ic => categoryIds.Contains(ic.CategoryId))
+                        select i;
+            }
+
+            query = from i in query
+                group i by i.Id
+                into iGroup
+                orderby iGroup.Key
+                select iGroup.FirstOrDefault();
+
+            // сортировка продуктов
+            if (orderBy == ItemSortingEnum.Position && categoryIds != null && categoryIds.Any())
+            {
+                var firstCategoryId = categoryIds[0];
+                query = query.OrderBy(i => i.ItemCategories.FirstOrDefault(ic => ic.CategoryId == firstCategoryId).DisplayOrder);
+            }
+            else if (orderBy == ItemSortingEnum.Position)
+            {
+                query = query.OrderBy(i => i.Name);
+            }
+            else if (orderBy == ItemSortingEnum.NameAsc)
+            {
+                query = query.OrderBy(i => i.Name);
+            }
+            else if (orderBy == ItemSortingEnum.NameDesc)
+            {
+                query = query.OrderByDescending(i => i.Name);
+            }
+            else if (orderBy == ItemSortingEnum.PriceAsc)
+            {
+                query = query.OrderBy(i => i.InitialPrice);
+            }
+            else if (orderBy == ItemSortingEnum.PriceDesc)
+            {
+                query = query.OrderByDescending(i => i.InitialPrice);
+            }
+            else if (orderBy == ItemSortingEnum.CreatedOn)
+            {
+                query = query.OrderByDescending(i => i.CreatedOnUtc);
+            }
+            else
+            {
+                query = query.OrderBy(i => i.Name);
+            }
+            
+            var items = new PagedList<Item>(query, pageIndex, pageSize);
+
+            return items;
+
+            #endregion
+        }
+
         public virtual IList<Item> GetItemsByIds(int[] itemIds)
         {
             if (itemIds == null || itemIds.Length == 0)

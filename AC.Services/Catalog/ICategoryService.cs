@@ -43,5 +43,7 @@ namespace AC.Services.Catalog
             int pageSize = int.MaxValue, bool showHidden = false);
 
         void InsertItemCategory(ItemCategory itemCategory);
+
+        Category GetCategoryById(int categoryId);
     }
 }

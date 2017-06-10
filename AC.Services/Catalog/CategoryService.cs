@@ -173,6 +173,14 @@ namespace AC.Services.Catalog
             _itemCategoryRepository.Insert(itemCategory);
         }
 
+        public virtual Category GetCategoryById(int categoryId)
+        {
+            if (categoryId == 0)
+                return null;
+
+            return _categoryRepository.GetById(categoryId);
+        }
+
         #endregion
     }
 }

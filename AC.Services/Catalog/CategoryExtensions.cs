@@ -84,6 +84,31 @@ namespace AC.Services.Catalog
             return result;
         }
 
+        public static IList<Category> GetCategoryBreadCrumb(this Category category, ICategoryService categoryService,
+            bool showHidden = false)
+        {
+            if(category == null)
+                throw new ArgumentNullException("category");
+
+            var result = new List<Category>();
+
+            var alreadyProcessedCategoryIds = new List<int>();
+
+            while (category != null &&
+                   !category.Deleted &&
+                   (showHidden || category.Published) &&
+                   !alreadyProcessedCategoryIds.Contains(category.Id))
+            {
+                result.Add(category);
+
+                alreadyProcessedCategoryIds.Add(category.Id);
+
+                category = categoryService.GetCategoryById(category.ParentCategoryId);
+            }
+            result.Reverse();
+            return result;
+        }
+
         public static ItemCategory FindItemCategory(this IList<ItemCategory> source, int itemId, int categoryId)
         {
             foreach(var itemCategory in source)

@@ -87,7 +87,7 @@ namespace AC.Web.Extensions
                 // изображение
                 if (preparePictureModel)
                 {
-                    int pictureSize = itemThumbPictureSize.Value;
+                    int pictureSize = itemThumbPictureSize ?? 415;
 
                     var picture = pictureService.GetPicturesByItemId(item.Id, 1).FirstOrDefault();
                     var pictureModel = new PictureModel

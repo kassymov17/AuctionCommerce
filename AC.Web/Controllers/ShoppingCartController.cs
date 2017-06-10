@@ -282,6 +282,13 @@ namespace AC.Web.Controllers
             return View(model);
         }
 
+        [ValidateInput(false)]
+        [HttpPost, ActionName("Cart")]
+        public ActionResult StartCheckout(FormCollection form)
+        {
+            return RedirectToRoute("Checkout");
+        }
+
         #endregion
     }
 }

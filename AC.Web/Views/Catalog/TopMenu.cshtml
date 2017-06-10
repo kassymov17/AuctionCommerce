@@ -4,7 +4,7 @@
 @helper RenderCategoryLine(CategorySimpleModel category, int level, bool responsiveMobileMenu)
 {
     <li>
-        <a href="@Url.RouteUrl("Category", new { SeName = category.SeName })">@category.Name
+        <a href="@Url.RouteUrl("Category", new { categoryId = category.Id })">@category.Name
             @*@if (category.NumberOfProducts.HasValue)
             {
                 <text> </text>@T("Categories.TotalProducts", category.NumberOfProducts.Value)

@@ -12,6 +12,9 @@ namespace AC.Web.Models.Catalog
         public CategoryModel()
         {
             PictureModel = new PictureModel();
+            FeaturedItems = new List<ItemOverviewModel>();
+            Items = new List<ItemOverviewModel>();
+            PagingFilteringContext = new CatalogPagingFilteringModel();
             SubCategories = new List<SubCategoryModel>();
             CategoryBreadcrumb = new List<CategoryModel>();
         }
@@ -24,10 +27,15 @@ namespace AC.Web.Models.Catalog
 
         public PictureModel PictureModel { get; set; }
 
+        public CatalogPagingFilteringModel PagingFilteringContext { get; set; }
+
         public bool DisplayCategoryBreadcrumb { get; set; }
         public IList<CategoryModel> CategoryBreadcrumb { get; set; }
 
         public IList<SubCategoryModel> SubCategories { get; set; }
+
+        public IList<ItemOverviewModel> FeaturedItems { get; set; }
+        public IList<ItemOverviewModel> Items { get; set; }
 
         // [todo] for items
 

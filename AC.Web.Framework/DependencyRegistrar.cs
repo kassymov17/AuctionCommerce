@@ -50,6 +50,9 @@ namespace AC.Web.Framework
                 .As<HttpSessionStateBase>()
                 .InstancePerLifetimeScope();
 
+            // web helper
+            builder.RegisterType<WebHelper>().As<IWebHelper>().InstancePerLifetimeScope();
+            
             // controllers
             builder.RegisterControllers(typeFinder.GetAssemblies().ToArray());
 

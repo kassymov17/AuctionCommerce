@@ -20,6 +20,12 @@ namespace AC.Web.Infrastructure
                 new { controller = "ShoppingCart", action = "Cart" },
                 new[] { "AC.Web.Controllers" });
 
+            // checkout
+            routes.MapRoute("Checkout",
+                "checkout",
+                new {controller = "Checkout", action = "Index"},
+                new[] {"AC.Web.Controllers"});
+            
             // item
             routes.MapRoute("Item",
                 "item/{itemId}",
@@ -111,8 +117,9 @@ namespace AC.Web.Infrastructure
             
             // category
             routes.MapRoute("Category",
-                "{SeName}",
+                "category/{categoryId}",
                 new { controller = "Catalog", action = "Category" },
+                new { categoryId = @"\d+" },
                 new[] { "AC.Web.Controllers" });
 
             // add item to cart

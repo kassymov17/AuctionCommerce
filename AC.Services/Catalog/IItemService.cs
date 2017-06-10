@@ -37,6 +37,18 @@ namespace AC.Services.Catalog
             string keywords = null     
         );
 
+        IPagedList<Item> SearchItems(
+            int pageIndex = 0,
+            int pageSize = int.MaxValue,
+            IList<int> categoryIds = null,
+            ItemType? itemType = null,
+            string keywords = null,
+            bool searchDescriptions = false,
+            ItemSortingEnum orderBy = ItemSortingEnum.Position,
+            bool showHidden = false,
+            bool? overridePublished = null 
+        );
+
         IList<Item> GetItemsByIds(int[] itemIds);
 
         void DeleteItems(IList<Item> items);

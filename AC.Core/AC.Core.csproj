@@ -96,6 +96,7 @@
     <Compile Include="Domain\Catalog\Item.cs" />
     <Compile Include="Domain\Catalog\ItemCategory.cs" />
     <Compile Include="Domain\Catalog\ItemPicture.cs" />
+    <Compile Include="Domain\Catalog\ItemSortingEnum.cs" />
     <Compile Include="Domain\Catalog\ItemType.cs" />
     <Compile Include="Domain\Catalog\ProxyBid.cs" />
     <Compile Include="Domain\Common\GenericAttribute.cs" />
@@ -128,10 +129,12 @@
     <Compile Include="Infrastructure\Singleton.cs" />
     <Compile Include="Infrastructure\WebAppTypeFinder.cs" />
     <Compile Include="IPagedList.cs" />
+    <Compile Include="IWebHelper.cs" />
     <Compile Include="IWorkContext.cs" />
     <Compile Include="MimeTypes.cs" />
     <Compile Include="PagedList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WebHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

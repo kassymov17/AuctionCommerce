@@ -223,6 +223,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BasePublicController.cs" />
     <Compile Include="Controllers\CatalogController.cs" />
+    <Compile Include="Controllers\CheckoutController.cs" />
     <Compile Include="Controllers\CommonController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ItemController.cs" />
@@ -240,13 +241,16 @@
     <Compile Include="Infrastructure\DependencyRegistrar.cs" />
     <Compile Include="Infrastructure\Mapper\AutoMapperStartupTask.cs" />
     <Compile Include="Infrastructure\RouteProvider.cs" />
+    <Compile Include="Models\Catalog\CatalogPagingFilteringModel.cs" />
     <Compile Include="Models\Catalog\CategoryModel.cs" />
+    <Compile Include="Models\Catalog\CategoryNavigationModel.cs" />
     <Compile Include="Models\Catalog\CategorySimpleModel.cs" />
     <Compile Include="Models\Catalog\ItemDetailsModel.cs" />
     <Compile Include="Models\Catalog\ItemListModel.cs" />
     <Compile Include="Models\Catalog\ItemModel.cs" />
     <Compile Include="Models\Catalog\ItemOverviewModel.cs" />
     <Compile Include="Models\Catalog\TopMenuModel.cs" />
+    <Compile Include="Models\Checkout\CheckoutBillingAddressModel.cs" />
     <Compile Include="Models\Common\FooterTopicModel.cs" />
     <Compile Include="Models\Common\HeaderLinksModel.cs" />
     <Compile Include="Models\Media\PictureModel.cs" />
@@ -1279,7 +1283,9 @@
     <Content Include="Scripts\kendo\2014.1.318\kendo.web.min.js" />
     <Content Include="Scripts\kendo\2014.1.318\kendo.window.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\public.accordion.js" />
     <Content Include="Scripts\public.common.js" />
+    <Content Include="Scripts\public.onepagecheckout.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\tagEditor\jquery.caret.min.js" />
@@ -1405,6 +1411,12 @@
     <Content Include="Views\ShoppingCart\Cart.cshtml" />
     <Content Include="Views\ShoppingCart\OrderSummary.cshtml" />
     <Content Include="Views\ShoppingCart\OrderTotals.cshtml" />
+    <Content Include="Views\Checkout\Index.cshtml" />
+    <Content Include="Views\Checkout\OpcBillingAddress.cshtml" />
+    <Content Include="Views\Shared\_CreateOrUpdateAddress.cshtml" />
+    <Content Include="Views\Catalog\Category.cshtml" />
+    <Content Include="Views\Catalog\_CatalogSelectors.cshtml" />
+    <Content Include="Views\Catalog\CategoryNavigation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

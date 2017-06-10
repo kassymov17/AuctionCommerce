@@ -1,0 +1,94 @@
+﻿@model AC.Web.Models.Catalog.CategoryModel
+@{
+    Layout = "~/Views/Shared/_ColumnsTwo.cshtml";
+}
+
+@using AC.Core.Domain.Common;
+@using AC.Core.Infrastructure;
+@using AC.Web.Models.Catalog;
+
+@* Навигация (холебные крошки) *@
+@section Breadcrumb
+{
+    <div class="breadcrumb">
+        <ul>
+            <li>
+                <a href="@Url.RouteUrl("Homepage")" title="Главная">Главная</a>
+                <span class="delimiter">/</span>
+            </li>
+            @foreach (var cat in Model.CategoryBreadcrumb)
+            {
+                var isLastCategory = cat.Id == Model.Id;
+                <li>
+                    @if (isLastCategory)
+                    {
+                        <strong class="current-item">@cat.Name</strong>
+                    }
+                    else
+                    {
+                        <a href="@Url.RouteUrl("Category", new { categoryId = cat.Id })" title="@cat.Name">@cat.Name</a>
+                        <span class="delimiter">/</span>
+                    }
+                </li>
+            }
+        </ul>
+    </div>
+}
+
+<div class="page category-page">
+    <div class="page-title">
+        <h1>@Model.Name</h1>
+    </div>
+    <div class="page-body">
+        @if (!String.IsNullOrEmpty(Model.Description))
+        {
+            <div class="category-description">
+                @Html.Raw(Model.Description)
+            </div>
+        }
+        @if (Model.SubCategories.Count > 0)
+        {
+            <div class="category-grid sub-category-grid">
+                <div class="item-grid">
+                    @foreach (var item in Model.SubCategories)
+                    {
+                        <div class="item-box">
+                            <div class="sub-category-item">
+                                <h2 class="title">
+                                    <a href="@Url.RouteUrl("Category", new {categoryId = item.Id})" title="@item.PictureModel.Title">@item.Name</a>
+                                </h2>
+                                <div class="picture">
+                                    <a href="@Url.RouteUrl("Category", new {categoryId = item.Id})" title="@item.PictureModel.Title">
+                                        <img alt="@item.PictureModel.AlternateText" src="@item.PictureModel.ImageUrl" title="@item.PictureModel.Title" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+        
+        @if (Model.Items.Count > 0)
+        {
+            @Html.Partial("_CatalogSelectors", Model.PagingFilteringContext, new ViewDataDictionary())
+        }
+        
+        @if (Model.Items.Count > 0)
+        {
+            <div class="@(Model.PagingFilteringContext.ViewMode == "list" ? "product-list" : "product-grid")">
+                <div class="item-grid">
+                    @foreach (var item in Model.Items)
+                    {
+                        <div class="item-box">
+                            @Html.Partial("_ItemBox", item)
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+        @{
+
+        }
+    </div>
+</div>
