@@ -29,7 +29,34 @@ namespace AC.Web.Controllers
             _workContext = workContext;
             _localizationService = localizationService;
         }
-        
+
+        public ActionResult PageNotFound()
+        {
+            this.Response.StatusCode = 404;
+            this.Response.TrySkipIisCustomErrors = true;
+
+            return View();
+        }
+
+        [ChildActionOnly]
+        public ActionResult LanguageSelector()
+        {
+            return PartialView();
+        }
+
+        [ChildActionOnly]
+        public ActionResult Logo()
+        {
+            var model = new LogoModel
+            {
+                StoreName = "AuctionCommerce"
+            };
+
+            model.LogoPath = "/content/images/logo.png";
+
+            return PartialView(model);
+        }
+
         [ChildActionOnly]
         public ActionResult HeaderLinks()
         {

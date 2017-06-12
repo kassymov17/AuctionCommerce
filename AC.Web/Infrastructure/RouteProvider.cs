@@ -137,6 +137,17 @@ namespace AC.Web.Infrastructure
                 new { itemId = @"\d+" },
                 new[] { "AC.Web.Controllers" }
                 );
+
+            // поиск товаров
+            routes.MapRoute("ItemSearch",
+                "search/",
+                new {controller = "Catalog", action = "Search"},
+                new[] {"AC.Web.Controllers"});
+
+            routes.MapRoute("ItemSearchAutoComplete",
+                "catalog/searchtermautocomplete",
+                new {controller = "Catalog", action = "SearchTermAutoComplete"},
+                new[] {"AC.Web.Controllers"});
         }
 
         public int Priority

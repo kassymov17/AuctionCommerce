@@ -305,6 +305,18 @@ namespace AC.Web.Controllers
 
             return View(model);
         }
+        
+        [ChildActionOnly]
+        public ActionResult SearchBox()
+        {
+            var model = new SearchBoxModel
+            {
+                AutoCompleteEnabled = true,
+                ShowItemImagesInSearchAutoComplete = false,
+                SearchTermMinimumLength = 3
+            };
+            return PartialView(model);
+        }
 
         [ChildActionOnly]
         public ActionResult TopMenu()

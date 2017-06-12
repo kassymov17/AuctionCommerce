@@ -1,0 +1,45 @@
+﻿@model AC.Web.Models.Catalog.SearchBoxModel
+@using (Html.BeginRouteForm("ItemSearch", FormMethod.Get, new {id = "small-search-box-form"}))
+{
+    <input type="text" class="search-box-text" id="small-searchitems" autocomplete="off" name="q" placeholder="Поиск" />
+    <input type="submit" class="button-1 search-box-button" value="Найти" />
+    if (Model.SearchTermMinimumLength > 0)
+    {
+        <script type="text/javascript">
+            $("#small-search-box-form").submit(function(event) {
+                if ($("#small-searchitems").val() == "") {
+                    alert("Пожалуйста, введите несколько ключевых слов");
+                    $("#small-searchitems").focus();
+                    event.preventDefault();
+                }
+            });
+        </script>
+    }
+    if (Model.AutoCompleteEnabled)
+    {
+        <text>
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    $('#small-searchitems').autocomplete({
+                        delay: 500,
+                        minLength: @(Model.SearchTermMinimumLength.ToString()),
+                        source: '(@Url.RouteUrl("ItemSearchAutoComplete")',
+                        appendTo: '.search-box',
+                        select: function(event, ui) {
+                            $("#small-searchitems").val(ui.item.label);
+                            setLocation(ui.item.itemurl);
+                            return false;
+                        }
+                    }).data("ui-autocomplete")._renderItem = function(ui, item) {
+                        var t = item.label;
+                        t = htmlEncode(t);
+                        return $("<li></li>")
+                        .data("item.autocomplete", item)
+                        .append("<a>@(Model.ShowItemImagesInSearchAutoComplete ? Html.Raw("<img src='\" + item.itempictureurl + \"'>") : null)<span>" + t + "</span></a>")
+                        .appendTo(ul);
+                    };
+                });
+            </script>
+        </text>
+    }
+}

@@ -249,10 +249,12 @@
     <Compile Include="Models\Catalog\ItemListModel.cs" />
     <Compile Include="Models\Catalog\ItemModel.cs" />
     <Compile Include="Models\Catalog\ItemOverviewModel.cs" />
+    <Compile Include="Models\Catalog\SearchBoxModel.cs" />
     <Compile Include="Models\Catalog\TopMenuModel.cs" />
     <Compile Include="Models\Checkout\CheckoutBillingAddressModel.cs" />
     <Compile Include="Models\Common\FooterTopicModel.cs" />
     <Compile Include="Models\Common\HeaderLinksModel.cs" />
+    <Compile Include="Models\Common\LogoModel.cs" />
     <Compile Include="Models\Media\PictureModel.cs" />
     <Compile Include="Models\Order\UserOrderListModel.cs" />
     <Compile Include="Models\ShoppingCart\OrderTotalsModel.cs" />
@@ -1417,6 +1419,9 @@
     <Content Include="Views\Catalog\Category.cshtml" />
     <Content Include="Views\Catalog\_CatalogSelectors.cshtml" />
     <Content Include="Views\Catalog\CategoryNavigation.cshtml" />
+    <Content Include="Views\Common\Logo.cshtml" />
+    <Content Include="Views\Catalog\SearchBox.cshtml" />
+    <Content Include="Views\Common\LanguageSelector.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
